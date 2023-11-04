@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Productos en Venta</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #producto {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-image {
+      margin-right: 20px;
+    }
+
+    .product-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    #product-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #product-description {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    #product-price {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img src="img/Fisestoplogo.png" height="40px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Todos los productos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Categorias
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Servicios</a></li>
+                        <li><a class="dropdown-item" href="#"></a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#"></a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+</header>
+
+<body>
+  <div class="container">
+    <div id="producto" class="product-container">
+      <div class="product-image">
+        <img id="product-image" src="" alt="">
+      </div>
+      <div class="product-details">
+        <h1 id="product-name"></h1>
+        <p id="product-description"></p>
+        <p id="product-price"></p>
+        <p id="product-sizes"></p>
+        <p id="product-colors"></p>
+        <p id="product-materials"></p>
+        <p id="product-brand"></p>
+        <button type="button" class="btn btn-primary" onclick="addToCart()">Agregar al carrito</button>
+        <p id="cart-message"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function addToCart() {
+      const productName = document.getElementById('product-name').textContent;
+      const productPrice = document.getElementById('product-price').textContent;
+
+      const cartMessage = document.getElementById('cart-message');
+      cartMessage.textContent = `¡${productName} ha sido agregado al carrito de compras por ${productPrice}!`;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      fetch('producto.json')
+        .then(response => response.json())
+        .then(data => {
+          const productName = document.getElementById('product-name');
+          const productImage = document.getElementById('product-image');
+          const productDescription = document.getElementById('product-description');
+          const productPrice = document.getElementById('product-price');
+          const productSizes = document.getElementById('product-sizes');
+          const productColors = document.getElementById('product-colors');
+          const productMaterials = document.getElementById('product-materials');
+          const productBrand = document.getElementById('product-brand');
+
+          productName.textContent = data.nombre;
+          productImage.src = data.imagen;
+          productImage.alt = data.nombre;
+          productDescription.textContent = data.descripcion;
+          productPrice.textContent = `Precio: $${data.precio}`;
+          productSizes.textContent = `Tallas disponibles: ${data.tallas.join(", ")}`;
+          productColors.textContent = `Colores disponibles: ${data.colores.join(", ")}`;
+          productMaterials.textContent = `Materiales: ${data.materiales.join(", ")}`;
+          productBrand.textContent = `Marca: ${data.marca}`;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    });
+  </script>
+
+</body>
+</html>
