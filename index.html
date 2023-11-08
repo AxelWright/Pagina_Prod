@@ -27,6 +27,10 @@
             z-index: 1000000;
             top: 0;
         }
+        
+        #cb-cookie-banner { 
+            position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; border-radius: 0; display: none;
+        }
     </style>
 </head>
 
@@ -73,15 +77,6 @@
     </header>
 
     <img src="img/aaaa.png" class="rounded mx-auto d-block" alt="Banner de FiesTop" style="height: 500px;">
-
-    <!-- Cookies -->
-    <div id="cookies" style="position: fixed; left: 0px; right: 0px; bottom: 0px; width: 100%; min-height: 40px; background: #cfcfcf; color: #184b6a; z-index: 99999;">
-        <div style="width: 100%; position: absolute; padding-left: 5px; font-family: verdana; font-size: 12px; top: 30%; text-align: center;">
-            Usamos cookies propias y de terceros para ayudarte en tu navegación. Si continúas navegando consideramos que aceptas el uso de cookies.
-            <a style="padding: 6px; background: #4682B4; text-decoration: none; color: #fff; border-radius: 5px;"><b>OK</b></a>
-            <a style="padding-left: 5px; text-decoration: none; color: #636363;" href="#" target="_blank" rel="nofollow"><u>Más información</u></a>
-        </div>
-    </div>
     
     <section class="destacados">
         <h2>Productos Destacados</h2>
@@ -210,6 +205,47 @@
 
     </section>
 
+    <!-- Cookie Banner -->
+    <script>
+        /* Javascript to show and hide cookie banner using localstorage */
+        /* Shows the Cookie banner */
+        function showCookieBanner(){
+         let cookieBanner = document.getElementById("cb-cookie-banner");
+         cookieBanner.style.display = "block";
+        }
+        
+        /* Hides the Cookie banner and saves the value to localstorage */
+        function hideCookieBanner(){
+         localStorage.setItem("cb_isCookieAccepted", "yes");
+         let cookieBanner = document.getElementById("cb-cookie-banner");
+         cookieBanner.style.display = "none";
+        }
+        
+        /* Checks the localstorage and shows Cookie banner based on it. */
+        function initializeCookieBanner(){
+         let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
+         if(isCookieAccepted === null)
+         {
+          localStorage.setItem("cb_isCookieAccepted", "no");
+          showCookieBanner();
+         }
+         if(isCookieAccepted === "no"){
+          showCookieBanner();
+         }
+        }
+        
+        // Assigning values to window object
+        window.onload = initializeCookieBanner();
+        window.cb_hideCookieBanner = hideCookieBanner;
+    </script>
+    
+    <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
+          &#x1F36A; Este sitio usa para asegurar que obtengas la mejor experiencia.
+          <a href="https://www.cookiesandyou.com/" target="blank">Leer más</a>
+          <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">Entendido</button>
+    </div>
+    <!-- End of Cookie Banner -->
+    
     <footer>
         <p style="text-align: center;">&copy; 2023 Mi Tienda en Línea <a
                 href="https://www.facebook.com/people/FiesTop/100092594490737/"><img src="img/fb.png"
