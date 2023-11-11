@@ -11,36 +11,144 @@
 
         gtag('config', 'G-ZHFYSC9VXM');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FiesTop | Donde las fiestas cobran vida</title>
-    <meta name="description" content="En FiesTop puedes organizar desde una fiesta de cumpleaños hasta una fiesta de VX años el limite es tu imaginacion puesto que aquí encontraras todo lo que necesitas.">
+    <meta name="description"
+        content="En FiesTop puedes organizar desde una fiesta de cumpleaños hasta una fiesta de VX años el limite es tu imaginacion puesto que aquí encontraras todo lo que necesitas.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script>
+        var current = 0;
+        var imagenes = new Array();
+
+        $(document).ready(function () {
+            var numImages = 5;
+            if (numImages <= 3) {
+                $('.right-arrow').css('display', 'none');
+                $('.left-arrow').css('display', 'none');
+            }
+
+            $('.left-arrow').on('click', function () {
+                if (current > 0) {
+                    current = current - 1;
+                } else {
+                    current = numImages - 3;
+                }
+
+                $(".carrusel").animate({ "left": -($('#product_' + current).position().left) }, 600);
+
+                return false;
+            });
+
+            $('.left-arrow').on('hover', function () {
+                $(this).css('opacity', '0.5');
+            }, function () {
+                $(this).css('opacity', '1');
+            });
+
+            $('.right-arrow').on('hover', function () {
+                $(this).css('opacity', '0.5');
+            }, function () {
+                $(this).css('opacity', '1');
+            });
+
+            $('.right-arrow').on('click', function () {
+                if (numImages > current + 3) {
+                    current = current + 1;
+                } else {
+                    current = 0;
+                }
+
+                $(".carrusel").animate({ "left": -($('#product_' + current).position().left) }, 600);
+
+                return false;
+            });
+        });
+    </script>
     <style>
+       
         .navbar {
             position: fixed;
             width: 100%;
             z-index: 1000000;
             top: 0;
         }
-        
-        #cb-cookie-banner { 
-            position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; border-radius: 0; display: none;
+       
+
+        #cb-cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            border-radius: 0;
+            display: none;
+        }
+
+        #carrusel {
+            float: left;
+            width: 1300px;
+            overflow: hidden;
+            height: 303px;
+            position: relative;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        #carrusel .left-arrow {
+            position: absolute;
+            left: 10px;
+            z-index: 1;
+            top: 50%;
+            margin-top: -9px;
+        }
+
+        #carrusel .right-arrow {
+            position: absolute;
+            right: 10px;
+            z-index: 1;
+            top: 50%;
+            margin-top: -9px;
+        }
+
+        .carrusel {
+            width: 4000px;
+            left: 0px;
+            position: absolute;
+            z-index: 0;
+        }
+
+        .carrusel>div {
+            float: left;
+            height: 303px;
+            margin-right: 5px;
+            width: 295px;
+            text-align: center;
+        }
+
+        .carrusel img {
+            cursor: pointer;
+        }
+
+        .product {
+            border: #CCCCCC 1px solid;
         }
     </style>
 </head>
 
 <body>
-   
+
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html"><img src="img/Fisestoplogo.png" height="40px" alt="Logo oficial de FiesTop"></a>
+                <a class="navbar-brand" href="index.html"><img src="img/Fisestoplogo.png" height="40px"
+                        alt="Logo oficial de FiesTop" title="Logo oficial de FiesTop"> </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -77,15 +185,67 @@
             </div>
         </nav>
     </header>
-
-    <img src="img/Banner.png" class="rounded mx-auto d-block" alt="Banner de FiesTop" style="height: 500px;">
-    
+    <br>
+    <div>
+        
+        <img src="img/Banner.png" class="rounded mx-auto d-block" alt="Banner de FiesTop" title="Banner de FiesTop"
+            style="height: 500px; ">
+    </div>
+    <div style="background-color: cadetblue; margin: auto;">
+    <p class="text-center" style="font-size: x-large;" >Quienes somos:</p> <p class="text-center" style="font-size: x-large;">FiesTop es una empresa centrada en la organizacion de eventos sociales de cualquier indole desde fiestas de cumpleaños hasta fiestas de XV años y bodas el limite es su imaginación, nosotros le daremos las herramientas necesarias para que organice su fiesta ideal en tiempo y forma</p>
+    </div>
+    <div id="carrusel">
+        <a href="#" class="left-arrow"><img src="img/left-arrow.png" width="20" height="20" title="Flecha Izquierda"
+                alt="Flecha con direccion hacia la izquierda" /></a>
+        <a href="#" class="right-arrow"><img src="img/right-arrow.png" width="20" height="20" title="Flecha Derecha"
+                alt="Flecha con direccion hacia la derecha" /></a>
+        <div class="carrusel">
+            <div class="product" id="product_0">
+                <a href="product.html"> <img src="img/Cubiertos.jpg" width="195" height="160"
+                        title="Cubiertos Plasticos" alt="1000 cubiertos variados" /></a>
+                <h5>1.000 cubiertos desechables ...</h5>
+                <p>$ 558.03</p>
+            </div>
+            <div class="product" id="product_1">
+                <img src="img/SonidoB.jpeg" width="260" height="160" alt="Evento con sonido y luces Boom"
+                    title="Evento con sonido y luces Boom" />
+                <h5>Sonido Boom</h5>
+                <p>$ 15,000</p>
+            </div>
+            <div class="product" id="product_2">
+                <img src="img/HaciendaReal.jpg" width="260" height="160" alt="Salón de eventos Real de Haciendas"
+                    title="Salón de eventos Real de Haciendas" />
+                <h5>Salón Real de Haciendas</h5>
+                <p>$ 10,000</p>
+            </div>
+            <div class="product" id="product_3">
+                <img src="img/FiestaNiña.jpeg" width="260" height="160" alt="Sombreros de papel de unicornio"
+                    title="Sombreros de papel de unicornio" />
+                <h5>6 Piezas, Sombrero De ...</h5>
+                <p>$ 49.99</p>
+            </div>
+            <div class="product" id="product_4">
+                <img src="img/ElementsAGS.jpg" width="260" height="160" alt="Excelente ambiente para los eventos"
+                    title="Excelente ambiente" />
+                <h5>Elements</h5>
+                <p>$ 18,500.99</p>
+            </div>
+            <div class="product" id="product_5">
+                <img src="img/CoronaC.jpeg" width="260" height="160" title="Corona de papel"
+                    alt="Corona de papel con decoración de pastel de cunpleaños" />
+                <h5>15 Piezas, Coronas De ...</h5>
+                <p>$ 92.29</p>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <section class="destacados">
         <h2>Productos Destacados</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="product.html"><img src="img/Cubiertos.jpg" class="card-img-top" title="Cubiertos Plasticos" alt="1000 cubiertos variados"></a>
+                    <a href="product.html"><img src="img/Cubiertos.jpg" class="card-img-top" title="Cubiertos Plasticos"
+                            alt="1000 cubiertos variados"></a>
                     <div class="card-body">
                         <h5 class="card-title">1.000 cubiertos desechables de plástico, paquete variado</h5>
                         <h3 class="card-title">$558.03</h3>
@@ -98,11 +258,12 @@
             </div>
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="#"><img src="img/FiestaNiña.jpeg" class="card-img-top" alt="Sombreros de papel de unicornio"></a>
+                    <a href="#"><img src="img/FiestaNiña.jpeg" class="card-img-top"
+                            alt="Sombreros de papel de unicornio" title="Sombreros de papel de unicornio"></a>
                     <div class="card-body">
                         <h5 class="card-title">6 Piezas, Sombrero De Papel De Unicornio Arcoíris</h5>
                         <h3 class="card-title">$49.99</h3>
-                        <p class="card-text">6 Piezas, Sombrero De Papel De Unicornio Arcoíris, 
+                        <p class="card-text">6 Piezas, Sombrero De Papel De Unicornio Arcoíris,
                             Suministros De Fiesta De Cumpleaños Para Niña Y Niño...</p>
                         <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
@@ -110,12 +271,13 @@
             </div>
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="#"><img src="img/CoronaC.jpeg" class="card-img-top" alt="Corona de papel con decoración de pastel de cunpleaños"></a>
+                    <a href="#"><img src="img/CoronaC.jpeg" class="card-img-top" title="Corona de papel"
+                            alt="Corona de papel con decoración de pastel de cunpleaños"></a>
                     <div class="card-body">
                         <h5 class="card-title">15 Piezas, Coronas De Feliz Cumpleaños</h5>
                         <h3 class="card-title">$92.29</h3>
-                        <p class="card-text">15 Piezas, Coronas De Feliz Cumpleaños, 
-                            Coronas De Sombrero De Cumpleaños De Papel Para Regalos De Cumpleaños 
+                        <p class="card-text">15 Piezas, Coronas De Feliz Cumpleaños,
+                            Coronas De Sombrero De Cumpleaños De Papel Para Regalos De Cumpleaños
                             En El Aula, Fiestas, Sombreros...</p>
                         <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
@@ -123,7 +285,8 @@
             </div>
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="#"><img src="img/HaciendaReal.jpg" class="card-img-top" alt="Salón de eventos Real de Haciendas"></a>
+                    <a href="#"><img src="img/HaciendaReal.jpg" class="card-img-top"
+                            alt="Salón de eventos Real de Haciendas" title="Salón de eventos Real de Haciendas"></a>
                     <div class="card-body">
                         <h5 class="card-title">Salón Real de Haciendas</h5>
                         <h3 class="card-title">$10,000</h3>
@@ -134,18 +297,22 @@
             </div>
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="#"><img src="img/CasaV.jpeg" class="card-img-top" alt="Salón Casa Victoria"></a>
+                    <a href="#"><img src="img/CasaV.jpeg" class="card-img-top" alt="Salón Casa Victoria"
+                            title="Salón Casa Victoria"></a>
                     <div class="card-body">
                         <h5 class="card-title">Casa Victoria</h5>
                         <h3 class="card-title">$45,000</h3>
-                        <p class="card-text">15 Piezas, Coronas De Feliz Cumpleaños, Coronas De Sombrero De Cumpleaños De Papel Para Regalos De Cumpleaños En El Aula, Fiestas, Sombreros, Suministros Diarios Para Fiestas...</p>
+                        <p class="card-text">15 Piezas, Coronas De Feliz Cumpleaños, Coronas De Sombrero De Cumpleaños
+                            De Papel Para Regalos De Cumpleaños En El Aula, Fiestas, Sombreros, Suministros Diarios Para
+                            Fiestas...</p>
                         <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="#"><img src="img/SonidoB.jpeg" class="card-img-top" alt="Evento con sonido y luces Boom"></a>
+                    <a href="#"><img src="img/SonidoB.jpeg" class="card-img-top" alt="Evento con sonido y luces Boom"
+                            title="Evento con sonido y luces Boom"></a>
                     <div class="card-body">
                         <h5 class="card-title">Sonido Boom</h5>
                         <h3 class="card-title">$15,000</h3>
@@ -156,45 +323,55 @@
             </div>
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="#"><img src="img/ElementsAGS.jpg" class="card-img-top" alt="..."></a>
+                    <a href="#"><img src="img/ElementsAGS.jpg" class="card-img-top"
+                            alt="Excelente ambiente para los eventos" title="Excelente ambiente"></a>
                     <div class="card-body">
                         <h5 class="card-title">Elements</h5>
                         <h3 class="card-title">$18,500.99</h3>
                         <p class="card-text">CONÓCENOS
-                            Somos una empresa hidrocálida con más de una década dedicada a la producción de eventos corporativos y sociales, generamos un excelente ambiente, divertido y animado...</p>
+                            Somos una empresa hidrocálida con más de una década dedicada a la producción de eventos
+                            corporativos y sociales, generamos un excelente ambiente, divertido y animado...</p>
                         <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="#"><img src="https://www.elglobo.com.mx/cdn/shop/products/49523-1_600x.jpg?v=1618602727" class="card-img-top" alt="..."></a>
+                    <a href="#"><img src="https://www.elglobo.com.mx/cdn/shop/products/49523-1_600x.jpg?v=1618602727"
+                            class="card-img-top" alt="Paste 4 chocolates" title="Pastel de 4 chocolates"></a>
                     <div class="card-body">
                         <h5 class="card-title">4 Chocolates Individual</h5>
                         <h3 class="card-title">$49.00</h3>
-                        <p class="card-text">Pan de chocolate tipo brownie relleno de mousse de chocolate amargo, chocolate de leche y chocolate blanco. Decorado con glasé blanco y obscuro...</p>
+                        <p class="card-text">Pan de chocolate tipo brownie relleno de mousse de chocolate amargo,
+                            chocolate de leche y chocolate blanco. Decorado con glasé blanco y obscuro...</p>
                         <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="#"><img src="https://www.elglobo.com.mx/cdn/shop/products/27543-1_600x.jpg?v=1618602845" class="card-img-top" alt="..."></a>
+                    <a href="#"><img src="https://www.elglobo.com.mx/cdn/shop/products/27543-1_600x.jpg?v=1618602845"
+                            class="card-img-top" alt="Pastel en forma de roca de chocolate"
+                            title="Pastel rosca de chocolate"></a>
                     <div class="card-body">
                         <h5 class="card-title">Amandes de Chocolate</h5>
                         <h3 class="card-title">$398.00</h3>
-                        <p class="card-text">Pastel en forma de rosca elaborado con helado sabor a chocolate con almendra y relleno de variegato noisette. Decorado con rocio y glasé de chocolate, montado sobre un bizcocho sabor chocolate embebido en jarabe marrasquino...</p>
+                        <p class="card-text">Pastel en forma de rosca elaborado con helado sabor a chocolate con
+                            almendra y relleno de variegato noisette. Decorado con rocio y glasé de chocolate, montado
+                            sobre un bizcocho sabor chocolate embebido en jarabe marrasquino...</p>
                         <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card border-light mb-3">
-                    <a href="#"><img src="https://www.elglobo.com.mx/cdn/shop/products/41153-1_600x.jpg?v=1618602873" class="card-img-top" alt="..."></a>
+                    <a href="#"><img src="https://www.elglobo.com.mx/cdn/shop/products/41153-1_600x.jpg?v=1618602873"
+                            class="card-img-top" alt="Variedad de biscochos" title="Biscochos miniatura"></a>
                     <div class="card-body">
                         <h5 class="card-title">Biscocho Miniatura</h5>
                         <h3 class="card-title">$198.00</h3>
-                        <p class="card-text">Charola con deliciosa mezcla de panqués y garibaldis tamaño miniatura...</p>
+                        <p class="card-text">Charola con deliciosa mezcla de panqués y garibaldis tamaño miniatura...
+                        </p>
                         <a href="#" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
@@ -211,47 +388,48 @@
     <script>
         /* Javascript to show and hide cookie banner using localstorage */
         /* Shows the Cookie banner */
-        function showCookieBanner(){
-         let cookieBanner = document.getElementById("cb-cookie-banner");
-         cookieBanner.style.display = "block";
+        function showCookieBanner() {
+            let cookieBanner = document.getElementById("cb-cookie-banner");
+            cookieBanner.style.display = "block";
         }
-        
+
         /* Hides the Cookie banner and saves the value to localstorage */
-        function hideCookieBanner(){
-         localStorage.setItem("cb_isCookieAccepted", "yes");
-         let cookieBanner = document.getElementById("cb-cookie-banner");
-         cookieBanner.style.display = "none";
+        function hideCookieBanner() {
+            localStorage.setItem("cb_isCookieAccepted", "yes");
+            let cookieBanner = document.getElementById("cb-cookie-banner");
+            cookieBanner.style.display = "none";
         }
-        
+
         /* Checks the localstorage and shows Cookie banner based on it. */
-        function initializeCookieBanner(){
-         let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
-         if(isCookieAccepted === null)
-         {
-          localStorage.setItem("cb_isCookieAccepted", "no");
-          showCookieBanner();
-         }
-         if(isCookieAccepted === "no"){
-          showCookieBanner();
-         }
+        function initializeCookieBanner() {
+            let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
+            if (isCookieAccepted === null) {
+                localStorage.setItem("cb_isCookieAccepted", "no");
+                showCookieBanner();
+            }
+            if (isCookieAccepted === "no") {
+                showCookieBanner();
+            }
         }
-        
+
         // Assigning values to window object
         window.onload = initializeCookieBanner();
         window.cb_hideCookieBanner = hideCookieBanner;
     </script>
-    
+
     <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
-          &#x1F36A; Este sitio usa para asegurar que obtengas la mejor experiencia.
-          <a href="https://www.cookiesandyou.com/" target="blank">Leer más</a>
-          <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">Entendido</button>
+        &#x1F36A; Este sitio usa para asegurar que obtengas la mejor experiencia.
+        <a href="https://www.cookiesandyou.com/" target="blank">Leer más</a>
+        <button type="button" class="btn btn-primary btn-sm ms-3"
+            onclick="window.cb_hideCookieBanner()">Entendido</button>
     </div>
     <!-- End of Cookie Banner -->
-    
+
     <footer>
         <p style="text-align: center;">&copy; 2023 Mi Tienda en Línea <a
                 href="https://www.facebook.com/people/FiesTop/100092594490737/"><img src="img/fb.png"
-                    class="card-img-top" alt="..." style="width: 30px;"></a> </p>
+                    class="card-img-top" alt="Plataforma oficial de fiestop en facebook" title="logo de Facebook"
+                    style="width: 30px;"></a> </p>
 
     </footer>
 </body>
