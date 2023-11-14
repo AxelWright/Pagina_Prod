@@ -2,7 +2,6 @@
 <html lang="es" data-bs-theme="auto">
 
 <head>
-    <link rel="icon" href="img/Fisestoplogo.png" type="image/x-icon">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHFYSC9VXM"></script>
     <script>
@@ -24,8 +23,6 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-
-    <script async src="cookie-banner.js"></script>
     <script>
         var current = 0;
         var imagenes = new Array();
@@ -75,12 +72,14 @@
         });
     </script>
     <style>
+       
         .navbar {
             position: fixed;
             width: 100%;
             z-index: 1000000;
             top: 0;
         }
+       
 
         #cb-cookie-banner {
             position: fixed;
@@ -141,8 +140,6 @@
             border: #CCCCCC 1px solid;
         }
     </style>
-
-    
 </head>
 
 <body>
@@ -179,6 +176,20 @@
                                 <li><a class="dropdown-item" href="#"></a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Quienes somos:
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item">FiesTop es una empresa centrada en la organizacion de eventos sociales <br> de cualquier indole desde fiestas de cumpleaños hasta fiestas de XV años y bodas <br> el limite es su imaginación, nosotros le daremos las herramientas necesarias <br> para que organice su fiesta ideal en tiempo y forma</a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </li>
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
@@ -193,8 +204,6 @@
         
         <img src="img/Banner.png" class="rounded mx-auto d-block" alt="Banner de FiesTop" title="Banner de FiesTop"
             style="height: 500px; ">
-    </div>
-    
     <div id="carrusel">
         <a href="#" class="left-arrow"><img src="img/left-arrow.png" width="20" height="20" title="Flecha Izquierda"
                 alt="Flecha con direccion hacia la izquierda" /></a>
@@ -386,12 +395,43 @@
     </section>
 
     <!-- Cookie Banner -->
+    <script>
+        /* Javascript to show and hide cookie banner using localstorage */
+        /* Shows the Cookie banner */
+        function showCookieBanner() {
+            let cookieBanner = document.getElementById("cb-cookie-banner");
+            cookieBanner.style.display = "block";
+        }
+
+        /* Hides the Cookie banner and saves the value to localstorage */
+        function hideCookieBanner() {
+            localStorage.setItem("cb_isCookieAccepted", "yes");
+            let cookieBanner = document.getElementById("cb-cookie-banner");
+            cookieBanner.style.display = "none";
+        }
+
+        /* Checks the localstorage and shows Cookie banner based on it. */
+        function initializeCookieBanner() {
+            let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
+            if (isCookieAccepted === null) {
+                localStorage.setItem("cb_isCookieAccepted", "no");
+                showCookieBanner();
+            }
+            if (isCookieAccepted === "no") {
+                showCookieBanner();
+            }
+        }
+
+        // Assigning values to window object
+        window.onload = initializeCookieBanner();
+        window.cb_hideCookieBanner = hideCookieBanner;
+    </script>
+
     <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
-      &#x1F36A; Este sitio utiliza cookies para mejorar tu experiencia :)
-      <a href="https://www.cookiesandyou.com/" target="blank">Aprende más</a>
-      <button type="button" class="btn btn-primary btn-sm ms-3" onclick="window.cb_hideCookieBanner()">
-        Entendido
-      </button>
+        &#x1F36A; Este sitio usa para asegurar que obtengas la mejor experiencia.
+        <a href="https://www.cookiesandyou.com/" target="blank">Leer más</a>
+        <button type="button" class="btn btn-primary btn-sm ms-3"
+            onclick="window.cb_hideCookieBanner()">Entendido</button>
     </div>
     <!-- End of Cookie Banner -->
 
