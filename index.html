@@ -76,16 +76,7 @@
         });
     </script>
     <style>
-       
-        .navbar {
-            position: fixed;
-            width: 100%;
-            z-index: 1000000;
-            top: 0;
-        }
-       
-
-        #cb-cookie-banner {
+       #cb-cookie-banner {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -93,6 +84,13 @@
             z-index: 999;
             border-radius: 0;
             display: none;
+          }
+        
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000000;
+            top: 0;
         }
 
         #carrusel {
@@ -387,7 +385,7 @@
 
     <!-- Cookie Banner -->
     <div id="cb-cookie-banner" class="alert alert-dark text-center mb-0" role="alert">
-        &#x1F36A; Este sitio usa para asegurar que obtengas la mejor experiencia :)
+        &#x1F36A; Este sitio usa cookies para asegurar que obtengas la mejor experiencia :)
         <a href="https://www.cookiesandyou.com/" target="blank">Leer más</a>
         <button type="button" class="btn btn-primary btn-sm ms-3"
             onclick="window.cb_hideCookieBanner()">Entendido</button>
