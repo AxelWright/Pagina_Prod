@@ -24,6 +24,8 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
   <style>
     #producto {
       display: flex;
@@ -62,22 +64,19 @@
     .rating {
       unicode-bidi: bidi-override;
       direction: rtl;
-      font-size: 25px;
-    }
+      text-align: center;
+      font-size: 24px;
+  }
 
-    .rating>span {
-      display: inline-block;
-      position: relative;
-      width: 1.1em;
+  .rating > i {
+      margin: 0 5px;
       cursor: pointer;
-    }
+  }
 
-    .rating>span:hover:before,
-    .rating>span:hover~span:before {
-      content: "\2605";
-      position: absolute;
+  .rating > i:hover,
+  .rating > i:hover ~ i {
       color: gold;
-    }
+  }
 
     .comment {
       margin-bottom: 15px;
@@ -157,16 +156,15 @@
           <h2>Calificación del Producto</h2>
 
           <!-- Sección de calificación -->
-          <div class="rating">
-            <span>&#9734;</span>
-            <span>&#9734;</span>
-            <span>&#9734;</span>
-            <span>&#9734;</span>
-            <span>&#9734;</span>
-          </div>
-
-          <!-- Mensaje para mostrar la calificación seleccionada -->
-          <p>Calificación actual:<br><span id="selectedRating">0</span></p>
+          <div class="rating" id="productRating">
+            <i class="far fa-star" data-rating="5"></i>
+            <i class="far fa-star" data-rating="4"></i>
+            <i class="far fa-star" data-rating="3"></i>
+            <i class="far fa-star" data-rating="2"></i>
+            <i class="far fa-star" data-rating="1"></i>
+        </div>
+        
+        <p id="ratingMessage"></p>
         </div>
       </div>
     </div>
@@ -249,18 +247,30 @@
     }
   </script>
   <script>
-    // Función para manejar la calificación seleccionada
-    document.addEventListener('DOMContentLoaded', function () {
-      var stars = document.querySelectorAll('.rating > span');
-      var ratingValue = document.getElementById('selectedRating');
+    const ratingStars = document.querySelectorAll('#productRating i');
+    const ratingMessage = document.getElementById('ratingMessage');
 
-      stars.forEach(function (star, index) {
-        star.addEventListener('click', function () {
-          ratingValue.textContent = index + 1;
+    ratingStars.forEach(star => {
+        star.addEventListener('click', () => {
+            const rating = star.getAttribute('data-rating');
+            updateRating(rating);
+            ratingMessage.textContent = `La calificación es de: ${rating} estrellas`;
         });
-      });
     });
-  </script>
+
+    function updateRating(rating) {
+        ratingStars.forEach(star => {
+            const starRating = star.getAttribute('data-rating');
+            if (starRating <= rating) {
+                star.classList.remove('far');
+                star.classList.add('fas');
+            } else {
+                star.classList.remove('fas');
+                star.classList.add('far');
+            }
+        });
+    }
+</script>
 
 </body>
 
