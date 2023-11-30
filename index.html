@@ -77,12 +77,16 @@
         });
     </script>
     <style>
+        img[src="img/Banner.png"] {
+            max-width: 100%;
+            height: auto;
+        }
 
-.card {
+        .card {
             border: 1px solid #ccc;
             border-radius: 8px;
             overflow: hidden;
-            width: 300px;
+            width: 30%;
             height: 550px;
             margin-right: 10px;
             margin-bottom: 10px;
@@ -183,12 +187,20 @@
 
         #carrusel {
             float: left;
-            width: 1300px;
+            width: 100%;
             overflow: hidden;
             height: 150px;
             position: relative;
             margin-top: 20px;
             margin-bottom: 20px;
+        }
+
+        .carrusel>div {
+            float: left;
+            height: 150px;
+            margin-right: 5px;
+            width: 20%;
+            text-align: center;
         }
 
         #carrusel .left-arrow {
@@ -288,7 +300,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
                         </li>
-                        
+
                     </ul>
 
                     <form class="d-flex" role="search">
@@ -356,27 +368,26 @@
             <div id="productos-container"></div>
 
             <script>
-                // Initialize the cart or retrieve it from localStorage
                 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            
+
                 async function cargarProductos() {
                     try {
                         const response = await fetch('productos_1.json');
                         const productosJSON = await response.json();
-            
+
                         mostrarProductos(productosJSON);
                     } catch (error) {
                         console.error('Error al cargar el archivo JSON:', error);
                     }
                 }
-            
+
                 function mostrarProductos(productosJSON) {
                     var productosContainer = document.getElementById('productos-container');
-            
+
                     productosJSON.forEach(function (producto) {
                         var card = document.createElement('div');
                         card.classList.add('card');
-            
+
                         var enlaceImagen = document.createElement('a');
                         enlaceImagen.href = 'product.html';
                         var imagen = document.createElement('img');
@@ -384,7 +395,7 @@
                         imagen.alt = producto.nombre;
                         enlaceImagen.appendChild(imagen);
                         card.appendChild(enlaceImagen);
-            
+
                         var contenidoTarjeta = document.createElement('div');
                         contenidoTarjeta.innerHTML = `
                             <h4>${producto.nombre}</h4>
@@ -393,12 +404,12 @@
                             <button onclick="comprar('${producto.nombre}')">Comprar</button>
                             <br/><br/><br/>
                         `;
-            
+
                         card.appendChild(contenidoTarjeta);
-            
+
                         var botonContainer = document.createElement('div');
                         botonContainer.classList.add('boton-container');
-            
+
                         var botonImagen = document.createElement('img');
                         botonImagen.src = 'img/carrito.png';
                         botonImagen.alt = 'Agregar al carrito';
@@ -406,29 +417,27 @@
                         botonImagen.addEventListener('click', function () {
                             agregarAlCarrito(producto);
                         });
-            
+
                         botonContainer.appendChild(botonImagen);
-            
+
                         card.appendChild(botonContainer);
-            
+
                         productosContainer.appendChild(card);
                     });
                 }
-            
+
                 function comprar(nombreProducto) {
                     alert(`Has comprado ${nombreProducto}`);
                 }
-            
+
                 function agregarAlCarrito(producto) {
-                    // Update the cart array
                     carrito.push({ ...producto, cantidad: 1 });
-            
-                    // Save the updated cart in localStorage
+
                     localStorage.setItem('carrito', JSON.stringify(carrito));
-            
+
                     alert(`Has agregado ${producto.nombre} al carrito`);
                 }
-            
+
                 cargarProductos();
             </script>
 
