@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/Fisestoplogo.png">
+    <title>FiesTop | Donde las fiestas cobran vida</title>
+    <meta name="description"
+        content="En FiesTop puedes organizar desde una fiesta de cumpleaños hasta una fiesta de VX años el límite es tu imaginacion puesto que aquí encontraras todo lo que necesitas.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Carrito de Compras</title>
+    <style>
+        @media (max-width: 768px) {
+            /* Add responsive styles for smaller screens */
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000000;
+            top: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #carrito-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #carrito-table {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .producto-row {
+            border: 1px solid #ccc;
+        }
+
+        .producto-imagen {
+            width: 100px;
+            height: auto;
+        }
+
+        .producto-info {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .producto-nombre {
+            font-weight: bold;
+        }
+
+        .producto-precio {
+            color: #4caf50;
+        }
+
+        #total-container {
+            text-align: right;
+        }
+
+        #comprar-btn {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .input-group-text {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .form-control.input-sm {
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/Fisestoplogo.png" height="40px" alt="Logo oficial de FiesTop"
+                        title="Logo oficial de FiesTop">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Catalogo.html">Todos los productos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Categorías
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Servicios</a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Quiénes somos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item">FiesTop es una empresa centrada en la organización de
+                                        eventos sociales
+                                        <br> de cualquier índole desde fiestas de cumpleaños hasta fiestas de XV años y
+                                        bodas
+                                        <br> el límite es su imaginación, nosotros le daremos las herramientas
+                                        necesarias
+                                        <br> para que organice su fiesta ideal en tiempo y forma</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
+                        </li>
+
+                    </ul>
+                    <form class="d-flex" action="resultados.html" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
+                            name="query">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Login.html">Iniciar sesión</a>
+                        </li>
+                    </ul>
+
+                    <a class="navbar-brand" href="PerfilU.html">
+                        <img src="img/LogoU.png" height="40px" alt="Logo oficial de FiesTop" title="Perfil de usuario">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <h1>Carrito de Compras</h1>
+
+    <div id="carrito-container">
+        <table id="carrito-table"></table>
+        <div id="total-container">
+            <p>Total: $<span id="total-precio">0.00</span></p>
+            <button id="comprar-btn" onclick="realizarCompra()">Comprar</button>
+        </div>
+    </div>
+
+    <script>
+        
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        function mostrarCarrito() {
+            var carritoTable = document.getElementById('carrito-table');
+            var totalPrecioSpan = document.getElementById('total-precio');
+
+            if (carrito.length === 0) {
+                carritoTable.innerHTML = '<p>El carrito está vacío.</p>';
+                totalPrecioSpan.textContent = '0.00';
+                return;
+            }
+
+            var totalPrecio = 0;
+
+            carritoTable.innerHTML = '';
+
+            carrito.forEach(function (producto, index) {
+                var row = document.createElement('tr');
+                row.classList.add('producto-row');
+
+                var imagenCell = document.createElement('td');
+                var imagen = document.createElement('img');
+                imagen.src = producto.imagen;
+                imagen.alt = producto.nombre;
+                imagen.classList.add('producto-imagen');
+                imagenCell.appendChild(imagen);
+                row.appendChild(imagenCell);
+
+                var infoCell = document.createElement('td');
+                infoCell.classList.add('producto-info');
+
+                var nombre = document.createElement('div');
+                nombre.textContent = producto.nombre;
+                nombre.classList.add('producto-nombre');
+
+                var precio = document.createElement('div');
+                precio.textContent = `$${producto.precio.toFixed(2)}`;
+                precio.classList.add('producto-precio');
+
+                infoCell.appendChild(nombre);
+                infoCell.appendChild(precio);
+
+                row.appendChild(infoCell);
+
+                var cantidadCell = document.createElement('td');
+                cantidadCell.classList.add('align-middle');
+
+                var cantidadInputWrapper = document.createElement('div');
+                cantidadInputWrapper.classList.add('input-group', 'mb-3');
+
+                var cantidadLabel = document.createElement('span');
+                cantidadLabel.textContent = 'Cantidad:';
+                cantidadLabel.classList.add('input-group-text');
+                cantidadInputWrapper.appendChild(cantidadLabel);
+
+                var cantidadInput = document.createElement('input');
+                cantidadInput.type = 'number';
+                cantidadInput.min = '1';
+                cantidadInput.value = producto.cantidad || 1;
+                cantidadInput.classList.add('form-control', 'input-sm', 'text-center');
+                cantidadInput.addEventListener('input', function () {
+                    actualizarCantidad(index, parseInt(cantidadInput.value, 10));
+                });
+                cantidadInputWrapper.appendChild(cantidadInput);
+                cantidadCell.appendChild(cantidadInputWrapper);
+                row.appendChild(cantidadCell);
+
+                var deleteCell = document.createElement('td');
+                deleteCell.classList.add('align-middle');
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Eliminar';
+                deleteButton.classList.add('btn', 'btn-danger');
+                deleteButton.addEventListener('click', function () {
+                    eliminarProducto(index);
+                });
+                deleteCell.appendChild(deleteButton);
+                row.appendChild(deleteCell);
+
+                carritoTable.appendChild(row);
+
+                totalPrecio += producto.precio * (producto.cantidad || 1);
+            });
+
+            totalPrecioSpan.textContent = totalPrecio.toFixed(2);
+        }
+
+        function eliminarProducto(index) {
+
+            carrito.splice(index, 1);
+
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+
+            mostrarCarrito();
+        }
+
+        function actualizarCantidad(index, nuevaCantidad) {
+
+            carrito[index].cantidad = nuevaCantidad;
+
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+
+            mostrarCarrito();
+        }
+
+        function realizarCompra() {
+            alert('Compra realizada.');
+        }
+
+        mostrarCarrito();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
