@@ -77,6 +77,93 @@
         });
     </script>
     <style>
+
+.card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+            height: 550px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            display: inline-block;
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card .descripcion {
+            max-height: 7.4em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .card h4 {
+            max-height: 3.6em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .card button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background-color: #45a049;
+        }
+
+        .card .boton-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card .boton-imagen {
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+            transition: background-color 0.3s ease;
+            z-index: 1;
+        }
+
+
+        .card:hover .boton-container {
+            opacity: 1;
+        }
+
+
+        .card .boton-container:hover {
+            background-color: #66bb6a;
+        }
+
+        .card .overlay-text {
+            color: white;
+            font-size: 16px;
+            margin-top: 50%;
+        }
+
         #cb-cookie-banner {
             position: fixed;
             bottom: 0;
@@ -255,152 +342,90 @@
             </div>
         </div>
         <br><br><br><br><br><br>
-        <section class="destacados">
+        
+        <!--Productos-->
+        <section class="container">
             <h2>Productos Destacados</h2>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="product.html"><img src="img/Cubiertos.jpg" class="card-img-top"
-                                title="Cubiertos Plasticos" alt="1000 cubiertos variados"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">1.000 cubiertos desechables de plástico, paquete variado</h5>
-                            <h3 class="card-title">$558.03</h3>
-                            <p class="card-text">Los cubiertos de plástico blanco a granel de 1000 piezas incluyen 334,
-                                tenedores,
-                                333 cuchillos, 333 cucharas de sopa...</p>
-                            <a href="product.html" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="#"><img src="img/FiestaNiña.jpeg" class="card-img-top"
-                                alt="Sombreros de papel de unicornio" title="Sombreros de papel de unicornio"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">6 Piezas, Sombrero De Papel De Unicornio Arcoíris</h5>
-                            <h3 class="card-title">$49.99</h3>
-                            <p class="card-text">6 Piezas, Sombrero De Papel De Unicornio Arcoíris,
-                                Suministros De Fiesta De Cumpleaños Para Niña Y Niño...</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="#"><img src="img/CoronaC.jpeg" class="card-img-top" title="Corona de papel"
-                                alt="Corona de papel con decoración de pastel de cunpleaños"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">15 Piezas, Coronas De Feliz Cumpleaños</h5>
-                            <h3 class="card-title">$92.29</h3>
-                            <p class="card-text">15 Piezas, Coronas De Feliz Cumpleaños,
-                                Coronas De Sombrero De Cumpleaños De Papel Para Regalos De Cumpleaños
-                                En El Aula, Fiestas, Sombreros...</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="#"><img src="img/HaciendaReal.jpg" class="card-img-top"
-                                alt="Salón de eventos Real de Haciendas" title="Salón de eventos Real de Haciendas"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Salón Real de Haciendas</h5>
-                            <h3 class="card-title">$10,000</h3>
-                            <p class="card-text">El salón perfecto para todo tipo de eventos...</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="#"><img src="img/CasaV.jpeg" class="card-img-top" alt="Salón Casa Victoria"
-                                title="Salón Casa Victoria"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Casa Victoria</h5>
-                            <h3 class="card-title">$45,000</h3>
-                            <p class="card-text">15 Piezas, Coronas De Feliz Cumpleaños, Coronas De Sombrero De
-                                Cumpleaños
-                                De Papel Para Regalos De Cumpleaños En El Aula, Fiestas, Sombreros, Suministros Diarios
-                                Para
-                                Fiestas...</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="#"><img src="img/SonidoB.jpeg" class="card-img-top"
-                                alt="Evento con sonido y luces Boom" title="Evento con sonido y luces Boom"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Sonido Boom</h5>
-                            <h3 class="card-title">$15,000</h3>
-                            <p class="card-text">Luz, Sonido, todo lo esencial para que tu fiesta este en ambiente...
-                            </p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="#"><img src="img/ElementsAGS.jpg" class="card-img-top"
-                                alt="Excelente ambiente para los eventos" title="Excelente ambiente"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Elements</h5>
-                            <h3 class="card-title">$18,500.99</h3>
-                            <p class="card-text">CONÓCENOS
-                                Somos una empresa hidrocálida con más de una década dedicada a la producción de eventos
-                                corporativos y sociales, generamos un excelente ambiente, divertido y animado...</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="#"><img
-                                src="https://www.elglobo.com.mx/cdn/shop/products/49523-1_600x.jpg?v=1618602727"
-                                class="card-img-top" alt="Paste 4 chocolates" title="Pastel de 4 chocolates"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">4 Chocolates Individual</h5>
-                            <h3 class="card-title">$49.00</h3>
-                            <p class="card-text">Pan de chocolate tipo brownie relleno de mousse de chocolate amargo,
-                                chocolate de leche y chocolate blanco. Decorado con glasé blanco y obscuro...</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="#"><img
-                                src="https://www.elglobo.com.mx/cdn/shop/products/27543-1_600x.jpg?v=1618602845"
-                                class="card-img-top" alt="Pastel en forma de roca de chocolate"
-                                title="Pastel rosca de chocolate"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Amandes de Chocolate</h5>
-                            <h3 class="card-title">$398.00</h3>
-                            <p class="card-text">Pastel en forma de rosca elaborado con helado sabor a chocolate con
-                                almendra y relleno de variegato noisette. Decorado con rocio y glasé de chocolate,
-                                montado
-                                sobre un bizcocho sabor chocolate embebido en jarabe marrasquino...</p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-light mb-3">
-                        <a href="#"><img
-                                src="https://www.elglobo.com.mx/cdn/shop/products/41153-1_600x.jpg?v=1618602873"
-                                class="card-img-top" alt="Variedad de biscochos" title="Biscochos miniatura"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Biscocho Miniatura</h5>
-                            <h3 class="card-title">$198.00</h3>
-                            <p class="card-text">Charola con deliciosa mezcla de panqués y garibaldis tamaño
-                                miniatura...
-                            </p>
-                            <a href="#" class="btn btn-primary">Comprar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <div id="productos-container"></div>
+
+            <script>
+                // Initialize the cart or retrieve it from localStorage
+                let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            
+                async function cargarProductos() {
+                    try {
+                        const response = await fetch('productos_1.json');
+                        const productosJSON = await response.json();
+            
+                        mostrarProductos(productosJSON);
+                    } catch (error) {
+                        console.error('Error al cargar el archivo JSON:', error);
+                    }
+                }
+            
+                function mostrarProductos(productosJSON) {
+                    var productosContainer = document.getElementById('productos-container');
+            
+                    productosJSON.forEach(function (producto) {
+                        var card = document.createElement('div');
+                        card.classList.add('card');
+            
+                        var enlaceImagen = document.createElement('a');
+                        enlaceImagen.href = 'product.html';
+                        var imagen = document.createElement('img');
+                        imagen.src = producto.imagen;
+                        imagen.alt = producto.nombre;
+                        enlaceImagen.appendChild(imagen);
+                        card.appendChild(enlaceImagen);
+            
+                        var contenidoTarjeta = document.createElement('div');
+                        contenidoTarjeta.innerHTML = `
+                            <h4>${producto.nombre}</h4>
+                            <p class="descripcion">${producto.descripcion}</p>
+                            <h3>$${producto.precio.toFixed(2)}</h3>
+                            <button onclick="comprar('${producto.nombre}')">Comprar</button>
+                            <br/><br/><br/>
+                        `;
+            
+                        card.appendChild(contenidoTarjeta);
+            
+                        var botonContainer = document.createElement('div');
+                        botonContainer.classList.add('boton-container');
+            
+                        var botonImagen = document.createElement('img');
+                        botonImagen.src = 'img/carrito.png';
+                        botonImagen.alt = 'Agregar al carrito';
+                        botonImagen.classList.add('boton-imagen');
+                        botonImagen.addEventListener('click', function () {
+                            agregarAlCarrito(producto);
+                        });
+            
+                        botonContainer.appendChild(botonImagen);
+            
+                        card.appendChild(botonContainer);
+            
+                        productosContainer.appendChild(card);
+                    });
+                }
+            
+                function comprar(nombreProducto) {
+                    alert(`Has comprado ${nombreProducto}`);
+                }
+            
+                function agregarAlCarrito(producto) {
+                    // Update the cart array
+                    carrito.push({ ...producto, cantidad: 1 });
+            
+                    // Save the updated cart in localStorage
+                    localStorage.setItem('carrito', JSON.stringify(carrito));
+            
+                    alert(`Has agregado ${producto.nombre} al carrito`);
+                }
+            
+                cargarProductos();
+            </script>
+
         </section>
 
         <section class="ofertas">
