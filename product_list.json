@@ -1,0 +1,21 @@
+[
+    {
+      "name": "Producto 1",
+      "shortDescription": "Descripción corta del Producto 1",
+      "longDescription": "Descripción larga del Producto 1",
+      "price": 29.99,
+      "materials": "Material del Producto 1",
+      "brand": "Marca A",
+      "category": "Electrónicos"
+    },
+    {
+      "name": "Producto 2",
+      "shortDescription": "Descripción corta del Producto 2",
+      "longDescription": "Descripción larga del Producto 2",
+      "price": 19.99,
+      "materials": "Material del Producto 2",
+      "brand": "Marca B",
+      "category": "Ropa"
+    }
+  ]
+  

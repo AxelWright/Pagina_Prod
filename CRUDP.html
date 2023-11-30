@@ -34,7 +34,8 @@
     }
 
     form input,
-    form textarea {
+    form textarea,
+    form select {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
@@ -110,10 +111,15 @@
     <input type="text" id="brand" required>
 
     <label for="category">Categoría:</label>
-    <input type="text" id="category" required>
+<div>
+  <select id="category" required>
+    <option value="" disabled selected>Selecciona una Categoría</option>
+  </select>
+  <button type="button" onclick="addNewCategory()">Nueva Categoría</button>
+  <button type="button" onclick="addProduct()">Agregar Producto</button>
 
-    <button type="button" onclick="addProduct()">Agregar Producto</button>
-  </form>
+</div>
+</form>
 
   <h3>Filtrar por Categoría</h3>
   <select id="categoryFilter" onchange="filterByCategory()">
@@ -140,13 +146,60 @@
 
   <script>
     var products = [];
+    var categories = [];
 
-    // Cargar productos al cargar la página
     document.addEventListener('DOMContentLoaded', function() {
       cargarProductos();
+      cargarCategorias();
       displayProducts();
       actualizarFiltroCategorias();
     });
+
+    function cargarCategorias() {
+      categories = obtenerCategoriasJSON();
+      actualizarListaCategorias();
+    }
+
+    function actualizarListaCategorias() {
+      var categorySelect = document.getElementById('category');
+      categorySelect.innerHTML = '<option value="" disabled selected>Selecciona o Ingresa una Nueva Categoría</option>';
+
+      categories.forEach(category => {
+        var option = document.createElement('option');
+        option.value = category;
+        option.text = category;
+        categorySelect.add(option);
+      });
+    }
+
+    function obtenerCategoriasJSON() {
+      // Realizar una solicitud AJAX para cargar categorías desde el archivo JSON
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "product_list.json", false);
+      xhr.send();
+      
+      if (xhr.status === 200) {
+        var productsFromJSON = JSON.parse(xhr.responseText);
+        // Obtener categorías del archivo JSON
+        var uniqueCategories = [...new Set(productsFromJSON.map(product => product.category))];
+        return uniqueCategories;
+      } else {
+        console.error("Error al cargar categorías desde el JSON. Estado:", xhr.status);
+        return [];
+      }
+    }
+
+    function addNewCategory() {
+        var newCategory = prompt('Ingrese una nueva categoría:');
+        if (newCategory !== null && newCategory.trim() !== '') {
+          var categorySelect = document.getElementById('category');
+          var option = document.createElement('option');
+          option.value = newCategory;
+          option.text = newCategory;
+          categorySelect.add(option);
+          categorySelect.value = newCategory; // Seleccionar la nueva categoría automáticamente
+        }
+      }
 
     function addProduct() {
       var productName = document.getElementById('productName').value;
@@ -155,11 +208,16 @@
       var productPrice = document.getElementById('productPrice').value;
       var materials = document.getElementById('materials').value;
       var brand = document.getElementById('brand').value;
-      var category = document.getElementById('category').value;
+      var categorySelect = document.getElementById('category');
+      var selectedCategory = categorySelect.value;
 
-      if (productName === '' || shortDescription === '' || longDescription === '' || productPrice === '' || materials === '' || brand === '' || category === '') {
-        alert('Por favor, complete todos los campos.');
-        return;
+      if (selectedCategory === '') {
+        var newCategory = prompt('Ingrese una nueva categoría:');
+        if (newCategory !== null && newCategory.trim() !== '') {
+          selectedCategory = newCategory;
+        } else {
+          return; // Si el usuario cancela o no ingresa una categoría, salimos de la función
+        }
       }
 
       var product = {
@@ -169,7 +227,7 @@
         price: parseFloat(productPrice),
         materials: materials,
         brand: brand,
-        category: category
+        category: selectedCategory
       };
 
       products.push(product);
@@ -316,7 +374,7 @@
           }
         }
       };
-      xhr.open("GET", "productos.json", true);
+      xhr.open("GET", "product_list.json", true);
       xhr.send();
     }
 
