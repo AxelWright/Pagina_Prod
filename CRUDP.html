@@ -1,40 +1,331 @@
-/*
-* Javascript to show and hide cookie banner using localstorage
-*/
-
-/**
- * @description Shows the cookie banner
- */
-function showCookieBanner(){
-    let cookieBanner = document.getElementById("cb-cookie-banner");
-    cookieBanner.style.display = "block";
-}
-
-/**
- * @description Hides the Cookie banner and saves the value to localstorage
- */
-function hideCookieBanner(){
-    localStorage.setItem("cb_isCookieAccepted", "yes");
-
-    let cookieBanner = document.getElementById("cb-cookie-banner");
-    cookieBanner.style.display = "none";
-}
-
-/**
- * @description Checks the localstorage and shows Cookie banner based on it.
- */
-function initializeCookieBanner(){
-    let isCookieAccepted = localStorage.getItem("cb_isCookieAccepted");
-    if(isCookieAccepted === null)
-    {
-        localStorage.setItem("cb_isCookieAccepted", "no");
-        showCookieBanner();
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD de Productos</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
     }
-    if(isCookieAccepted === "no"){
-        showCookieBanner();
-    }
-}
 
-// Assigning values to window object
-window.onload = initializeCookieBanner();
-window.cb_hideCookieBanner = hideCookieBanner;
+    h2 {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      margin: 0;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    form button {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+
+    select {
+      padding: 8px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #333;
+      color: #fff;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>CRUD de Productos</h2>
+
+  <form id="productForm">
+    <label for="productName">Nombre del Producto:</label>
+    <input type="text" id="productName" required>
+
+    <label for="shortDescription">Descripción Corta:</label>
+    <input type="text" id="shortDescription" required>
+
+    <label for="longDescription">Descripción Larga:</label>
+    <textarea id="longDescription" rows="4" required></textarea>
+
+    <label for="productPrice">Precio del Producto:</label>
+    <input type="number" id="productPrice" required>
+
+    <label for="materials">Materiales:</label>
+    <input type="text" id="materials" required>
+
+    <label for="brand">Marca:</label>
+    <input type="text" id="brand" required>
+
+    <label for="category">Categoría:</label>
+    <input type="text" id="category" required>
+
+    <button type="button" onclick="addProduct()">Agregar Producto</button>
+  </form>
+
+  <h3>Filtrar por Categoría</h3>
+  <select id="categoryFilter" onchange="filterByCategory()">
+    <option value="">Mostrar Todos</option>
+  </select>
+
+  <h3>Listado de Productos</h3>
+
+  <table id="productTable">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción Corta</th>
+        <th>Descripción Larga</th>
+        <th>Precio</th>
+        <th>Materiales</th>
+        <th>Marca</th>
+        <th>Categoría</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="productTableBody"></tbody>
+  </table>
+
+  <script>
+    var products = [];
+
+    // Cargar productos al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      cargarProductos();
+      displayProducts();
+      actualizarFiltroCategorias();
+    });
+
+    function addProduct() {
+      var productName = document.getElementById('productName').value;
+      var shortDescription = document.getElementById('shortDescription').value;
+      var longDescription = document.getElementById('longDescription').value;
+      var productPrice = document.getElementById('productPrice').value;
+      var materials = document.getElementById('materials').value;
+      var brand = document.getElementById('brand').value;
+      var category = document.getElementById('category').value;
+
+      if (productName === '' || shortDescription === '' || longDescription === '' || productPrice === '' || materials === '' || brand === '' || category === '') {
+        alert('Por favor, complete todos los campos.');
+        return;
+      }
+
+      var product = {
+        name: productName,
+        shortDescription: shortDescription,
+        longDescription: longDescription,
+        price: parseFloat(productPrice),
+        materials: materials,
+        brand: brand,
+        category: category
+      };
+
+      products.push(product);
+
+      document.getElementById('productName').value = '';
+      document.getElementById('shortDescription').value = '';
+      document.getElementById('longDescription').value = '';
+      document.getElementById('productPrice').value = '';
+      document.getElementById('materials').value = '';
+      document.getElementById('brand').value = '';
+      document.getElementById('category').value = '';
+
+      guardarProductos();
+      displayProducts();
+      actualizarFiltroCategorias();
+    }
+
+    function displayProducts() {
+      var tableBody = document.getElementById('productTableBody');
+      tableBody.innerHTML = '';
+
+      for (var i = 0; i < products.length; i++) {
+        var product = products[i];
+
+        var row = tableBody.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+        var cell7 = row.insertCell(6);
+        var cell8 = row.insertCell(7);
+
+        cell1.innerHTML = product.name;
+        cell2.innerHTML = product.shortDescription;
+        cell3.innerHTML = product.longDescription;
+        cell4.innerHTML = '$' + product.price.toFixed(2);
+        cell5.innerHTML = product.materials;
+        cell6.innerHTML = product.brand;
+        cell7.innerHTML = product.category;
+
+        var deleteButton = '<button onclick="deleteProduct(' + i + ')">Eliminar</button>';
+        var editButton = '<button onclick="editProduct(' + i + ')">Editar</button>';
+
+        cell8.innerHTML = deleteButton + ' ' + editButton;
+      }
+    }
+
+    function deleteProduct(index) {
+      products.splice(index, 1);
+      guardarProductos();
+      displayProducts();
+      actualizarFiltroCategorias();
+    }
+
+    function editProduct(index) {
+      var product = products[index];
+
+      document.getElementById('productName').value = product.name;
+      document.getElementById('shortDescription').value = product.shortDescription;
+      document.getElementById('longDescription').value = product.longDescription;
+      document.getElementById('productPrice').value = product.price;
+      document.getElementById('materials').value = product.materials;
+      document.getElementById('brand').value = product.brand;
+      document.getElementById('category').value = product.category;
+
+      products.splice(index, 1);
+      guardarProductos();
+      displayProducts();
+      actualizarFiltroCategorias();
+    }
+
+    function actualizarFiltroCategorias() {
+      var categoryFilter = document.getElementById('categoryFilter');
+      categoryFilter.innerHTML = '<option value="">Mostrar Todos</option>';
+
+      var uniqueCategories = [...new Set(products.map(product => product.category))];
+      uniqueCategories.forEach(category => {
+        var option = document.createElement('option');
+        option.value = category;
+        option.text = category;
+        categoryFilter.add(option);
+      });
+    }
+
+    function filterByCategory() {
+      var selectedCategory = document.getElementById('categoryFilter').value;
+      var filteredProducts = [];
+
+      if (selectedCategory !== '') {
+        filteredProducts = products.filter(product => product.category === selectedCategory);
+      } else {
+        filteredProducts = products;
+      }
+
+      displayFilteredProducts(filteredProducts);
+    }
+
+    function displayFilteredProducts(filteredProducts) {
+      var tableBody = document.getElementById('productTableBody');
+      tableBody.innerHTML = '';
+
+      for (var i = 0; i < filteredProducts.length; i++) {
+        var product = filteredProducts[i];
+
+        var row = tableBody.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+        var cell7 = row.insertCell(6);
+        var cell8 = row.insertCell(7);
+
+        cell1.innerHTML = product.name;
+        cell2.innerHTML = product.shortDescription;
+        cell3.innerHTML = product.longDescription;
+        cell4.innerHTML = '$' + product.price.toFixed(2);
+        cell5.innerHTML = product.materials;
+        cell6.innerHTML = product.brand;
+        cell7.innerHTML = product.category;
+
+        var deleteButton = '<button onclick="deleteProduct(' + i + ')">Eliminar</button>';
+        var editButton = '<button onclick="editProduct(' + i + ')">Editar</button>';
+
+        cell8.innerHTML = deleteButton + ' ' + editButton;
+      }
+    }
+
+    function cargarProductos() {
+      // Realizar una solicitud AJAX para cargar productos desde el archivo JSON
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            products = JSON.parse(xhr.responseText);
+            console.log("Productos cargados:", products);
+            displayProducts();
+            actualizarFiltroCategorias();
+          } else {
+            console.error("Error al cargar productos. Estado:", xhr.status);
+          }
+        }
+      };
+      xhr.open("GET", "productos.json", true);
+      xhr.send();
+    }
+
+    function guardarProductos() {
+      // Puedes guardar los productos en un archivo JSON aquí.
+      // Ejemplo:
+      // Guarda el array de productos en un archivo JSON utilizando alguna lógica o servicio.
+    }
+  </script>
+
+</body>
+</html>
