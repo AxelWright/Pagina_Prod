@@ -5,10 +5,6 @@
     "descripcion_corta": "Cubiertos de plástico blanco a granel de 1000 piezas",
     "descripcion_larga": "Incluye 334 tenedores, 333 cuchillos, 333 cucharas de sopa. Cubiertos desechables de alta calidad y duraderos, prácticos para minimizar el lavado y la limpieza. Apto para alimentos y sin BPA.",
     "precio": 558.03,
-    "tallas": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
-    "colores": ["rojo", "azul", "verde", "negro"],
-    "materiales": ["plastico", "pet"],
-    "marca": "Elegant Disposables",
     "categorias": ["Cubiertos", "Desechables"]
   },
   {
@@ -41,15 +37,51 @@
     "categorias": ["Locales de Eventos", "Salones"]
   },
   {
-    "nombre": "Corona de Princesas",
-    "imagen": "img/CoronaC.jpeg",
-    "descripcion_corta": "Corona de Princesas",
-    "descripcion_larga": "Los cubiertos de plástico blanco a granel de 1000 piezas incluyen 334 tenedores, 333 cuchillos, 333 cucharas de sopa, convenientemente y compactamente empaquetados en una caja pequeña. Cubiertos desechables de plástico duraderos y de buen precio para fiestas, hogar, uso comercial y mucho más. Apto para alimentos y sin BPA, seguro de usar con alimentos calientes.",
-    "precio": 250.03,
-    "tallas": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
-    "colores": ["rojo", "azul", "verde", "negro"],
-    "materiales": ["plastico", "pet"],
-    "marca": "Elegant Disposables",
-    "categorias": ["Accesorios de Fiesta", "Coronas"]
+    "nombre": "ElementsAGS",
+    "imagen": "img/ElementsAGS.jpg",
+    "descripcion_corta": "Luz y sonido",
+    "descripcion_larga": "Somos la mejor opcion para proporcionar luces y sonido para tu evento.",
+    "precio": 5000.00,
+    "categorias": ["Luces","Sonido"]
+  },
+  {
+    "nombre": "Salon Victoria",
+    "imagen": "img/CasaV.jpeg",
+    "descripcion_corta": "Una opcion elegante y completa",
+    "descripcion_larga": "En Victoria podras contar con amplios espacios para tus invitados ademas de una vista envidiable.",
+    "precio": 25000,
+    "categorias": ["Locales de Eventos","Salones"]
+  },
+  {
+    "nombre": "Sonido Boom",
+    "imagen": "img/SonidoB.jpeg",
+    "descripcion_corta": "Efectos de sonido y musica para todos los gustos",
+    "descripcion_larga": "Contamos con una amplia gama de opciones que pondremos en practica para que tu fiesta no sea aburrida y tus invitados se diviertan a lo grande.",
+    "precio": 3500.00,
+    "categorias": ["Sonido","Musica"]
+  },
+  {
+    "nombre": "Amandes de Chocolate",
+    "imagen": "https://www.elglobo.com.mx/cdn/shop/products/27543-1_600x.jpg?v=1618602845",
+    "descripcion_corta": "Pastel en forma de rosca",
+    "descripcion_larga": "Pastel en forma de rosca elaborado con helado sabor a chocolate con almendra y relleno de variegato noisette. Decorado con rocio y glasé de chocolate, montado sobre un bizcocho sabor chocolate embebido en jarabe marrasquino.",
+    "precio": 398.00,
+    "categorias": ["Pastel","Chocolate"]
+  },
+  {
+    "nombre": "Biscocho miniatura",
+    "imagen": "https://www.elglobo.com.mx/cdn/shop/products/41153-1_600x.jpg?v=1618602873",
+    "descripcion_corta": "Panqués y garibaldis",
+    "descripcion_larga": "Charola con una deliciosa mezcla de panqués y garibalis en tamaño miniatura sabres: vainilla, chocolate, etc.",
+    "precio": 198.22,
+    "categorias": ["Pastel","Miniatura"]
+  },
+  {
+    "nombre": "Brisa de coco",
+    "imagen": "https://www.elglobo.com.mx/cdn/shop/products/27541-1_600x.jpg?v=1618602841",
+    "descripcion_corta": "Pastel de mousse de frutos",
+    "descripcion_larga": "Pastel elaborado con suave mousse de frutos exóticos relleno con helado sabor coco, sobre un biscuit de almendra embebido en jarabe dulce. Decorado con líneas de chocolate y cubierto con un glasé de mango.",
+    "precio": 398.35,
+    "categorias": ["Pastel"]
   }
 ]

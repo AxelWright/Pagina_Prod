@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,383 +8,250 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
+      margin: 20px;
       background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
     }
 
-    h2 {
-      background-color: #333;
-      color: #fff;
-      padding: 15px;
-      margin: 0;
+    h1 {
+      color: #333;
     }
 
     form {
-      max-width: 600px;
-      margin: 20px auto;
       background-color: #fff;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
     }
 
-    form label {
+    label {
       display: block;
       margin-bottom: 8px;
     }
 
-    form input,
-    form textarea,
-    form select {
+    input,
+    textarea,
+    select {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
+      padding: 8px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
       border: 1px solid #ccc;
       border-radius: 4px;
-      box-sizing: border-box;
     }
 
-    form button {
-      background-color: #333;
-      color: #fff;
+    button {
+      background-color: #4caf50;
+      color: white;
       padding: 10px 15px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
 
+    button:hover {
+      background-color: #45a049;
+    }
+
+    h2 {
+      color: #333;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    th, td {
-      padding: 15px;
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
       text-align: left;
-      border-bottom: 1px solid #ddd;
     }
 
     th {
-      background-color: #333;
-      color: #fff;
+      background-color: #4caf50;
+      color: white;
     }
 
-    select {
-      padding: 8px;
-      margin-bottom: 20px;
+    img {
+      max-width: 100px;
+      max-height: 100px;
     }
 
-    button {
-      background-color: #333;
-      color: #fff;
-      padding: 8px 12px;
+    button.editar,
+    button.eliminar {
+      background-color: #008CBA;
+      color: white;
+      padding: 6px 10px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
+
+    button.editar:hover,
+    button.eliminar:hover {
+      background-color: #005d7a;
+    }
   </style>
 </head>
+
 <body>
+  <h1>Registro de Productos</h1>
 
-  <h2>CRUD de Productos</h2>
+  <!-- Formulario de Registro -->
+  <form id="registroForm">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required><br>
 
-  <form id="productForm">
-    <label for="productName">Nombre del Producto:</label>
-    <input type="text" id="productName" required>
+    <label for="descripcion_corta">Descripción Corta:</label>
+    <input type="text" id="descripcion_corta" required><br>
 
-    <label for="shortDescription">Descripción Corta:</label>
-    <input type="text" id="shortDescription" required>
+    <label for="descripcion_larga">Descripción Larga:</label>
+    <textarea id="descripcion_larga" required></textarea><br>
 
-    <label for="longDescription">Descripción Larga:</label>
-    <textarea id="longDescription" rows="4" required></textarea>
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" step="0.01" required><br>
 
-    <label for="productPrice">Precio del Producto:</label>
-    <input type="number" id="productPrice" required>
+    <label for="url_imagen">URL de Imagen:</label>
+    <input type="url" id="url_imagen" required><br>
 
-    <label for="materials">Materiales:</label>
-    <input type="text" id="materials" required>
+    <label for="categorias">Categorías:</label>
+    <select id="categorias" multiple></select><br>
+    <label for="nuevaCategoria">Nueva Categoría:</label>
+    <input type="text" id="nuevaCategoria"><br>
 
-    <label for="brand">Marca:</label>
-    <input type="text" id="brand" required>
 
-    <label for="category">Categoría:</label>
-<div>
-  <select id="category" required>
-    <option value="" disabled selected>Selecciona una Categoría</option>
-  </select>
-  <button type="button" onclick="addNewCategory()">Nueva Categoría</button>
-  <button type="button" onclick="addProduct()">Agregar Producto</button>
+    <button type="button" id="registrarBtn">Registrar Producto</button>
+  </form>
 
-</div>
-</form>
+  <hr>
 
-  <h3>Filtrar por Categoría</h3>
-  <select id="categoryFilter" onchange="filterByCategory()">
-    <option value="">Mostrar Todos</option>
-  </select>
-
-  <h3>Listado de Productos</h3>
-
-  <table id="productTable">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Descripción Corta</th>
-        <th>Descripción Larga</th>
-        <th>Precio</th>
-        <th>Materiales</th>
-        <th>Marca</th>
-        <th>Categoría</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody id="productTableBody"></tbody>
+  <!-- Lista de Productos -->
+  <h2>Lista de Productos</h2>
+  <table border="1" id="tablaProductos">
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción Corta</th>
+      <th>Descripción Larga</th>
+      <th>Precio</th>
+      <th>URL de Imagen</th>
+      <th>Categorías</th>
+      <th>Acciones</th>
+    </tr>
   </table>
 
   <script>
-    var products = [];
-    var categories = [];
+    // Variables globales para almacenar productos y categorías
+    var productos = [];
+    var categorias = [];
 
-    document.addEventListener('DOMContentLoaded', function() {
-      cargarProductos();
-      cargarCategorias();
-      displayProducts();
-      actualizarFiltroCategorias();
+    function listarCategorias() {
+      var categoriasSelect = document.getElementById('categorias');
+
+      // Limpiar opciones anteriores
+      categoriasSelect.innerHTML = '';
+
+      // Agregar categorías al select
+      categorias.forEach(function (categoria) {
+        var opcion = document.createElement('option');
+        opcion.value = categoria;
+        opcion.textContent = categoria;
+        categoriasSelect.appendChild(opcion);
+      });
+    }
+
+    function cargarCategoriasDesdeJSON() {
+      fetch('productos_1.json')
+        .then(response => response.json())
+        .then(data => {
+          // Obtener categorías únicas de los productos
+          categorias = Array.from(new Set(data.flatMap(producto => producto.categorias)));
+
+          // Filtrar y eliminar elementos no válidos (pueden ser objetos)
+          categorias = categorias.filter(categoria => typeof categoria === 'string');
+
+          // Lista las categorías después de cargarlas
+          listarCategorias();
+
+          // Guarda los productos en el array
+          productos = data;
+
+          // Lista los productos
+          listarProductos();
+        })
+        .catch(error => console.error('Error al cargar categorías:', error));
+    }
+
+    // Función para agregar un producto al array
+    function agregarProducto(producto) {
+      productos.push(producto);
+      listarCategorias(); // Asegúrate de listar las categorías después de agregar un nuevo producto
+    }
+
+    // Función para listar productos en forma de tabla HTML
+    function listarProductos() {
+      var tablaProductos = document.getElementById('tablaProductos');
+      tablaProductos.innerHTML = "<tr><th>Nombre</th><th>Descripción Corta</th><th>Descripción Larga</th><th>Precio</th><th>URL de Imagen</th><th>Categorías</th><th>Acciones</th></tr>";
+
+      productos.forEach(function (producto) {
+        var fila = "<tr>";
+        fila += "<td>" + producto.nombre + "</td>";
+        fila += "<td>" + producto.descripcion_corta + "</td>";
+        fila += "<td>" + producto.descripcion_larga + "</td>";
+        fila += "<td>" + producto.precio + "</td>";
+        fila += "<td><img src='" + producto.imagen + "' alt='imagen' style='max-width: 100px;'></td>";
+        fila += "<td>" + producto.categorias.join(', ') + "</td>";
+        fila += "<td><button class='editar' onclick='editarProducto(\"" + producto.nombre + "\")'>Editar</button> | <button class='eliminar' onclick='eliminarProducto(\"" + producto.nombre + "\")'>Eliminar</button></td>";
+        fila += "</tr>";
+        tablaProductos.innerHTML += fila;
+      });
+    }
+
+    // Resto del código aquí ...
+
+    // Manejo de eventos al cargar la página
+    document.addEventListener('DOMContentLoaded', function () {
+      cargarCategoriasDesdeJSON();
+  
+      // Registrar Producto
+      document.getElementById('registrarBtn').addEventListener('click', registrarProducto);
     });
 
-    function cargarCategorias() {
-      categories = obtenerCategoriasJSON();
-      actualizarListaCategorias();
-    }
+    // Función para registrar un nuevo producto
+    function registrarProducto() {
+      var categoriaSelect = document.getElementById('categorias');
+      var nuevaCategoriaInput = document.getElementById('nuevaCategoria');
 
-    function actualizarListaCategorias() {
-      var categorySelect = document.getElementById('category');
-      categorySelect.innerHTML = '<option value="" disabled selected>Selecciona o Ingresa una Nueva Categoría</option>';
-
-      categories.forEach(category => {
-        var option = document.createElement('option');
-        option.value = category;
-        option.text = category;
-        categorySelect.add(option);
-      });
-    }
-
-    function obtenerCategoriasJSON() {
-      // Realizar una solicitud AJAX para cargar categorías desde el archivo JSON
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "product_list.json", false);
-      xhr.send();
-      
-      if (xhr.status === 200) {
-        var productsFromJSON = JSON.parse(xhr.responseText);
-        // Obtener categorías del archivo JSON
-        var uniqueCategories = [...new Set(productsFromJSON.map(product => product.category))];
-        return uniqueCategories;
-      } else {
-        console.error("Error al cargar categorías desde el JSON. Estado:", xhr.status);
-        return [];
-      }
-    }
-
-    function addNewCategory() {
-        var newCategory = prompt('Ingrese una nueva categoría:');
-        if (newCategory !== null && newCategory.trim() !== '') {
-          var categorySelect = document.getElementById('category');
-          var option = document.createElement('option');
-          option.value = newCategory;
-          option.text = newCategory;
-          categorySelect.add(option);
-          categorySelect.value = newCategory; // Seleccionar la nueva categoría automáticamente
-        }
-      }
-
-    function addProduct() {
-      var productName = document.getElementById('productName').value;
-      var shortDescription = document.getElementById('shortDescription').value;
-      var longDescription = document.getElementById('longDescription').value;
-      var productPrice = document.getElementById('productPrice').value;
-      var materials = document.getElementById('materials').value;
-      var brand = document.getElementById('brand').value;
-      var categorySelect = document.getElementById('category');
-      var selectedCategory = categorySelect.value;
-
-      if (selectedCategory === '') {
-        var newCategory = prompt('Ingrese una nueva categoría:');
-        if (newCategory !== null && newCategory.trim() !== '') {
-          selectedCategory = newCategory;
+      // Verifica si la opción seleccionada es "Nueva Categoría"
+      if (categoriaSelect.value === 'nueva') {
+        // Verifica si se ha ingresado un valor en el campo de nueva categoría
+        if (nuevaCategoriaInput.value.trim() !== '') {
+          // Agrega la nueva categoría al array y al select
+          var nuevaCategoria = nuevaCategoriaInput.value.trim();
+          categorias.push(nuevaCategoria);
+          listarCategorias(); // Actualiza la lista de categorías en el formulario
+          categoriaSelect.value = nuevaCategoria; // Selecciona la nueva categoría
         } else {
-          return; // Si el usuario cancela o no ingresa una categoría, salimos de la función
+          alert('Por favor, ingresa el nombre de la nueva categoría.');
+          return;
         }
       }
 
-      var product = {
-        name: productName,
-        shortDescription: shortDescription,
-        longDescription: longDescription,
-        price: parseFloat(productPrice),
-        materials: materials,
-        brand: brand,
-        category: selectedCategory
+      var producto = {
+        nombre: document.getElementById('nombre').value,
+        descripcion_corta: document.getElementById('descripcion_corta').value,
+        descripcion_larga: document.getElementById('descripcion_larga').value,
+        precio: document.getElementById('precio').value,
+        url_imagen: document.getElementById('url_imagen').value,
+        categorias: Array.from(document.getElementById('categorias').selectedOptions).map(option => option.value)
       };
 
-      products.push(product);
-
-      document.getElementById('productName').value = '';
-      document.getElementById('shortDescription').value = '';
-      document.getElementById('longDescription').value = '';
-      document.getElementById('productPrice').value = '';
-      document.getElementById('materials').value = '';
-      document.getElementById('brand').value = '';
-      document.getElementById('category').value = '';
-
-      guardarProductos();
-      displayProducts();
-      actualizarFiltroCategorias();
-    }
-
-    function displayProducts() {
-      var tableBody = document.getElementById('productTableBody');
-      tableBody.innerHTML = '';
-
-      for (var i = 0; i < products.length; i++) {
-        var product = products[i];
-
-        var row = tableBody.insertRow(i);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        var cell6 = row.insertCell(5);
-        var cell7 = row.insertCell(6);
-        var cell8 = row.insertCell(7);
-
-        cell1.innerHTML = product.name;
-        cell2.innerHTML = product.shortDescription;
-        cell3.innerHTML = product.longDescription;
-        cell4.innerHTML = '$' + product.price.toFixed(2);
-        cell5.innerHTML = product.materials;
-        cell6.innerHTML = product.brand;
-        cell7.innerHTML = product.category;
-
-        var deleteButton = '<button onclick="deleteProduct(' + i + ')">Eliminar</button>';
-        var editButton = '<button onclick="editProduct(' + i + ')">Editar</button>';
-
-        cell8.innerHTML = deleteButton + ' ' + editButton;
-      }
-    }
-
-    function deleteProduct(index) {
-      products.splice(index, 1);
-      guardarProductos();
-      displayProducts();
-      actualizarFiltroCategorias();
-    }
-
-    function editProduct(index) {
-      var product = products[index];
-
-      document.getElementById('productName').value = product.name;
-      document.getElementById('shortDescription').value = product.shortDescription;
-      document.getElementById('longDescription').value = product.longDescription;
-      document.getElementById('productPrice').value = product.price;
-      document.getElementById('materials').value = product.materials;
-      document.getElementById('brand').value = product.brand;
-      document.getElementById('category').value = product.category;
-
-      products.splice(index, 1);
-      guardarProductos();
-      displayProducts();
-      actualizarFiltroCategorias();
-    }
-
-    function actualizarFiltroCategorias() {
-      var categoryFilter = document.getElementById('categoryFilter');
-      categoryFilter.innerHTML = '<option value="">Mostrar Todos</option>';
-
-      var uniqueCategories = [...new Set(products.map(product => product.category))];
-      uniqueCategories.forEach(category => {
-        var option = document.createElement('option');
-        option.value = category;
-        option.text = category;
-        categoryFilter.add(option);
-      });
-    }
-
-    function filterByCategory() {
-      var selectedCategory = document.getElementById('categoryFilter').value;
-      var filteredProducts = [];
-
-      if (selectedCategory !== '') {
-        filteredProducts = products.filter(product => product.category === selectedCategory);
-      } else {
-        filteredProducts = products;
-      }
-
-      displayFilteredProducts(filteredProducts);
-    }
-
-    function displayFilteredProducts(filteredProducts) {
-      var tableBody = document.getElementById('productTableBody');
-      tableBody.innerHTML = '';
-
-      for (var i = 0; i < filteredProducts.length; i++) {
-        var product = filteredProducts[i];
-
-        var row = tableBody.insertRow(i);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        var cell6 = row.insertCell(5);
-        var cell7 = row.insertCell(6);
-        var cell8 = row.insertCell(7);
-
-        cell1.innerHTML = product.name;
-        cell2.innerHTML = product.shortDescription;
-        cell3.innerHTML = product.longDescription;
-        cell4.innerHTML = '$' + product.price.toFixed(2);
-        cell5.innerHTML = product.materials;
-        cell6.innerHTML = product.brand;
-        cell7.innerHTML = product.category;
-
-        var deleteButton = '<button onclick="deleteProduct(' + i + ')">Eliminar</button>';
-        var editButton = '<button onclick="editProduct(' + i + ')">Editar</button>';
-
-        cell8.innerHTML = deleteButton + ' ' + editButton;
-      }
-    }
-
-    function cargarProductos() {
-      // Realizar una solicitud AJAX para cargar productos desde el archivo JSON
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            products = JSON.parse(xhr.responseText);
-            console.log("Productos cargados:", products);
-            displayProducts();
-            actualizarFiltroCategorias();
-          } else {
-            console.error("Error al cargar productos. Estado:", xhr.status);
-          }
-        }
-      };
-      xhr.open("GET", "product_list.json", true);
-      xhr.send();
-    }
-
-    function guardarProductos() {
-      // Puedes guardar los productos en un archivo JSON aquí.
-      // Ejemplo:
-      // Guarda el array de productos en un archivo JSON utilizando alguna lógica o servicio.
+      agregarProducto(producto);
+      // Resto del código para limpiar el formulario y actualizar la tabla...
     }
   </script>
-
 </body>
+
 </html>
