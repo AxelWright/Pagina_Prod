@@ -59,6 +59,7 @@
 
     table {
       width: 100%;
+      max-width: 100%; /* Ajusta el ancho máximo de la tabla */
       border-collapse: collapse;
       margin-top: 20px;
     }
@@ -76,8 +77,9 @@
     }
 
     img {
-      max-width: 100px;
-      max-height: 100px;
+      max-width: 100%;
+      height: auto; /* Hace que las imágenes sean proporcionales */
+      max-height: 100px; /* Ajusta el tamaño máximo de las imágenes */
     }
 
     button.editar,
@@ -93,6 +95,23 @@
     button.editar:hover,
     button.eliminar:hover {
       background-color: #005d7a;
+    }
+
+    /* Media queries para pantallas más pequeñas */
+    @media (max-width: 768px) {
+      form {
+        padding: 10px;
+      }
+
+      input,
+      textarea,
+      select {
+        width: calc(100% - 16px);
+      }
+
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -114,13 +133,16 @@
     <label for="precio">Precio:</label>
     <input type="number" id="precio" step="0.01" required><br>
 
-    <label for="url_imagen">URL de Imagen:</label>
-    <input type="url" id="url_imagen" required><br>
+    <label for="imagen">URL de Imagen:</label>
+    <input type="url" id="imagen" required><br>
 
     <label for="categorias">Categorías:</label>
     <select id="categorias" multiple></select><br>
     <label for="nuevaCategoria">Nueva Categoría:</label>
-    <input type="text" id="nuevaCategoria"><br>
+    <input type="text" id="nuevaCategoria">
+    <!-- Corrige el botón para agregar la nueva categoría -->
+    <button type="button" id="agregarCategoriaBtn">Agregar Categoría</button>
+    
 
 
     <button type="button" id="registrarBtn">Registrar Producto</button>
@@ -193,64 +215,218 @@
     // Función para listar productos en forma de tabla HTML
     function listarProductos() {
       var tablaProductos = document.getElementById('tablaProductos');
-      tablaProductos.innerHTML = "<tr><th>Nombre</th><th>Descripción Corta</th><th>Descripción Larga</th><th>Precio</th><th>URL de Imagen</th><th>Categorías</th><th>Acciones</th></tr>";
-
+      // Limpiar contenido existente
+      tablaProductos.innerHTML = '';
+  
+      // Encabezado de la tabla
+      var headerRow = tablaProductos.insertRow(0);
+      headerRow.innerHTML = "<th>Nombre</th><th>Descripción Corta</th><th>Descripción Larga</th><th>Precio</th><th>URL de Imagen</th><th>Categorías</th><th>Acciones</th>";
+  
       productos.forEach(function (producto) {
-        var fila = "<tr>";
-        fila += "<td>" + producto.nombre + "</td>";
-        fila += "<td>" + producto.descripcion_corta + "</td>";
-        fila += "<td>" + producto.descripcion_larga + "</td>";
-        fila += "<td>" + producto.precio + "</td>";
-        fila += "<td><img src='" + producto.imagen + "' alt='imagen' style='max-width: 100px;'></td>";
-        fila += "<td>" + producto.categorias.join(', ') + "</td>";
-        fila += "<td><button class='editar' onclick='editarProducto(\"" + producto.nombre + "\")'>Editar</button> | <button class='eliminar' onclick='eliminarProducto(\"" + producto.nombre + "\")'>Eliminar</button></td>";
-        fila += "</tr>";
-        tablaProductos.innerHTML += fila;
+        var row = tablaProductos.insertRow(-1);
+        row.insertCell(0).textContent = producto.nombre;
+        row.insertCell(1).textContent = producto.descripcion_corta;
+        row.insertCell(2).textContent = producto.descripcion_larga;
+        row.insertCell(3).textContent = producto.precio;
+        var imgCell = row.insertCell(4);
+        var img = document.createElement('img');
+        img.src = producto.imagen;
+        img.alt = 'imagen';
+        img.style.maxWidth = '100px';
+        img.style.maxHeight = '100px';
+        imgCell.appendChild(img);
+        row.insertCell(5).textContent = producto.categorias.join(', ');
+        var actionsCell = row.insertCell(6);
+        actionsCell.innerHTML = "<button class='editar' onclick='editarProducto(\"" + producto.nombre + "\")'>Editar</button> | <button class='eliminar' onclick='eliminarProducto(\"" + producto.nombre + "\")'>Eliminar</button>";
       });
     }
+    // Función para editar un producto mediante el formulario de registro
+    function editarProducto(nombre) {
+      // Buscar el producto por nombre
+      var producto = productos.find(function (item) {
+        return item.nombre === nombre;
+      });
 
-    // Resto del código aquí ...
+      if (producto) {
+        // Llenar el formulario con la información del producto
+        document.getElementById('nombre').value = producto.nombre;
+        document.getElementById('descripcion_corta').value = producto.descripcion_corta;
+        document.getElementById('descripcion_larga').value = producto.descripcion_larga;
+        document.getElementById('precio').value = producto.precio;
+        document.getElementById('imagen').value = producto.imagen;
+
+        // Establecer las categorías seleccionadas en el formulario
+        var categoriasSelect = document.getElementById('categorias');
+        categoriasSelect.innerHTML = ''; // Limpiar opciones anteriores
+        categorias.forEach(function (categoria) {
+          var opcion = document.createElement('option');
+          opcion.value = categoria;
+          opcion.textContent = categoria;
+          if (producto.categorias.includes(categoria)) {
+            opcion.selected = true;
+          }
+          categoriasSelect.appendChild(opcion);
+        });
+
+        // Cambiar el botón de registrar a editar
+        var registrarBtn = document.getElementById('registrarBtn');
+        registrarBtn.textContent = 'Editar Producto';
+        registrarBtn.removeEventListener('click', registrarProducto); // Quitar el listener de registro
+        registrarBtn.addEventListener('click', function () {
+          // Llamar a la función de editar con el nombre actual del producto
+          editarProductoExistente(producto.nombre);
+        });
+      } else {
+        alert("Producto no encontrado");
+      }
+    }
+
+    // Función para editar un producto existente
+    function editarProductoExistente(nombreActual) {
+      // Obtener los valores del formulario de edición
+      var nuevoNombre = document.getElementById('nombre').value;
+      var nuevaDescripcionCorta = document.getElementById('descripcion_corta').value;
+      var nuevaDescripcionLarga = document.getElementById('descripcion_larga').value;
+      var nuevoPrecio = document.getElementById('precio').value;
+      var nuevaUrlImagen = document.getElementById('imagen').value;
+      var nuevasCategorias = Array.from(document.getElementById('categorias').selectedOptions).map(option => option.value);
+
+      // Buscar el producto por nombre
+      var producto = productos.find(function (item) {
+        return item.nombre === nombreActual;
+      });
+
+      if (producto) {
+        // Actualizar la información del producto
+        producto.nombre = nuevoNombre;
+        producto.descripcion_corta = nuevaDescripcionCorta;
+        producto.descripcion_larga = nuevaDescripcionLarga;
+        producto.precio = nuevoPrecio;
+        producto.imagen = nuevaUrlImagen;
+        producto.categorias = nuevasCategorias;
+
+        // Restaurar el formulario y cambiar el botón a Registrar Producto
+        limpiarFormulario();
+        cambiarBotonRegistro();
+
+        // Actualizar la tabla
+        listarProductos();
+      } else {
+        alert("Producto no encontrado");
+      }
+    }
+
+    function registrarProducto() {
+      var nuevoNombre = document.getElementById('nombre').value;
+      var nuevaDescripcionCorta = document.getElementById('descripcion_corta').value;
+      var nuevaDescripcionLarga = document.getElementById('descripcion_larga').value;
+      var nuevoPrecio = document.getElementById('precio').value;
+      var nuevaUrlImagen = document.getElementById('imagen').value;
+      var nuevasCategorias = Array.from(document.getElementById('categorias').selectedOptions).map(option => option.value);
+  
+      // Verifica si el producto ya existe por nombre
+      var productoExistente = productos.find(function (item) {
+        return item.nombre === nuevoNombre;
+      });
+  
+      if (productoExistente) {
+        // Si el producto ya existe, actualiza sus propiedades
+        productoExistente.descripcion_corta = nuevaDescripcionCorta;
+        productoExistente.descripcion_larga = nuevaDescripcionLarga;
+        productoExistente.precio = nuevoPrecio;
+        productoExistente.imagen = nuevaUrlImagen;
+        productoExistente.categorias = nuevasCategorias;
+      } else {
+        // Si el producto no existe, crea uno nuevo y agrégalo al array
+        var nuevoProducto = {
+          nombre: nuevoNombre,
+          descripcion_corta: nuevaDescripcionCorta,
+          descripcion_larga: nuevaDescripcionLarga,
+          precio: nuevoPrecio,
+          imagen: nuevaUrlImagen,
+          categorias: nuevasCategorias
+        };
+        productos.push(nuevoProducto);
+      }
+  
+      // Limpiar el formulario y actualizar la tabla
+      limpiarFormulario();
+      listarProductos();
+    }
+    // Función para eliminar un producto
+    function eliminarProducto(nombre) {
+      // Filtrar los productos para excluir el que se va a eliminar
+      productos = productos.filter(function (producto) {
+        return producto.nombre !== nombre;
+      });
+
+      // Actualizar la tabla
+      listarProductos();
+    }
+
+    // Función para limpiar el formulario
+    function limpiarFormulario() {
+      document.getElementById('nombre').value = '';
+      document.getElementById('descripcion_corta').value = '';
+      document.getElementById('descripcion_larga').value = '';
+      document.getElementById('precio').value = '';
+      document.getElementById('imagen').value = '';
+
+      // Limpiar opciones anteriores en el elemento select
+      var categoriasSelect = document.getElementById('categorias');
+      categoriasSelect.innerHTML = '';
+
+      // Luego, listar las categorías actualizadas
+      listarCategorias();
+    }
+
+    // Función para cambiar el botón de Editar Producto a Registrar Producto
+    function cambiarBotonRegistro() {
+      var registrarBtn = document.getElementById('registrarBtn');
+      registrarBtn.textContent = 'Registrar Producto';
+      registrarBtn.removeEventListener('click', editarProductoExistente); // Quitar el listener de edición
+      registrarBtn.addEventListener('click', registrarProducto);
+    }
+
+    function cargarProductosDesdeJSON() {
+      fetch('productos_1.json') // Reemplaza 'productos_1.json' con la ubicación correcta de tu archivo JSON
+        .then(response => response.json())
+        .then(data => {
+          // Guarda los productos en el array
+          productos = data;
+
+          // Lista los productos
+          listarProductos();
+        })
+        .catch(error => console.error('Error al cargar productos:', error));
+    }
+    function agregarNuevaCategoria() {
+      var nuevaCategoriaInput = document.getElementById('nuevaCategoria');
+      var nuevaCategoria = nuevaCategoriaInput.value;
+
+      if (nuevaCategoria.trim() !== '') {
+        // Agregar la nueva categoría al array y volver a listar las categorías
+        categorias.push(nuevaCategoria);
+        listarCategorias();
+
+        // Limpiar el campo de nueva categoría
+        nuevaCategoriaInput.value = '';
+      } else {
+        alert('Por favor, ingresa una categoría válida.');
+      }
+    }
 
     // Manejo de eventos al cargar la página
     document.addEventListener('DOMContentLoaded', function () {
       cargarCategoriasDesdeJSON();
-  
+      cargarProductosDesdeJSON();
+      listarCategorias(); // Asegúrate de llamar a listarCategorias aquí
+      listarProductos();
+
       // Registrar Producto
       document.getElementById('registrarBtn').addEventListener('click', registrarProducto);
+      document.getElementById('agregarCategoriaBtn').addEventListener('click', agregarNuevaCategoria);
     });
-
-    // Función para registrar un nuevo producto
-    function registrarProducto() {
-      var categoriaSelect = document.getElementById('categorias');
-      var nuevaCategoriaInput = document.getElementById('nuevaCategoria');
-
-      // Verifica si la opción seleccionada es "Nueva Categoría"
-      if (categoriaSelect.value === 'nueva') {
-        // Verifica si se ha ingresado un valor en el campo de nueva categoría
-        if (nuevaCategoriaInput.value.trim() !== '') {
-          // Agrega la nueva categoría al array y al select
-          var nuevaCategoria = nuevaCategoriaInput.value.trim();
-          categorias.push(nuevaCategoria);
-          listarCategorias(); // Actualiza la lista de categorías en el formulario
-          categoriaSelect.value = nuevaCategoria; // Selecciona la nueva categoría
-        } else {
-          alert('Por favor, ingresa el nombre de la nueva categoría.');
-          return;
-        }
-      }
-
-      var producto = {
-        nombre: document.getElementById('nombre').value,
-        descripcion_corta: document.getElementById('descripcion_corta').value,
-        descripcion_larga: document.getElementById('descripcion_larga').value,
-        precio: document.getElementById('precio').value,
-        url_imagen: document.getElementById('url_imagen').value,
-        categorias: Array.from(document.getElementById('categorias').selectedOptions).map(option => option.value)
-      };
-
-      agregarProducto(producto);
-      // Resto del código para limpiar el formulario y actualizar la tabla...
-    }
   </script>
 </body>
 
