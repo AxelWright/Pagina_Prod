@@ -180,10 +180,12 @@
         <textarea id="comment" rows="4" cols="100" required></textarea><br>
 
         <button type="button" onclick="addComment()">Agregar Comentario</button>
+        <button type="button" onclick="clearComments()">Limpiar Comentarios</button>
       </form>
 
       <!-- Lista de comentarios -->
       <div id="comment-list"></div>
+      
     </div>
   </div>
 
@@ -223,30 +225,12 @@
         .catch(error => {
           console.error('Error:', error);
         });
+        // Cargar calificación al cargar la página
+        loadRating();
+
+        // Cargar comentarios al cargar la página
+        loadComments();
     });
-  </script>
-  <script>
-    // Función para agregar comentarios
-    function addComment() {
-      var name = document.getElementById('name').value;
-      var commentText = document.getElementById('comment').value;
-
-      if (name && commentText) {
-        var commentList = document.getElementById('comment-list');
-        var commentDiv = document.createElement('div');
-        commentDiv.className = 'comment';
-        commentDiv.innerHTML = '<strong>' + name + ':</strong> ' + commentText;
-        commentList.appendChild(commentDiv);
-
-        // Limpiar el formulario
-        document.getElementById('name').value = '';
-        document.getElementById('comment').value = '';
-      } else {
-        alert('Por favor, complete todos los campos.');
-      }
-    }
-  </script>
-  <script>
     const ratingStars = document.querySelectorAll('#productRating i');
     const ratingMessage = document.getElementById('ratingMessage');
 
@@ -255,6 +239,9 @@
             const rating = star.getAttribute('data-rating');
             updateRating(rating);
             ratingMessage.textContent = `La calificación es de: ${rating} estrellas`;
+
+            // Guardar la calificación en el almacenamiento local
+            localStorage.setItem('rating', rating);
         });
     });
 
@@ -269,6 +256,105 @@
                 star.classList.add('far');
             }
         });
+    }
+
+    // Función para cargar la calificación desde el almacenamiento local
+    function loadRating() {
+        const savedRating = localStorage.getItem('rating');
+        if (savedRating) {
+            updateRating(savedRating);
+            ratingMessage.textContent = `La calificación es de: ${savedRating} estrellas`;
+        }
+    }
+
+    // Función para agregar comentarios
+    function addComment() {
+        var name = document.getElementById('name').value;
+        var commentText = document.getElementById('comment').value;
+
+        if (name && commentText) {
+            var commentList = document.getElementById('comment-list');
+            var commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            commentDiv.innerHTML = '<strong>' + name + ':</strong> ' + commentText;
+            commentList.appendChild(commentDiv);
+
+            // Guardar comentario y calificación en el almacenamiento local
+            saveComment({ name, text: commentText, rating: localStorage.getItem('rating') });
+
+            // Limpiar el formulario
+            document.getElementById('name').value = '';
+            document.getElementById('comment').value = '';
+        } else {
+            alert('Por favor, complete todos los campos.');
+        }
+    }
+
+    // Función para guardar comentarios y calificaciones en el almacenamiento local
+    function saveComment(comment) {
+        const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+        savedComments.push(comment);
+        localStorage.setItem('comments', JSON.stringify(savedComments));
+    }
+
+    // Función para cargar comentarios desde el almacenamiento local
+    function loadComments() {
+        const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+        const commentList = document.getElementById('comment-list');
+
+        savedComments.forEach(comment => {
+            var commentDiv = document.createElement('div');
+            commentDiv.className = 'comment';
+            commentDiv.innerHTML = '<strong>' + comment.name + ':</strong> ' + comment.text;
+            commentList.appendChild(commentDiv);
+        });
+    }
+  </script>
+  <script>
+    function addComment() {
+      var name = document.getElementById('name').value;
+      var commentText = document.getElementById('comment').value;
+
+      if (name && commentText) {
+        var commentList = document.getElementById('comment-list');
+        var commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = `<strong>${name}:</strong> ${commentText} (${localStorage.getItem('rating')} estrellas)`;
+        commentList.appendChild(commentDiv);
+
+        // Guardar comentario y calificación en el almacenamiento local
+        saveComment({ name, text: commentText, rating: localStorage.getItem('rating') });
+
+        // Limpiar el formulario
+        document.getElementById('name').value = '';
+        document.getElementById('comment').value = '';
+      } else {
+        alert('Por favor, complete todos los campos.');
+      }
+    }
+
+    // Función para guardar comentarios y calificaciones en el almacenamiento local
+    function saveComment(comment) {
+      const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+      savedComments.push(comment);
+      localStorage.setItem('comments', JSON.stringify(savedComments));
+    }
+
+    // Función para cargar comentarios desde el almacenamiento local
+    function loadComments() {
+      const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+      const commentList = document.getElementById('comment-list');
+
+      savedComments.forEach(comment => {
+        var commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = '<strong>' + comment.name + ':</strong> ' + comment.text;
+        commentList.appendChild(commentDiv);
+      });
+    }
+    function clearComments() {
+      localStorage.removeItem('comments');
+      document.getElementById('comment-list').innerHTML = ''; // Limpiar la lista de comentarios en la interfaz
     }
 </script>
 
