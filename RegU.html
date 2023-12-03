@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuarios</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 15px;
+            margin: 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        form button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        select {
+            padding: 8px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>CRUD de Usuario</h2>
+    <form id="registroForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+
+        <label for="apellidoPaterno">Apellido Paterno:</label>
+        <input type="text" id="apellidoPaterno" required>
+
+        <label for="apellidoMaterno">Apellido Materno:</label>
+        <input type="text" id="apellidoMaterno" required>
+
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" required>
+
+        <label for="codigoPostal">Código Postal:</label>
+        <input type="text" id="codigoPostal" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" required>
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" required>
+
+        <label for="municipio">Municipio:</label>
+        <input type="text" id="municipio" required>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" required>
+
+        <label for="numeroExterior">Número Exterior:</label>
+        <input type="text" id="numeroExterior" required>
+
+        <label for="numeroInterior">Número Interior:</label>
+        <input type="text" id="numeroInterior">
+
+        <button type="button" onclick="registrarUsuario()">Registrarse</button>
+    </form>
+
+    <table id="usuariosTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Email</th>
+                <th>Código Postal</th>
+                <th>Contraseña</th>
+                <th>Estado</th>
+                <th>Municipio</th>
+                <th>Dirección</th>
+                <th>Número Exterior</th>
+                <th>Número Interior</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        // Array para almacenar usuarios
+        let usuarios = [];
+
+        // Función para registrar un nuevo usuario
+        function registrarUsuario() {
+            const nombre = document.getElementById('nombre').value;
+            const apellidoPaterno = document.getElementById('apellidoPaterno').value;
+            const apellidoMaterno = document.getElementById('apellidoMaterno').value;
+            const email = document.getElementById('email').value;
+            const codigoPostal = document.getElementById('codigoPostal').value;
+            const contrasena = document.getElementById('contrasena').value;
+            const estado = document.getElementById('estado').value;
+            const municipio = document.getElementById('municipio').value;
+            const direccion = document.getElementById('direccion').value;
+            const numeroExterior = document.getElementById('numeroExterior').value;
+            const numeroInterior = document.getElementById('numeroInterior').value;
+
+            // Validación simple
+            if (nombre && apellidoPaterno && email && codigoPostal && contrasena && estado && municipio && direccion && numeroExterior) {
+                const nuevoUsuario = {
+                    nombre,
+                    apellidoPaterno,
+                    apellidoMaterno,
+                    email,
+                    codigoPostal,
+                    contrasena,
+                    estado,
+                    municipio,
+                    direccion,
+                    numeroExterior,
+                    numeroInterior
+                };
+                usuarios.push(nuevoUsuario);
+
+                // Limpiar campos después del registro
+                document.getElementById('nombre').value = '';
+                document.getElementById('apellidoPaterno').value = '';
+                document.getElementById('apellidoMaterno').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('codigoPostal').value = '';
+                document.getElementById('contrasena').value = '';
+                document.getElementById('estado').value = '';
+                document.getElementById('municipio').value = '';
+                document.getElementById('direccion').value = '';
+                document.getElementById('numeroExterior').value = '';
+                document.getElementById('numeroInterior').value = '';
+
+                // Mostrar información en consola (puedes reemplazarlo con la lógica de guardar en el servidor)
+                console.log('Usuario registrado:', nuevoUsuario);
+                mostrarUsuariosEnTabla();
+            } else {
+                alert('Por favor, complete todos los campos obligatorios.');
+            }
+        }
+
+        // Función para cargar usuarios al iniciar la página
+        function cargarUsuarios() {
+            fetch('usuarios.json')
+                .then(response => response.json())
+                .then(data => {
+                    usuarios = [...usuarios, ...data];
+                    mostrarUsuariosEnTabla();
+                    console.log('Usuarios cargados desde JSON:', usuarios);
+                })
+                .catch(error => console.error('Error al cargar usuarios:', error));
+        }
+
+        // Función para mostrar usuarios en la tabla
+        function mostrarUsuariosEnTabla() {
+            const tablaUsuarios = document.getElementById('usuariosTable').getElementsByTagName('tbody')[0];
+            tablaUsuarios.innerHTML = ''; // Limpiar la tabla antes de mostrar los usuarios
+
+            usuarios.forEach((usuario, index) => {
+                const fila = tablaUsuarios.insertRow();
+
+                for (const prop in usuario) {
+                    const celda = fila.insertCell();
+                    celda.textContent = usuario[prop];
+                }
+
+                const celdaAcciones = fila.insertCell();
+                const btnEditar = document.createElement('button');
+                btnEditar.textContent = 'Editar';
+                btnEditar.onclick = () => editarUsuario(index);
+                celdaAcciones.appendChild(btnEditar);
+
+                const btnEliminar = document.createElement('button');
+                btnEliminar.textContent = 'Eliminar';
+                btnEliminar.onclick = () => eliminarUsuario(index);
+                celdaAcciones.appendChild(btnEliminar);
+            });
+        }
+
+        // Función para editar un usuario
+        function editarUsuario(index) {
+            const usuario = usuarios[index];
+            document.getElementById('nombre').value = usuario.nombre;
+            document.getElementById('apellidoPaterno').value = usuario.apellidoPaterno;
+            document.getElementById('apellidoMaterno').value = usuario.apellidoMaterno;
+            document.getElementById('email').value = usuario.email;
+            document.getElementById('codigoPostal').value = usuario.codigoPostal;
+            document.getElementById('contrasena').value = usuario.contrasena;
+            document.getElementById('estado').value = usuario.estado;
+            document.getElementById('municipio').value = usuario.municipio;
+            document.getElementById('direccion').value = usuario.direccion;
+            document.getElementById('numeroExterior').value = usuario.numeroExterior;
+            document.getElementById('numeroInterior').value = usuario.numeroInterior;
+
+            // Eliminar el usuario de la lista
+            usuarios.splice(index, 1);
+
+            // Mostrar la lista actualizada
+            mostrarUsuariosEnTabla();
+        }
+
+        // Función para eliminar un usuario
+        function eliminarUsuario(index) {
+            // Confirmar la eliminación
+            if (confirm('¿Está seguro de que desea eliminar este usuario?')) {
+                // Eliminar el usuario de la lista
+                usuarios.splice(index, 1);
+
+                // Mostrar la lista actualizada
+                mostrarUsuariosEnTabla();
+            }
+        }
+
+        // Cargar usuarios al iniciar la página
+        window.onload = function () {
+            cargarUsuarios();
+            mostrarUsuariosEnTabla();
+        };
+    </script>
+</body>
+</html>
