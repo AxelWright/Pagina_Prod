@@ -87,6 +87,21 @@
             position: fixed;
             bottom: 0;
         }
+
+        .editable {
+            border: 1px solid #007bff;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        input {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            width: 150%;
+        }
     </style>
 </head>
 
@@ -108,20 +123,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Catalogo.html">Todos los productos</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Categorias
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Servicios</a></li>
-                                <li><a class="dropdown-item" href="#"></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#"></a></li>
-                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -178,9 +179,13 @@
             </div>
         </nav>
     </header>
-    
+
     <div id="container">
         <div id="userInfo">
+        </div>
+        <div>
+            <button id="editarUsuario" class="btn btn-primary">Editar Información</button>
+            <button id="guardarCambios" class="btn btn-success" style="display: none;">Guardar Cambios</button>
         </div>
         <div id="purchaseHistory">
         </div>
@@ -198,6 +203,9 @@
     </footer>
 
     <script>
+        let usuarioOriginal;
+        let edicionHabilitada = false;
+
         // Función para cargar el JSON y mostrar la información del usuario
         function cargarInformacionUsuario() {
             const rutaUsuarioJSON = 'usuario.json';
@@ -205,44 +213,94 @@
             fetch(rutaUsuarioJSON)
                 .then(response => response.json())
                 .then(data => {
+                    usuarioOriginal = { ...data };
 
-                    const userInfoElement = document.getElementById('userInfo');
-
-                    const contenidoHTML = `
-                        <h2>Información del Usuario</h2>
-                        <img src="${data.foto}" alt="Foto de perfil">
-                        <p><strong>Nombre:</strong> ${data.nombres} ${data.apellido_paterno} ${data.apellido_materno}</p>
-                        <p><strong>Correo:</strong> ${data.correo}</p>
-                        <p><strong>Ubicación:</strong> ${data.municipio}, ${data.estado}</p>
-                        <p><strong>Dirección:</strong> ${data.direccion} ${data.numero_exterior}${data.numero_interior ? ', Int. ' + data.numero_interior : ''}</p>
-                        <p><strong>Código Postal:</strong> ${data.codigo_postal}</p>
-                        <a href="Backend.html" target="_blank"><strong>Panel de administración</strong></a>
-                    `;
-
-                    userInfoElement.innerHTML = contenidoHTML;
+                    mostrarInformacionUsuario(data);
                 })
                 .catch(error => {
                     console.error('Error al cargar el JSON del usuario:', error);
                 });
         }
 
+        // Función para cargar el JSON y mostrar la información del usuario en una tabla
+        function mostrarInformacionUsuario(usuario) {
+            const userInfoElement = document.getElementById('userInfo');
+
+            const contenidoHTML = `
+            <h2>Información del Usuario</h2>
+            <img src="${usuario.foto}" alt="Foto de perfil">
+            <table>
+                <tr>
+                    <td><strong>Nombre:</strong></td>
+                    <td><input type="text" id="nombres" value="${usuario.nombres}" readonly></td>
+                </tr>
+                <tr>
+                    <td><strong>Apellido Paterno:</strong></td>
+                    <td><input type="text" id="apellido_paterno" value="${usuario.apellido_paterno}" readonly></td>
+                </tr>
+                <tr>
+                    <td><strong>Apellido Materno:</strong></td>
+                    <td><input type="text" id="apellido_materno" value="${usuario.apellido_materno}" readonly></td>
+                </tr>
+                <tr>
+                    <td><strong>Correo:</strong></td>
+                    <td><input type="text" id="correo" value="${usuario.correo}" readonly></td>
+                </tr>
+                <tr>
+                    <td><strong>Ubicación:</strong></td>
+                    <td><input type="text" id="municipio" id="estado" value="${usuario.municipio}, ${usuario.estado}" readonly></td>
+                </tr>
+                <tr>
+                    <td><strong>Dirección:</strong></td>
+                    <td><input type="text" id="direccion" id="numero_exterior" id="numero_interior" value="${usuario.direccion} ${usuario.numero_exterior}${usuario.numero_interior ? ', Int. ' + usuario.numero_interior : ''}" readonly></td>
+                </tr>
+                <tr>
+                    <td><strong>Código Postal:</strong></td>
+                    <td><input type="text" id="codigo_postal" value="${usuario.codigo_postal}" readonly></td>
+                </tr>
+                <tr id="contrasenaRow" style="display: none;">
+                    <td><strong>Contraseña:</strong></td>
+                    <td><input type="password" value="${usuario.contrasena}" id="contrasena" readonly></td>
+                </tr>
+            </table>
+            <a href="Backend.html" target="_blank"><strong>Panel de administración</strong></a>
+        `;
+
+            userInfoElement.innerHTML = contenidoHTML;
+            habilitarEdicionCampos();
+        }
+
+        // Función para habilitar o deshabilitar la edición de campos
+        function habilitarEdicionCampos() {
+            const camposEditable = ['nombres', 'apellido_paterno', 'apellido_materno', 'correo', 'municipio', 'estado', 'direccion', 'numero_exterior', 'numero_interior', 'codigo_postal'];
+
+            camposEditable.forEach(campo => {
+                const elemento = document.getElementById(campo);
+                if (elemento) {
+                    elemento.readOnly = !edicionHabilitada;
+                    elemento.classList.toggle('editable', edicionHabilitada);
+                }
+            });
+
+            document.getElementById('editarUsuario').style.display = edicionHabilitada ? 'none' : 'block';
+            document.getElementById('guardarCambios').style.display = edicionHabilitada ? 'block' : 'none';
+        }
+
         // Función para cargar el JSON y mostrar el historial de compras
         function cargarHistorialCompras() {
-
             const rutaHistorialJSON = 'productosHC.json';
 
             fetch(rutaHistorialJSON)
                 .then(response => response.json())
                 .then(data => {
-
                     const purchaseHistoryElement = document.getElementById('purchaseHistory');
 
                     const contenidoHTML = `
-                        <h2>Historial de Compras</h2>
-                        <ul>
-                            ${data.map(compra => `<li>${compra.nombre} - ${compra.fecha}</li>`).join('')}
-                        </ul>
-                    `;
+                    <h2>Historial de Compras</h2>
+                    <ul>
+                        ${data.map(compra => `<li>${compra.nombre} - ${compra.fecha}</li>`).join('')}
+                    </ul>
+                `;
 
                     purchaseHistoryElement.innerHTML = contenidoHTML;
                 })
@@ -250,6 +308,55 @@
                     console.error('Error al cargar el JSON del historial de compras:', error);
                 });
         }
+
+        // Evento de clic en el botón "Editar"
+        document.getElementById('editarUsuario').addEventListener('click', () => {
+            edicionHabilitada = true;
+            habilitarEdicionCampos();
+        });
+
+        // Evento de clic en el botón "Guardar Cambios"
+        document.getElementById('guardarCambios').addEventListener('click', () => {
+            edicionHabilitada = false;
+
+            const usuarioEditado = { ...usuarioOriginal };
+
+            const camposEditable = ['nombres', 'apellido_paterno', 'apellido_materno', 'correo', 'municipio', 'estado', 'direccion', 'numero_exterior', 'numero_interior', 'codigo_postal', 'contrasena'];
+
+            camposEditable.forEach(campo => {
+                const elemento = document.getElementById(campo);
+                if (elemento) {
+                    usuarioEditado[campo] = elemento.value.trim();
+                }
+            });
+
+            alert(`Información actualizada`);
+            mostrarInformacionUsuario(usuarioEditado);
+        });
+
+        // Función para habilitar o deshabilitar la edición de campos
+        function habilitarEdicionCampos() {
+            const camposEditable = ['nombres', 'apellido_paterno', 'apellido_materno', 'correo', 'municipio', 'estado', 'direccion', 'numero_exterior', 'numero_interior', 'codigo_postal', 'contrasena'];
+
+            camposEditable.forEach(campo => {
+                const elemento = document.getElementById(campo);
+                if (elemento) {
+                    elemento.readOnly = !edicionHabilitada;
+                    elemento.classList.toggle('editable', edicionHabilitada);
+                }
+            });
+
+            const contrasenaRow = document.getElementById('contrasenaRow');
+            if (contrasenaRow) {
+                contrasenaRow.style.display = edicionHabilitada ? 'table-row' : 'none';
+            }
+
+            document.getElementById('editarUsuario').style.display = edicionHabilitada ? 'none' : 'block';
+            document.getElementById('guardarCambios').style.display = edicionHabilitada ? 'block' : 'none';
+        }
+
+        cargarInformacionUsuario();
+        cargarHistorialCompras();
 
         // Función para cargar anuncios en un intervalo de tiempo
         function cargarAnuncios() {
@@ -277,8 +384,6 @@
             setInterval(cambiarAnuncio, 4000);
         }
 
-        cargarInformacionUsuario();
-        cargarHistorialCompras();
         cargarAnuncios();
     </script>
 
