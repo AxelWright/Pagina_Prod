@@ -81,6 +81,10 @@
             height: auto;
         }
 
+        #productos-container {
+            text-align: center;
+        }
+
         .card {
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -471,19 +475,30 @@
                 }
 
                 function agregarAlCarrito(producto) {
-                    carrito.push({ ...producto, cantidad: 1 });
+                    const productoExistente = carrito.find(item => item.nombre === producto.nombre);
+
+                    if (productoExistente) {
+                        productoExistente.cantidad += 1;
+                        alert(`Se aumentó la cantidad de ${producto.nombre} en el carrito`);
+                    } else {
+                        carrito.push({ ...producto, cantidad: 1 });
+                        alert(`Has agregado ${producto.nombre} al carrito`);
+                    }
 
                     localStorage.setItem('carrito', JSON.stringify(carrito));
-
-                    alert(`Has agregado ${producto.nombre} al carrito`);
                 }
 
                 function agregarListaDeDeseos(producto) {
-                    wishlist.push({ ...producto, cantidad: 1 });
+                    const productoExistente = wishlist.find(item => item.nombre === producto.nombre);
+
+                    if (productoExistente) {
+                        alert(`${producto.nombre} ya esta en la lista de deseos`);
+                    } else {
+                        wishlist.push({ ...producto, cantidad: 1 });
+                        alert(`Has agregado ${producto.nombre} a la lista de deseos`);
+                    }
 
                     localStorage.setItem('wishlist', JSON.stringify(wishlist));
-
-                    alert(`Has agregado ${producto.nombre} al la lista de deseos`);
                 }
 
                 cargarProductos();

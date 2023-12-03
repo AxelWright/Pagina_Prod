@@ -28,70 +28,6 @@
             text-align: center;
         }
 
-        /* #wishlist-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #wishlist-table {
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .producto-row {
-            border: 1px solid #ccc;
-        }
-
-        .producto-imagen {
-            width: 100px;
-            height: auto;
-        }
-
-        .producto-info {
-            padding: 10px;
-            text-align: left;
-        }
-
-        .producto-nombre {
-            font-weight: bold;
-        }
-
-        .producto-precio {
-            color: #4caf50;
-        }
-
-        .input-group-text {
-            display: flex;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .form-control.input-sm {
-            margin-top: 15px;
-            margin-bottom: 0;
-        }
-
-        .wishlist-item .remove-button {
-            background-color: #ff5555;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .wishlist-item .remove-button:hover {
-            background-color: #ff0000;
-        }
-
-        .wishlist-item {
-            margin-bottom: 20px;
-            /* Espaciado entre elementos de la lista de deseos
-        }*/
-
         .wishlist-card {
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -129,6 +65,10 @@
             text-overflow: ellipsis;
             line-height: 1.8em;
             margin-bottom: 10px;
+        }
+
+        .wishlist-card h3 {
+            color: green;
         }
 
         .wishlist-card button {
@@ -299,7 +239,7 @@
 
                     var descripcionProducto = document.createElement('p');
                     descripcionProducto.classList.add('descripcion');
-                    descripcionProducto.textContent = producto.descripcion;
+                    descripcionProducto.textContent = producto.descripcion_larga;
 
                     var precioProducto = document.createElement('h3');
                     precioProducto.textContent = `$${producto.precio.toFixed(2)}`;
