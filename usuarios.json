@@ -1,0 +1,54 @@
+[
+    {
+      "nombre": "Usuario1",
+      "apellidoPaterno": "Apellido1",
+      "apellidoMaterno": "Materno1",
+      "email": "usuario1@example.com",
+      "codigoPostal": "12345",
+      "contrasena": "contrasena1",
+      "estado": "Estado1",
+      "municipio": "Municipio1",
+      "direccion": "Dirección1",
+      "numeroExterior": "1",
+      "numeroInterior": "A"
+    },
+    {
+      "nombre": "Usuario2",
+      "apellidoPaterno": "Apellido2",
+      "apellidoMaterno": "Materno2",
+      "email": "usuario2@example.com",
+      "codigoPostal": "54321",
+      "contrasena": "contrasena2",
+      "estado": "Estado2",
+      "municipio": "Municipio2",
+      "direccion": "Dirección2",
+      "numeroExterior": "2",
+      "numeroInterior": "B"
+    },
+    {
+      "nombre": "Usuario3",
+      "apellidoPaterno": "Apellido3",
+      "apellidoMaterno": "Materno3",
+      "email": "usuario3@example.com",
+      "codigoPostal": "67890",
+      "contrasena": "contrasena3",
+      "estado": "Estado3",
+      "municipio": "Municipio3",
+      "direccion": "Dirección3",
+      "numeroExterior": "3",
+      "numeroInterior": "C"
+    },
+    {
+      "nombre": "Usuario4",
+      "apellidoPaterno": "Apellido4",
+      "apellidoMaterno": "Materno4",
+      "email": "usuario4@example.com",
+      "codigoPostal": "09876",
+      "contrasena": "contrasena4",
+      "estado": "Estado4",
+      "municipio": "Municipio4",
+      "direccion": "Dirección4",
+      "numeroExterior": "4",
+      "numeroInterior": "D"
+    }
+  ]
