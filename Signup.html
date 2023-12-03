@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/Fisestoplogo.png" />
+    <title>Registro - FiesTop</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: "#eff6ff",
+                            100: "#dbeafe",
+                            200: "#bfdbfe",
+                            300: "#93c5fd",
+                            400: "#60a5fa",
+                            500: "#3b82f6",
+                            600: "#2563eb",
+                            700: "#1d4ed8",
+                            800: "#1e40af",
+                            900: "#1e3a8a",
+                            950: "#172554",
+                        },
+                    },
+                },
+                fontFamily: {
+                    body: [
+                        "Inter",
+                        "ui-sans-serif",
+                        "system-ui",
+                        "-apple-system",
+                        "system-ui",
+                        "Segoe UI",
+                        "Roboto",
+                        "Helvetica Neue",
+                        "Arial",
+                        "Noto Sans",
+                        "sans-serif",
+                        "Apple Color Emoji",
+                        "Segoe UI Emoji",
+                        "Segoe UI Symbol",
+                        "Noto Color Emoji",
+                    ],
+                    sans: [
+                        "Inter",
+                        "ui-sans-serif",
+                        "system-ui",
+                        "-apple-system",
+                        "system-ui",
+                        "Segoe UI",
+                        "Roboto",
+                        "Helvetica Neue",
+                        "Arial",
+                        "Noto Sans",
+                        "sans-serif",
+                        "Apple Color Emoji",
+                        "Segoe UI Emoji",
+                        "Segoe UI Symbol",
+                        "Noto Color Emoji",
+                    ],
+                },
+            },
+        };
+    </script>
+</head>
+
+<body>
+    <section class="bg-gray-50 dark:bg-gray-900">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto max-w-2xl">
+            <a href="index.html" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+                <img class="w-8 h-8 mr-2" src="img/Fisestoplogo.png" alt="logo" />
+                FiesTop
+            </a>
+            <div
+                class="w-full bg-white rounded-lg shadow dark:border lg:mt-0 sm:max-w-2xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1
+                        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        Crea una cuenta
+                    </h1>
+                    <form id="registrationForm" action="#">
+                        <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                            <div class="sm:col-span-2">
+                                <label for="nombre"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre(s)</label>
+                                <input type="text" name="nombre" id="nombre"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Escribe tu o tus nombres" required="" />
+                            </div>
+                            <div class="w-full">
+                                <label for="apellidoPaterno"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido
+                                    paterno</label>
+                                <input type="text" name="apellidoPaterno" id="apellidoPaterno"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Tu apellido paterno" required="" />
+                            </div>
+                            <div class="w-full">
+                                <label for="apellidoMaterno"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido
+                                    materno</label>
+                                <input type="text" name="apellidoMaterno" id="apellidoMaterno"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Tu apellido materno" required="" />
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="email"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo
+                                    electrónico</label>
+                                <input type="email" name="email" id="email"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="name@company.com" required="" />
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="contrasena"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+                                <input type="password" name="contrasena" id="contrasena" placeholder="••••••••"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="name@company.com" required="" />
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="confirm-contrasena"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirma tu
+                                    contraseña</label>
+                                <input type="password" name="confirm-contrasena" id="confirm-contrasena"
+                                    placeholder="••••••••"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="name@company.com" required="" />
+                            </div>
+                            <div class="w-full">
+                                <label for="estado"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
+                                <input type="text" name="estado" id="estado"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Tu estado" required="" />
+                            </div>
+                            <div class="w-full">
+                                <label for="municipio"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Municipio</label>
+                                <input type="text" name="municipio" id="municipio"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Tu municipio" required="" />
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="direccion"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dirección</label>
+                                <input type="text" name="direccion" id="direccion"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Tu domicilio" required="" />
+                            </div>
+                            <div>
+                                <label for="numeroExterior"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número
+                                    exterior</label>
+                                <input type="text" name="numeroExterior" id="numeroExterior"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Num. Ext." required="" />
+                            </div>
+                            <div>
+                                <label for="numeroInterior"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número
+                                    interior</label>
+                                <input type="text" name="numeroInterior" id="numeroInterior"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Num. Int." />
+                            </div>
+                            <div>
+                                <label for="codigoPostal"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código
+                                    postal</label>
+                                <input type="number" name="codigoPostal" id="codigoPostal"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="CP" required="" />
+                            </div>
+                        </div>
+                        <p class="text-sm font-light p-2.5 text-gray-500 dark:text-gray-400">
+                            ¿Ya tienes una cuenta?
+                            <a href="Login.html"
+                                class="font-medium text-primary-600 hover:underline dark:text-primary-500">Inicia
+                                sesión</a>
+                        </p>
+                        <button type="submit"
+                            class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                            Regístrate
+                        </button>
+                        <div id="mensaje-error"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let registrarUsuario = document.getElementById("registrationForm");
+        // Registrar un nuevo usuario
+        registrarUsuario.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            var mensajeError = document.getElementById("mensaje-error");
+
+            const nombre = document.getElementById("nombre").value;
+            const apellidoPaterno =
+                document.getElementById("apellidoPaterno").value;
+            const apellidoMaterno =
+                document.getElementById("apellidoMaterno").value;
+            const email = document.getElementById("email").value;
+            const codigoPostal = document.getElementById("codigoPostal").value;
+            const contrasena = document.getElementById("contrasena").value;
+            const estado = document.getElementById("estado").value;
+            const municipio = document.getElementById("municipio").value;
+            const direccion = document.getElementById("direccion").value;
+            const numeroExterior = document.getElementById("numeroExterior").value;
+            const numeroInterior = document.getElementById("numeroInterior").value;
+
+            if (contrasena == document.getElementById("confirm-contrasena").value) {
+                // Validación simple
+                if (
+                    nombre &&
+                    apellidoPaterno &&
+                    email &&
+                    codigoPostal &&
+                    contrasena &&
+                    estado &&
+                    municipio &&
+                    direccion &&
+                    numeroExterior
+                ) {
+                    fetch('usuarios.json')
+                        .then((response) => response.json())
+                        .then((data) => {
+                            data.push({
+                                nombre: nombre,
+                                apellidoPaterno: apellidoPaterno,
+                                apellidoMaterno: apellidoMaterno,
+                                email: email,
+                                codigoPostal: codigoPostal,
+                                contrasena: contrasena,
+                                estado: estado,
+                                municipio: municipio,
+                                direccion: direccion,
+                                numeroExterior: numeroExterior,
+                                numeroInterior: numeroInterior,
+                            });
+
+                            // Escribir los datos actualizados en el archivo JSON
+                            fetch('usuarios.json', {
+                                method: 'PUT',
+                                body: JSON.stringify(data),
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                            }).then((response) => {
+                                if (response.ok) {
+                                    alert("Usuario registrado exitosamente");
+                                    // Redirigir al login después de 2 segundos
+                                    setTimeout(function () {
+                                        window.location.href = "Login.html";
+                                    }, 1000);
+                                } else {
+                                    mensajeError.innerHTML =
+                                        '<p class="mt-2 text-pink-600 text-sm">Error al registrar usuario. Por favor, intenta de nuevo.</p>';
+                                }
+                            });
+                        });
+                } else {
+                    mensajeError.innerHTML =
+                        '<p class="mt-2 text-pink-600 text-sm">Por favor complete todos los campos obligatorios.</p>';
+                }
+            } else {
+                mensajeError.innerHTML =
+                    '<p class="mt-2 text-pink-600 text-sm">Contraseñas no coinciden, por favor valida que la contraseña sea la misma en ambos campos.</p>';
+            }
+        });
+    </script>
+</body>
+
+</html>
