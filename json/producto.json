@@ -1,0 +1,10 @@
+{
+  "nombre": "1.000 cubiertos desechables de plástico, paquete variado",
+  "imagen": "img/Cubiertos.jpg",
+  "descripcion": "Los cubiertos de plástico blanco a granel de 1000 piezas incluyen 334, tenedores, 333 cuchillos, 333 cucharas de sopa, convenientemente y compactamente empaquetados en una caja pequeña. Los cubiertos de plástico desechables de alta calidad y duraderos son prácticos y prácticos para minimizar el lavado y la limpieza. Cucharitas de plastc a granel, sopas, tenedores, cuchillos y tenedores. Cubiertos desechables de plástico duraderos y de buen precio para fiestas, hogar, uso comercial y mucho más. Apto para alimentos y sin bpa, seguro de usar con alimentos calientes.",
+  "precio": 558.03,
+  "tallas": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
+  "colores": ["rojo", "azul", "verde", "negro"],
+  "materiales": ["plastico", "pet"],
+  "marca": "Elegant Disposables"
+}
