@@ -234,20 +234,31 @@
                     fetch('usuarios.json')
                         .then((response) => response.json())
                         .then((data) => {
-                            data.push({
-                                nombre: nombre,
-                                apellidoPaterno: apellidoPaterno,
-                                apellidoMaterno: apellidoMaterno,
-                                email: email,
-                                codigoPostal: codigoPostal,
-                                contrasena: contrasena,
-                                estado: estado,
-                                municipio: municipio,
-                                direccion: direccion,
-                                numeroExterior: numeroExterior,
-                                numeroInterior: numeroInterior,
-                            });
+                            var usuarioExists = data.find(u => u.email === email);
 
+                            if (!usuarioExists) {
+                                data.push({
+                                    nombre: nombre,
+                                    apellidoPaterno: apellidoPaterno,
+                                    apellidoMaterno: apellidoMaterno,
+                                    email: email,
+                                    codigoPostal: codigoPostal,
+                                    contrasena: contrasena,
+                                    estado: estado,
+                                    municipio: municipio,
+                                    direccion: direccion,
+                                    numeroExterior: numeroExterior,
+                                    numeroInterior: numeroInterior,
+                                });
+                                alert("Registro exitoso :)");
+                                // Redirigir al login después de 2 segundos
+                                setTimeout(function () {
+                                    window.location.href = "Login.html";
+                                }, 1000);
+                            } else {
+                                mensajeError.innerHTML = '<p class="mt-2 text-pink-600 text-sm">Ya existe una cuenta registrada con ese correo.</p>';
+                            }
+                            /*
                             // Escribir los datos actualizados en el archivo JSON
                             fetch('usuarios.json', {
                                 method: 'PUT',
@@ -267,6 +278,8 @@
                                         '<p class="mt-2 text-pink-600 text-sm">Error al registrar usuario. Por favor, intenta de nuevo.</p>';
                                 }
                             });
+                            */
+
                         });
                 } else {
                     mensajeError.innerHTML =
