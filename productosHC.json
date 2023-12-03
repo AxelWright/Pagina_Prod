@@ -1,0 +1,33 @@
+[
+  {
+    "nombre": "1.000 cubiertos desechables de plástico, paquete variado",
+    "imagen": "img/Cubiertos.jpg",
+    "descripcion": "Los cubiertos de plástico blanco a granel de 1000 piezas incluyen 334, tenedores, 333 cuchillos, 333 cucharas de sopa.",
+    "precio": 558.03,
+    "tallas": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
+    "colores": ["rojo", "azul", "verde", "negro"],
+    "materiales": ["plastico", "pet"],
+    "marca": "Elegant Disposables",
+    "fecha": "2023-01-01"
+  },
+  {
+    "nombre": "Corona de Princesas",
+    "imagen": "img/CoronaC.jpeg",
+    "descripcion": "15 Piezas, Coronas De Feliz Cumpleaños, Coronas De Sombrero De Cumpleaños De Papel Para Regalos De Cumpleaños En El Aula, Fiestas, Sombreros.",
+    "precio": 92.29,
+    "materiales": ["Papel", "Carton"],
+    "marca": "FiesParty",
+    "fecha": "2023-02-15"
+  },
+  {
+    "nombre": "Sombrero De Papel De Unicornio",
+    "imagen": "img/FiestaNiña.jpeg",
+    "descripcion": "6 Piezas, Sombrero De Papel De Unicornio Arcoíris, Suministros De Fiesta De Cumpleaños Para Niña Y Niño.",
+    "precio": 250.03,
+    "colores": ["rojo", "azul", "verde"],
+    "materiales": ["plastico", "pet"],
+    "marca": "FiesParty",
+    "fecha": "2023-03-20"
+  }
+  
+]

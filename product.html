@@ -66,17 +66,17 @@
       direction: rtl;
       text-align: center;
       font-size: 24px;
-  }
+    }
 
-  .rating > i {
+    .rating>i {
       margin: 0 5px;
       cursor: pointer;
-  }
+    }
 
-  .rating > i:hover,
-  .rating > i:hover ~ i {
+    .rating>i:hover,
+    .rating>i:hover~i {
       color: gold;
-  }
+    }
 
     .comment {
       margin-bottom: 15px;
@@ -101,7 +101,7 @@
             <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Todos los productos</a>
+            <a class="nav-link" href="Catalogo.html">Todos los productos</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -162,9 +162,9 @@
             <i class="far fa-star" data-rating="3"></i>
             <i class="far fa-star" data-rating="2"></i>
             <i class="far fa-star" data-rating="1"></i>
-        </div>
-        
-        <p id="ratingMessage"></p>
+          </div>
+
+          <p id="ratingMessage"></p>
         </div>
       </div>
     </div>
@@ -185,7 +185,7 @@
 
       <!-- Lista de comentarios -->
       <div id="comment-list"></div>
-      
+
     </div>
   </div>
 
@@ -225,89 +225,89 @@
         .catch(error => {
           console.error('Error:', error);
         });
-        // Cargar calificación al cargar la página
-        loadRating();
+      // Cargar calificación al cargar la página
+      loadRating();
 
-        // Cargar comentarios al cargar la página
-        loadComments();
+      // Cargar comentarios al cargar la página
+      loadComments();
     });
     const ratingStars = document.querySelectorAll('#productRating i');
     const ratingMessage = document.getElementById('ratingMessage');
 
     ratingStars.forEach(star => {
-        star.addEventListener('click', () => {
-            const rating = star.getAttribute('data-rating');
-            updateRating(rating);
-            ratingMessage.textContent = `La calificación es de: ${rating} estrellas`;
+      star.addEventListener('click', () => {
+        const rating = star.getAttribute('data-rating');
+        updateRating(rating);
+        ratingMessage.textContent = `La calificación es de: ${rating} estrellas`;
 
-            // Guardar la calificación en el almacenamiento local
-            localStorage.setItem('rating', rating);
-        });
+        // Guardar la calificación en el almacenamiento local
+        localStorage.setItem('rating', rating);
+      });
     });
 
     function updateRating(rating) {
-        ratingStars.forEach(star => {
-            const starRating = star.getAttribute('data-rating');
-            if (starRating <= rating) {
-                star.classList.remove('far');
-                star.classList.add('fas');
-            } else {
-                star.classList.remove('fas');
-                star.classList.add('far');
-            }
-        });
+      ratingStars.forEach(star => {
+        const starRating = star.getAttribute('data-rating');
+        if (starRating <= rating) {
+          star.classList.remove('far');
+          star.classList.add('fas');
+        } else {
+          star.classList.remove('fas');
+          star.classList.add('far');
+        }
+      });
     }
 
     // Función para cargar la calificación desde el almacenamiento local
     function loadRating() {
-        const savedRating = localStorage.getItem('rating');
-        if (savedRating) {
-            updateRating(savedRating);
-            ratingMessage.textContent = `La calificación es de: ${savedRating} estrellas`;
-        }
+      const savedRating = localStorage.getItem('rating');
+      if (savedRating) {
+        updateRating(savedRating);
+        ratingMessage.textContent = `La calificación es de: ${savedRating} estrellas`;
+      }
     }
 
     // Función para agregar comentarios
     function addComment() {
-        var name = document.getElementById('name').value;
-        var commentText = document.getElementById('comment').value;
+      var name = document.getElementById('name').value;
+      var commentText = document.getElementById('comment').value;
 
-        if (name && commentText) {
-            var commentList = document.getElementById('comment-list');
-            var commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-            commentDiv.innerHTML = '<strong>' + name + ':</strong> ' + commentText;
-            commentList.appendChild(commentDiv);
+      if (name && commentText) {
+        var commentList = document.getElementById('comment-list');
+        var commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = '<strong>' + name + ':</strong> ' + commentText;
+        commentList.appendChild(commentDiv);
 
-            // Guardar comentario y calificación en el almacenamiento local
-            saveComment({ name, text: commentText, rating: localStorage.getItem('rating') });
+        // Guardar comentario y calificación en el almacenamiento local
+        saveComment({ name, text: commentText, rating: localStorage.getItem('rating') });
 
-            // Limpiar el formulario
-            document.getElementById('name').value = '';
-            document.getElementById('comment').value = '';
-        } else {
-            alert('Por favor, complete todos los campos.');
-        }
+        // Limpiar el formulario
+        document.getElementById('name').value = '';
+        document.getElementById('comment').value = '';
+      } else {
+        alert('Por favor, complete todos los campos.');
+      }
     }
 
     // Función para guardar comentarios y calificaciones en el almacenamiento local
     function saveComment(comment) {
-        const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
-        savedComments.push(comment);
-        localStorage.setItem('comments', JSON.stringify(savedComments));
+      const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+      savedComments.push(comment);
+      localStorage.setItem('comments', JSON.stringify(savedComments));
     }
 
     // Función para cargar comentarios desde el almacenamiento local
     function loadComments() {
-        const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
-        const commentList = document.getElementById('comment-list');
+      const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+      const commentList = document.getElementById('comment-list');
 
-        savedComments.forEach(comment => {
-            var commentDiv = document.createElement('div');
-            commentDiv.className = 'comment';
-            commentDiv.innerHTML = '<strong>' + comment.name + ':</strong> ' + comment.text;
-            commentList.appendChild(commentDiv);
-        });
+      savedComments.forEach(comment => {
+        var commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = '<strong>' + comment.name + ':</strong> ' + comment.text;
+        commentList.appendChild(commentDiv);
+      });
     }
   </script>
   <script>
@@ -356,7 +356,14 @@
       localStorage.removeItem('comments');
       document.getElementById('comment-list').innerHTML = ''; // Limpiar la lista de comentarios en la interfaz
     }
-</script>
+  </script>
+
+  <footer>
+    <p style="text-align: center;">&copy; 2023 Mi Tienda en Línea <a
+        href="https://www.facebook.com/people/FiesTop/100092594490737/"><img src="img/fb.png" class="card-img-top"
+          alt="Plataforma oficial de fiestop en facebook" title="logo de Facebook" style="width: 30px;"></a> </p>
+
+  </footer>
 
 </body>
 

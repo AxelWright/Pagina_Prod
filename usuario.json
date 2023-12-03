@@ -1,0 +1,14 @@
+{
+    "nombres": "John",
+    "apellido_paterno": "Doe",
+    "apellido_materno": "Smith",
+    "correo": "john.doe@example.com",
+    "codigo_postal": "12345",
+    "foto": "img/Usu.jpg",
+    "estado": "Ciudad de México",
+    "municipio": "Cuauhtémoc",
+    "direccion": "Av. Principal",
+    "numero_exterior": "123",
+    "numero_interior": "A"
+  }
+  

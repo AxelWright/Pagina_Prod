@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="shortcut icon" href="img/Fisestoplogo.png">
+    <title>Perfil de Usuario</title>
+
+    <style>
+        #cb-cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            border-radius: 0;
+            display: none;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000000;
+            top: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #495057;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            display: flex;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        #userInfo,
+        #purchaseHistory,
+        #adContainer {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #adContainer img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"><img src="img/Fisestoplogo.png" height="40px"
+                        alt="Logo oficial de FiesTop" title="Logo oficial de FiesTop"> </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Catalogo.html">Todos los productos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Categorias
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Servicios</a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Quienes somos:
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item">FiesTop es una empresa centrada en la organizacion de
+                                        eventos sociales <br> de cualquier indole desde fiestas de cumpleaños hasta
+                                        fiestas de XV años y bodas <br> el limite es su imaginación, nosotros le daremos
+                                        las herramientas necesarias <br> para que organice su fiesta ideal en tiempo y
+                                        forma</a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="HisProd.html">Historial de compras</a>
+                        </li>
+
+                        <!-- Carrito -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
+                        </li>
+
+                        <!-- Lista de deseos -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="wishlist.html">Lista de deseos</a>
+                        </li>
+
+                    </ul>
+
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                    <!-- Sección de inicio de sesión -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Iniciar sesión</a>
+                        </li>
+                    </ul>
+
+                    <!-- Sección para ver el perfil del usuario (puedes ajustar el enlace según tus necesidades) -->
+                    <a class="navbar-brand" href="Login.html">
+                        <img src="img/LogoU.png" height="40px" alt="Logo oficial de FiesTop" title="Perfil de usuario">
+                    </a>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="container">
+        <div id="userInfo">
+        </div>
+        <div id="purchaseHistory">
+        </div>
+        <div id="adContainer">
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 FiesTop. Todos los derechos reservados.
+            <a href="https://www.facebook.com/people/FiesTop/100092594490737/" target="_blank"><img src="img/fb.png"
+                    class="card-img-top" alt="Plataforma oficial de fiestop en facebook" title="logo de Facebook"
+                    style="width: 30px;"></a>
+        </p>
+
+    </footer>
+
+    <script>
+        // Función para cargar el JSON y mostrar la información del usuario
+        function cargarInformacionUsuario() {
+            const rutaUsuarioJSON = 'usuario.json';
+
+            fetch(rutaUsuarioJSON)
+                .then(response => response.json())
+                .then(data => {
+
+                    const userInfoElement = document.getElementById('userInfo');
+
+                    const contenidoHTML = `
+                        <h2>Información del Usuario</h2>
+                        <img src="${data.foto}" alt="Foto de perfil">
+                        <p><strong>Nombre:</strong> ${data.nombres} ${data.apellido_paterno} ${data.apellido_materno}</p>
+                        <p><strong>Correo:</strong> ${data.correo}</p>
+                        <p><strong>Ubicación:</strong> ${data.municipio}, ${data.estado}</p>
+                        <p><strong>Dirección:</strong> ${data.direccion} ${data.numero_exterior}${data.numero_interior ? ', Int. ' + data.numero_interior : ''}</p>
+                        <p><strong>Código Postal:</strong> ${data.codigo_postal}</p>
+                        <a href="Backend.html" target="_blank"><strong>Panel de administración</strong></a>
+                    `;
+
+                    userInfoElement.innerHTML = contenidoHTML;
+                })
+                .catch(error => {
+                    console.error('Error al cargar el JSON del usuario:', error);
+                });
+        }
+
+        // Función para cargar el JSON y mostrar el historial de compras
+        function cargarHistorialCompras() {
+
+            const rutaHistorialJSON = 'productosHC.json';
+
+            fetch(rutaHistorialJSON)
+                .then(response => response.json())
+                .then(data => {
+
+                    const purchaseHistoryElement = document.getElementById('purchaseHistory');
+
+                    const contenidoHTML = `
+                        <h2>Historial de Compras</h2>
+                        <ul>
+                            ${data.map(compra => `<li>${compra.nombre} - ${compra.fecha}</li>`).join('')}
+                        </ul>
+                    `;
+
+                    purchaseHistoryElement.innerHTML = contenidoHTML;
+                })
+                .catch(error => {
+                    console.error('Error al cargar el JSON del historial de compras:', error);
+                });
+        }
+
+        // Función para cargar anuncios en un intervalo de tiempo
+        function cargarAnuncios() {
+            const anuncios = [
+                'img/anuncio1.jpg',
+                'img/anuncio2.jpg',
+                'img/anuncio3.jpg'
+            ];
+
+            let indiceAnuncio = 0;
+
+            // Función para cambiar el anuncio
+            function cambiarAnuncio() {
+                const adContainer = document.getElementById('adContainer');
+
+                const contenidoHTML = `<img src="${anuncios[indiceAnuncio]}" alt="Anuncio">`;
+
+                adContainer.innerHTML = contenidoHTML;
+
+                indiceAnuncio = (indiceAnuncio + 1) % anuncios.length;
+            }
+
+            cambiarAnuncio();
+
+            setInterval(cambiarAnuncio, 4000);
+        }
+
+        cargarInformacionUsuario();
+        cargarHistorialCompras();
+        cargarAnuncios();
+    </script>
+
+</body>
+
+</html>
