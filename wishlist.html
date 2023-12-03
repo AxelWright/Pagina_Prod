@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="auto">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/Fisestoplogo.png">
+    <meta name="description"
+        content="En FiesTop puedes organizar desde una fiesta de cumpleaños hasta una fiesta de VX años el límite es tu imaginacion puesto que aquí encontraras todo lo que necesitas.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Lista de deseos</title>
+
+    <style>
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000000;
+            top: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* #wishlist-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #wishlist-table {
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .producto-row {
+            border: 1px solid #ccc;
+        }
+
+        .producto-imagen {
+            width: 100px;
+            height: auto;
+        }
+
+        .producto-info {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .producto-nombre {
+            font-weight: bold;
+        }
+
+        .producto-precio {
+            color: #4caf50;
+        }
+
+        .input-group-text {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .form-control.input-sm {
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+
+        .wishlist-item .remove-button {
+            background-color: #ff5555;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .wishlist-item .remove-button:hover {
+            background-color: #ff0000;
+        }
+
+        .wishlist-item {
+            margin-bottom: 20px;
+            /* Espaciado entre elementos de la lista de deseos
+        }*/
+
+        .wishlist-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 30%;
+            height: 550px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            display: inline-block;
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+
+        .wishlist-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .wishlist-card .descripcion {
+            max-height: 5.4em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .wishlist-card h4 {
+            max-height: 1.4em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .wishlist-card button {
+            background-color: #ff5555;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .wishlist-card button:hover {
+            background-color: #ff0000;
+        }
+
+        .wishlist-card .boton-container-wishlist {
+            text-align: center;
+            margin-top: -15px;
+            margin-bottom: 10px;
+        }
+
+        .wishlist-card .boton-imagen-wishlist {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .wishlist-card .boton-imagen-wishlist:hover {
+            transform: scale(1.2);
+        }
+
+        .wishlist-card .boton-imagen-wishlist:active,
+        .wishlist-card .boton-imagen-wishlist.active {
+            background-color: #ff0000;
+        }
+
+        .wishlist-card .boton-imagen-wishlist img {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            border: none;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/Fisestoplogo.png" height="40px" alt="Logo oficial de FiesTop"
+                        title="Logo oficial de FiesTop">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Catalogo.html">Todos los productos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Categorías
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Servicios</a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Quiénes somos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item">FiesTop es una empresa centrada en la organización de
+                                        eventos sociales
+                                        <br> de cualquier índole desde fiestas de cumpleaños hasta fiestas de XV años y
+                                        bodas
+                                        <br> el límite es su imaginación, nosotros le daremos las herramientas
+                                        necesarias
+                                        <br> para que organice su fiesta ideal en tiempo y forma</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </li>
+
+                        <!-- Carrito -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
+                        </li>
+
+                        <!-- Lista de deseos -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="wishlist.html">Lista de deseos</a>
+                        </li>
+
+                    </ul>
+                    <form class="d-flex" action="resultados.html" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
+                            name="query">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Login.html">Iniciar sesión</a>
+                        </li>
+                    </ul>
+
+                    <a class="navbar-brand" href="PerfilU.html">
+                        <img src="img/LogoU.png" height="40px" alt="Logo oficial de FiesTop" title="Perfil de usuario">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección de la Lista de Deseos -->
+    <section class="wishlist">
+        <h2>Lista de Deseos</h2>
+
+        <!-- Contenedor para los productos de la Lista de Deseos -->
+        <div id="wishlist-container"></div>
+
+        <script>
+            // Asegúrate de que 'wishlist' esté definida y tenga datos
+            var wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+
+            function mostrarListaDeseos(wishlistJSON) {
+                var wishlistContainer = document.getElementById('wishlist-container');
+
+                wishlistJSON.forEach(function (producto, index) {
+                    var wishlistCard = document.createElement('div');
+                    wishlistCard.classList.add('wishlist-card');
+
+                    var enlaceImagen = document.createElement('a');
+                    enlaceImagen.href = 'product.html';
+                    var imagen = document.createElement('img');
+                    imagen.src = producto.imagen;
+                    imagen.alt = producto.nombre;
+                    enlaceImagen.appendChild(imagen);
+                    wishlistCard.appendChild(enlaceImagen);
+
+                    var contenidoWishlistCard = document.createElement('div');
+
+                    var nombreProducto = document.createElement('h4');
+                    nombreProducto.textContent = producto.nombre;
+
+                    var descripcionProducto = document.createElement('p');
+                    descripcionProducto.classList.add('descripcion');
+                    descripcionProducto.textContent = producto.descripcion;
+
+                    var precioProducto = document.createElement('h3');
+                    precioProducto.textContent = `$${producto.precio.toFixed(2)}`;
+
+                    var removeButton = document.createElement('button');
+                    removeButton.textContent = 'Eliminar';
+                    removeButton.addEventListener('click', function () {
+                        eliminarDeListaDeseos(index);
+                    });
+
+                    contenidoWishlistCard.appendChild(nombreProducto);
+                    contenidoWishlistCard.appendChild(descripcionProducto);
+                    contenidoWishlistCard.appendChild(precioProducto);
+                    contenidoWishlistCard.appendChild(removeButton);
+
+                    wishlistCard.appendChild(contenidoWishlistCard);
+                    wishlistContainer.appendChild(wishlistCard);
+                });
+            }
+
+            // Nueva función para eliminar un producto de la Lista de Deseos
+            function eliminarDeListaDeseos(index) {
+                wishlist.splice(index, 1); // Elimina el producto en la posición 'index' del array 'wishlist'
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                actualizarListaDeseos(); // Vuelve a mostrar la lista actualizada
+            }
+
+            // (Otras partes del script)
+
+            // Actualizar la lista de deseos después de eliminar un producto
+            function actualizarListaDeseos() {
+                var wishlistContainer = document.getElementById('wishlist-container');
+                wishlistContainer.innerHTML = ''; // Limpiar el contenedor
+                mostrarListaDeseos(wishlist);
+            }
+
+            mostrarListaDeseos(wishlist);
+        </script>
+
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
