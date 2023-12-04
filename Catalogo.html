@@ -335,6 +335,8 @@
                 const response = await fetch('productos_1.json');
                 const productosJSON = await response.json();
 
+                console.log('Productos JSON:', productosJSON);
+                
                 mostrarProductos(productosJSON);
             } catch (error) {
                 console.error('Error al cargar el archivo JSON:', error);
