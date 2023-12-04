@@ -188,6 +188,8 @@
         <p id="product-materials"></p>
         <p id="product-brand"></p>
         <button type="button" class="btn btn-primary" onclick="agregarAlCarrito()">Agregar al carrito</button><br>
+        <button type="button" class="btn btn-primary" onclick="agregarListaDeDeseos()">Agregar a lista de deseos</button>
+        <br>
 
         <!-- Stripe -->
         <script async src="https://js.stripe.com/v3/buy-button.js">
@@ -414,6 +416,29 @@
 
           // Save the updated cart to local storage
           localStorage.setItem('carrito', JSON.stringify(carrito));
+        })
+        .catch(error => {
+          console.error('Error fetching product:', error);
+        });
+    }
+
+    //Añadir a lista de deseos
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    function agregarListaDeDeseos() {
+      fetch('json/producto8.json')
+        .then(response => response.json())
+        .then(producto => {
+          const productoExistente = wishlist.find(item => item.nombre === producto.nombre);
+
+          if (productoExistente) {
+            alert(`${producto.nombre} ya esta en la lista de deseos`);
+          } else {
+            wishlist.push({ ...producto, cantidad: 1 });
+            alert(`Has agregado ${producto.nombre} a la lista de deseos`);
+          }
+
+          // Save the updated cart to local storage
+          localStorage.setItem('wishlist', JSON.stringify(wishlist));
         })
         .catch(error => {
           console.error('Error fetching product:', error);
