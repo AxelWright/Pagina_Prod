@@ -474,6 +474,7 @@
                         var botonImagenWishlist = document.createElement('img');
                         botonImagenWishlist.src = 'img/wish.png';
                         botonImagenWishlist.alt = 'Agregar a lista de deseos';
+                        botonImagenWishlist.title = 'Agregar a lista de deseos';
                         botonImagenWishlist.classList.add('boton-imagen-wishlist');
                         botonImagenWishlist.addEventListener('click', function () {
                             agregarListaDeDeseos(producto);
@@ -490,6 +491,7 @@
                         var botonImagen = document.createElement('img');
                         botonImagen.src = 'img/carrito.png';
                         botonImagen.alt = 'Agregar al carrito';
+                        botonImagen.title = 'Agregar al carrito';
                         botonImagen.classList.add('boton-imagen');
                         botonImagen.addEventListener('click', function () {
                             agregarAlCarrito(producto);

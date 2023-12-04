@@ -15,6 +15,7 @@
             z-index: 1000000;
             top: 0;
         }
+
         .container-fluid a {
             color: #000;
             /* Color de los enlaces */
@@ -186,7 +187,7 @@
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
     text-decoration: none;
@@ -194,9 +195,9 @@
     transition: background-color 0.3s;
 }
 
-.btnproducto:hover {
-    background-color: #0056b3;
-}
+        .btnproducto:hover {
+            background-color: #45a049;
+        }
 
 
         /**/
@@ -368,6 +369,7 @@
                 var botonImagenWishlist = document.createElement('img');
                 botonImagenWishlist.src = 'img/wish.png';
                 botonImagenWishlist.alt = 'Agregar a lista de deseos';
+                botonImagenWishlist.title = 'Agregar a lista de deseos';
                 botonImagenWishlist.classList.add('boton-imagen-wishlist');
                 botonImagenWishlist.addEventListener('click', function () {
                     agregarListaDeDeseos(producto);
@@ -384,6 +386,7 @@
                 var botonImagen = document.createElement('img');
                 botonImagen.src = 'img/carrito.png';
                 botonImagen.alt = 'Agregar al carrito';
+                botonImagen.title = 'Agregar al carrito';
                 botonImagen.classList.add('boton-imagen');
                 botonImagen.addEventListener('click', function () {
                     agregarAlCarrito(producto);
@@ -476,8 +479,7 @@
                         <p>Escribe tu correo y nos pondremos en contacto contigo cuanto antes :)</p>
                         <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                             <label for="newsletter1" class="visually-hidden">Correo electrónico</label>
-                            <input id="newsletter1" type="text" class="form-control"
-                                placeholder="Correo electrónico">
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Correo electrónico">
                             <button class="btn btn-primary" type="button">Enviar</button>
                         </div>
                     </form>
