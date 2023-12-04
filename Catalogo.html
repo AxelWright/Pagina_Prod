@@ -183,17 +183,17 @@
         }
 
         .btnproducto {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
         .btnproducto:hover {
             background-color: #45a049;
@@ -262,6 +262,10 @@
                             </ul>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="HisProd.html">Historial de compras</a>
+                        </li>
+
                         <!-- Carrito -->
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
@@ -323,6 +327,8 @@
     <script>
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let histlist = JSON.parse(localStorage.getItem('histlist')) || [];
+
 
         async function cargarProductos() {
             try {
@@ -401,8 +407,20 @@
         }
 
         function comprar(nombreProducto) {
-            alert(`Has comprado ${nombreProducto}`);
+            const productoExistente = histlist.find(item => item.nombre === nombreProducto); // Usar nombreProducto en lugar de producto
+
+            if (productoExistente) {
+                // Hacer algo con el productoExistente si es necesario
+                alert(`Has comprado ${nombreProducto}`);
+            } else {
+                // Aquí deberías agregar el producto al historial
+                // En tu código actual, solo estás mostrando una alerta
+                alert(`Error: No se encontró el producto en el historial`);
+            }
+
+            localStorage.setItem('histlist', JSON.stringify(histlist));
         }
+
 
         function agregarAlCarrito(producto) {
             const productoExistente = carrito.find(item => item.nombre === producto.nombre);
