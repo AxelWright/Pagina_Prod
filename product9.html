@@ -187,9 +187,9 @@
         <p id="product-colors"></p>
         <p id="product-materials"></p>
         <p id="product-brand"></p>
-        <button type="button" class="btn btn-primary" onclick="agregarAlCarrito()">Agregar al carrito</button><br>
-        <button type="button" class="btn btn-primary" onclick="agregarListaDeDeseos()">Agregar a lista de
-          deseos</button>
+        <button type="button" class="btn btn-primary" onclick="agregarAlCarrito()" style="background-color: #4CAF50;">Agregar al carrito</button>
+        <br>
+        <button type="button" class="btn btn-primary" onclick="agregarListaDeDeseos()" style="background-color: #4CAF50;">Agregar a lista de deseos</button>
         <br>
 
         <!-- Stripe -->
@@ -229,8 +229,8 @@
         <label for="comment">Comentario:</label><br>
         <textarea id="comment" rows="4" cols="100" required></textarea><br>
 
-        <button type="button" onclick="addComment()">Agregar Comentario</button>
-        <button type="button" onclick="clearComments()">Limpiar Comentarios</button>
+        <button type="button" class="btn btn-primary" onclick="addComment()" style="background-color: #4CAF50;">Agregar Comentario</button>
+        <button type="button" class="btn btn-primary" onclick="clearComments()" style="background-color: #4CAF50;">Limpiar Comentarios</button>
       </form>
 
       <!-- Lista de comentarios -->
@@ -259,10 +259,7 @@
           productImage.alt = data.nombre;
           productDescription.textContent = data.descripcion_larga;
           productPrice.textContent = `Precio: $${data.precio}`;
-          productSizes.textContent = `Tallas disponibles: ${data.tallas.join(", ")}`;
-          productColors.textContent = `Colores disponibles: ${data.colores.join(", ")}`;
-          productMaterials.textContent = `Materiales: ${data.materiales.join(", ")}`;
-          productBrand.textContent = `Marca: ${data.marca}`;
+          productMaterials.textContent = `categorias: ${data.categorias ? data.categorias.join(", ") : 'No especificado'}`;
         })
         .catch(error => {
           console.error('Error:', error);
