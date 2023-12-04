@@ -17,11 +17,14 @@
     <title>FiesTop | Donde las fiestas cobran vida</title>
     <meta name="description"
         content="En FiesTop puedes organizar desde una fiesta de cumpleaños hasta una fiesta de VX años el limite es tu imaginacion puesto que aquí encontraras todo lo que necesitas.">
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
     <!-- Cookies JS -->
@@ -272,13 +275,15 @@
         .product {
             border: #CCCCCC 1px solid;
         }
-        footer {
-    background-color: #600303; /* Color de fondo */
-    color: #fff; /* Color del texto */
-    text-align: center; /* Alineación del texto */
-    padding: 10px 0; /* Espaciado interno */
-    border-top: 1px solid #e4e4e4; /* Borde superior */
-}
+
+        .divider {
+            width: 100%;
+            height: 1.5rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
     </style>
 </head>
 
@@ -369,25 +374,28 @@
                     <a href="product.html"> <img src="img/Cubiertos.jpg" width="195" height="160"
                             title="Cubiertos Plasticos - $558.03" alt="1000 cubiertos variados" /></a>
                 </div>
-                <div class="product" id="product_1" >
-                    <a href="product7.html"> <img src="img/SonidoB.jpeg" width="260" height="160" alt="Evento con sonido y luces Boom"
-                        title="Evento con sonido y luces Boom - $15,000" /></a>
+                <div class="product" id="product_1">
+                    <a href="product7.html"> <img src="img/SonidoB.jpeg" width="260" height="160"
+                            alt="Evento con sonido y luces Boom" title="Evento con sonido y luces Boom - $15,000" /></a>
                 </div>
                 <div class="product" id="product_2">
-                    <a href="product4.html"><img src="img/HaciendaReal.jpg" width="260" height="160" alt="Salón de eventos Real de Haciendas"
-                        title="Salón de eventos Real de Haciendas - $10,000" /></a>
+                    <a href="product4.html"><img src="img/HaciendaReal.jpg" width="260" height="160"
+                            alt="Salón de eventos Real de Haciendas"
+                            title="Salón de eventos Real de Haciendas - $10,000" /></a>
                 </div>
                 <div class="product" id="product_3">
-                    <a href="product3.html"><img src="img/FiestaNiña.jpeg" width="260" height="160" alt="Sombreros de papel de unicornio"
-                        title="Sombreros de papel de unicornio - $49.99" /></a>
+                    <a href="product3.html"><img src="img/FiestaNiña.jpeg" width="260" height="160"
+                            alt="Sombreros de papel de unicornio"
+                            title="Sombreros de papel de unicornio - $49.99" /></a>
                 </div>
                 <div class="product" id="product_4">
-                    <a href="product5.html"><img src="img/ElementsAGS.jpg" width="260" height="160" alt="Excelente ambiente para los eventos"
-                        title="Excelente ambiente - $18,500" /></a>
+                    <a href="product5.html"><img src="img/ElementsAGS.jpg" width="260" height="160"
+                            alt="Excelente ambiente para los eventos" title="Excelente ambiente - $18,500" /></a>
                 </div>
                 <div class="product" id="product_5">
-                    <a href="product2.html"><img src="img/CoronaC.jpeg" width="260" height="160" title="Corona de papel - $92.29"
-                        alt="Corona de papel con decoración de pastel de cunpleaños" /></a>
+                    <a href="product2.html"><img src="img/CoronaC.jpeg" width="260" height="160"
+                            title="Corona de papel - $92.29"
+                            alt="Corona de papel con decoración de pastel de cunpleaños" /></a>
                 </div>
             </div>
         </div>
@@ -533,13 +541,66 @@
         </div>
         <!-- End of Cookie Banner -->
 
-        <footer>
-            <p style="text-align: center;">&copy; 2023 Mi Tienda en Línea <a
-                    href="https://www.facebook.com/people/FiesTop/100092594490737/"><img src="img/fb.png"
-                        class="card-img-top" alt="Plataforma oficial de fiestop en facebook" title="logo de Facebook"
-                        style="width: 30px;"></a> </p>
+        <!-- Footer Contact-->
+        <div class="divider"></div>
+        <div class="container">
+            <footer class="py-5">
+                <div class="row">
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Links</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Inicio</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Productos</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Lista de
+                                    Deseos</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Carrito</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Perfil</a>
+                            </li>
+                        </ul>
+                    </div>
 
-        </footer>
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Sobre FiesTop</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Quiénes
+                                    somos</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5 offset-md-1 mb-3">
+                        <form>
+                            <h5>¿Quieres contactarnos?</h5>
+                            <p>Escribe tu correo y nos pondremos en contacto contigo cuanto antes :)</p>
+                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                                <label for="newsletter1" class="visually-hidden">Correo electrónico</label>
+                                <input id="newsletter1" type="text" class="form-control"
+                                    placeholder="Correo electrónico">
+                                <button class="btn btn-primary" type="button">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                    <p>© 2023 FiesTop. Todos los derechos reservados.</p>
+                    <ul class="list-unstyled d-flex">
+                        <li class="ms-3"><a class="link-body-emphasis"
+                                href="https://www.facebook.com/people/FiesTop/100092594490737/"
+                                alt="Plataforma oficial de FiesTop en Facebook">
+                                <i class="bi bi-facebook" style="font-size: 1.5rem;"></i></a></li>
+
+                        <li class="ms-3">
+                            <p>Tel. 449 123 4567</p>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
 </body>
 
 </html>
