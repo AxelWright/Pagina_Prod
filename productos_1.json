@@ -5,7 +5,8 @@
     "descripcion_corta": "Cubiertos de plástico blanco a granel de 1000 piezas",
     "descripcion_larga": "Incluye 334 tenedores, 333 cuchillos, 333 cucharas de sopa. Cubiertos desechables de alta calidad y duraderos, prácticos para minimizar el lavado y la limpieza. Apto para alimentos y sin BPA.",
     "precio": 558.03,
-    "categorias": ["Cubiertos", "Desechables"]
+    "categorias": ["Cubiertos", "Desechables"],
+    "enlace": "product.html"
 
   },
   {
@@ -16,7 +17,9 @@
     "precio": 92.29,
     "materiales": ["Papel", "Carton"],
     "marca": "FiesParty",
-    "categorias": ["Accesorios de Fiesta", "Coronas"]
+    "categorias": ["Accesorios de Fiesta", "Coronas"],
+    "enlace": "product2.html"
+    
   },
   {
     "nombre": "Sombrero De Papel De Unicornio",
@@ -27,7 +30,8 @@
     "colores": ["rojo", "azul", "verde"],
     "materiales": ["plastico", "pet"],
     "marca": "FiesParty",
-    "categorias": ["Accesorios de Fiesta", "Sombreros", "Unicornios"]
+    "categorias": ["Accesorios de Fiesta", "Sombreros", "Unicornios"],
+    "enlace": "product3.html"
   },
   {
     "nombre": "Salón Real de Haciendas",
@@ -35,7 +39,8 @@
     "descripcion_corta": "El salón perfecto para todo tipo de eventos",
     "descripcion_larga": "Salón formal con jardín, terrazas, área de juegos y estacionamiento.",
     "precio": 10000,
-    "categorias": ["Locales de Eventos", "Salones"]
+    "categorias": ["Locales de Eventos", "Salones"],
+    "enlace": "product4.html"
   },
   {
     "nombre": "ElementsAGS",
@@ -43,7 +48,8 @@
     "descripcion_corta": "Luz y sonido",
     "descripcion_larga": "Somos la mejor opcion para proporcionar luces y sonido para tu evento.",
     "precio": 5000.00,
-    "categorias": ["Luces","Sonido"]
+    "categorias": ["Luces","Sonido"],
+    "enlace": "product5.html"
   },
   {
     "nombre": "Salon Victoria",
@@ -51,7 +57,8 @@
     "descripcion_corta": "Una opcion elegante y completa",
     "descripcion_larga": "En Victoria podras contar con amplios espacios para tus invitados ademas de una vista envidiable.",
     "precio": 25000,
-    "categorias": ["Locales de Eventos","Salones"]
+    "categorias": ["Locales de Eventos","Salones"],
+    "enlace": "product6.html"
   },
   {
     "nombre": "Sonido Boom",
@@ -59,7 +66,8 @@
     "descripcion_corta": "Efectos de sonido y musica para todos los gustos",
     "descripcion_larga": "Contamos con una amplia gama de opciones que pondremos en practica para que tu fiesta no sea aburrida y tus invitados se diviertan a lo grande.",
     "precio": 3500.00,
-    "categorias": ["Sonido","Musica"]
+    "categorias": ["Sonido","Musica"],
+    "enlace": "product7.html"
   },
   {
     "nombre": "Amandes de Chocolate",
@@ -67,7 +75,8 @@
     "descripcion_corta": "Pastel en forma de rosca",
     "descripcion_larga": "Pastel en forma de rosca elaborado con helado sabor a chocolate con almendra y relleno de variegato noisette. Decorado con rocio y glasé de chocolate, montado sobre un bizcocho sabor chocolate embebido en jarabe marrasquino.",
     "precio": 398.00,
-    "categorias": ["Pastel","Chocolate"]
+    "categorias": ["Pastel","Chocolate"],
+    "enlace": "product8.html"
   },
   {
     "nombre": "Biscocho miniatura",
@@ -75,7 +84,8 @@
     "descripcion_corta": "Panqués y garibaldis",
     "descripcion_larga": "Charola con una deliciosa mezcla de panqués y garibalis en tamaño miniatura sabres: vainilla, chocolate, etc.",
     "precio": 198.22,
-    "categorias": ["Pastel","Miniatura"]
+    "categorias": ["Pastel","Miniatura"],
+    "enlace": "product9.html"
   },
   {
     "nombre": "Brisa de coco",
@@ -83,6 +93,7 @@
     "descripcion_corta": "Pastel de mousse de frutos",
     "descripcion_larga": "Pastel elaborado con suave mousse de frutos exóticos relleno con helado sabor coco, sobre un biscuit de almendra embebido en jarabe dulce. Decorado con líneas de chocolate y cubierto con un glasé de mango.",
     "precio": 398.35,
-    "categorias": ["Pastel"]
+    "categorias": ["Pastel"],
+    "enlace": "product10.html"
   }
 ]
