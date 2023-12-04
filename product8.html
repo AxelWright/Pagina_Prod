@@ -186,7 +186,7 @@
         <p id="product-colors"></p>
         <p id="product-materials"></p>
         <p id="product-brand"></p>
-        <button type="button" class="btn btn-primary" onclick="addToCart()">Agregar al carrito</button><br>
+        <button type="button" class="btn btn-primary" onclick="agregarAlCarrito()">Agregar al carrito</button><br>
 
         <!-- Stripe -->
         <script async src="https://js.stripe.com/v3/buy-button.js">
@@ -237,14 +237,6 @@
 
 
   <script>
-    function addToCart() {
-      const productName = document.getElementById('product-name').textContent;
-      const productPrice = document.getElementById('product-price').textContent;
-
-      const cartMessage = document.getElementById('cart-message');
-      cartMessage.textContent = `¡${productName} ha sido agregado al carrito de compras por ${productPrice}!`;
-    }
-
     document.addEventListener("DOMContentLoaded", function () {
       fetch('json/producto8.json')
         .then(response => response.json())
@@ -401,6 +393,30 @@
     function clearComments() {
       localStorage.removeItem('comments');
       document.getElementById('comment-list').innerHTML = ''; // Limpiar la lista de comentarios en la interfaz
+    }
+
+    //Añadir al carrito
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    function agregarAlCarrito() {
+      fetch('json/producto8.json')
+        .then(response => response.json())
+        .then(producto => {
+          const productoExistente = carrito.find(item => item.nombre === producto.nombre);
+
+          if (productoExistente) {
+            productoExistente.cantidad += 1;
+            alert(`Se aumentó la cantidad de ${producto.nombre} en el carrito`);
+          } else {
+            carrito.push({ ...producto, cantidad: 1 });
+            alert(`Has agregado ${producto.nombre} al carrito`);
+          }
+
+          // Save the updated cart to local storage
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+        })
+        .catch(error => {
+          console.error('Error fetching product:', error);
+        });
     }
   </script>
   <br>
