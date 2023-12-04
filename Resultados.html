@@ -1,112 +1,372 @@
 <!DOCTYPE html>
-<html lang = "es">
-  <head>
+<html lang="es">
+
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados de Búsqueda - FiesTop</title>
-    <!-- Agrega tus estilos y enlaces a Boostrap u otros recursos aquí si esnecesario -->
-    <link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Agrega tus estilos y enlaces a Bootstrap u otros recursos aquí si es necesario -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Estilo de la página -->
     <style>
-      body {
-        font-famyly: 'Arial', sans-serif;
-        background-color: #f8f9fa;
-        padding-top: 56px;
-      }
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
 
-      h1 {
-        text-align: center;
-        margin-bottom:30px;
-        color: #28a745;
-      }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #28a745;
+        }
 
-      #resultados-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content:space-around;
-        gap: 20px;
-      }
+        .container.mt-3 {
+            margin-top: 20px;
+        }
 
-      //Prueba de estilos de la página
-      
+        /* Estilos para los filtros */
+        .mb-3 {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 70px;
+            z-index: 1000;
+        }
+
+        .form-select {
+            width: 200px;
+            margin-right: 10px;
+        }
+
+
+        #resultados-container {
+            flex: 1;
+        }
+
+        .producto {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            box-sizing: border-box;
+        }
+
+        .producto:hover {
+            transform: scale(1.05);
+        }
+
+        .producto img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .producto h3 {
+            color: #343a40;
+        }
+
+        .producto p {
+            color: #6c757d;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            z-index: 1000000;
+            top: 0;
+        }
+
+        footer {
+            background-color: #600303;
+            margin-top: auto;
+            text-align: center;
+            color: #fff;
+            padding: 10px 0;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
+
     <!-- Navbar -->
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
-            <img src="img/Fisestoplogo.png" height="40px" alt="Logo oficial de FiesTop" title="Logo oficial de FiesTop">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Catalogo.html">Todos los productos</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categorías
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/Fisestoplogo.png" height="40px" alt="Logo oficial de FiesTop"
+                        title="Logo oficial de FiesTop">
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Servicios</a></li>
-                  <li><a class="dropdown-item" href="#"></a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#"></a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  Quiénes somos
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item">FiesTop es una empresa centrada en la organización de eventos sociales
-                      <br> de cualquier índole desde fiestas de cumpleaños hasta fiestas de XV años y bodas
-                      <br> el límite es su imaginación, nosotros le daremos las herramientas necesarias
-                      <br> para que organice su fiesta ideal en tiempo y forma</a>
-                  </li>
-                  <li><a class="dropdown-item" href="#"></a></li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li><a class="dropdown-item" href="#"></a></li>
-                </ul>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Catalogo.html">Todos los productos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Categorías
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Servicios</a></li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Quiénes somos
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item">FiesTop es una empresa centrada en la organización de
+                                        eventos sociales
+                                        <br> de cualquier índole desde fiestas de cumpleaños hasta fiestas de XV años y
+                                        bodas
+                                        <br> el límite es su imaginación, nosotros le daremos las herramientas
+                                        necesarias
+                                        <br> para que organice su fiesta ideal en tiempo y forma</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#"></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" action="Resultados.html" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
+                            name="query">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
 
-                <!-- Barra de Busqueda -->
-                <form class="d-flex" action="Resultados.html" method="GET">
-                  <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="query">
-                  <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
+                    <!-- Sección de inicio de sesión -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Login.html">Iniciar sesión</a>
+                        </li>
+                    </ul>
 
-                <!-- Sección de inicio de sesión -->
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="Login.html">Iniciar sesión</a>
-                  </li>
-                </ul>
-                <!-- Sección para ver el perfil del usuario (puedes ajustar el enlace según tus necesidades) -->
-                <a class="navbar-brand" href="PerfilU.html">
-                  <img src="img/LogoU.png" height="40px" alt="Logo oficial de FiesTop" title="Perfil de usuario">
-                </a>
-          </div>
-        </div>
-      </nav>
+                    <!-- Sección para ver el perfil del usuario (puedes ajustar el enlace según tus necesidades) -->
+                    <a class="navbar-brand" href="PerfilU.html">
+                        <img src="img/LogoU.png" height="40px" alt="Logo oficial de FiesTop" title="Perfil de usuario">
+                    </a>
+                </div>
+            </div>
+        </nav>
     </header>
 
+    <!-- Filtros -->
+    <div class="container mt-3 container-filtros">
+        <div class="mb-3">
+            <label for="ordenar">Ordenar por:</label>
+            <select class="form-select" id="ordenar">
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+                <option value="precio_asc">Precio (menor a mayor)</option>
+                <option value="precio_desc">Precio (mayor a menor)</option>
+            </select>
+
+            <button class="btn btn-primary" onclick="aplicarFiltro()">Filtrar</button>
+        </div>
+    </div>
+
+
     <!-- Cuerpo de la página donde se verán los productos -->
-    
-  </body>
+    <div class="container mt-5">
+        <!-- Container para mostrar los resultados -->
+        <div id="resultados-container"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 FiesTop | <a href="https://www.facebook.com/people/FiesTop/100092594490737/" target="_blank">
+                <img src="img/fb.png" class="card-img-top" alt="Plataforma oficial de fiestop en facebook"
+                    title="logo de Facebook" style="width: 30px;">
+            </a></p>
+    </footer>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Script para cargar y mostrar los resultados desde la barra de búsqueda -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query');
+
+            // Si no hay una consulta o la consulta está vacía, mostrar el mensaje
+            if (query === '') {
+                mostrarMensajeNoEncontrado();
+            } else {
+                // Si hay una consulta, realiza la búsqueda y muestra los resultados
+                buscarResultados(query);
+            }
+        });
+
+        // Función para buscar y mostrar resultados
+        function buscarResultados(query) {
+            // Puedes cambiar 'tu-archivo-json.json' por la ruta correcta a tu archivo JSON
+            fetch('productos_1.json')
+                .then(response => response.json())
+                .then(data => {
+                    const resultadosFiltrados = data.filter(producto =>
+                        producto.nombre.toLowerCase().includes(query.toLowerCase()) ||
+                        producto.precio.toString().includes(query));
+
+                    // Mostrar resultados o mensaje en el contenedor
+                    mostrarResultados(resultadosFiltrados);
+                })
+                .catch(error => console.error('Error al obtener datos:', error));
+        }
+
+        // Función para mostrar los resultados o el mensaje en el contenedor
+        function mostrarResultados(resultados) {
+            const resultadosContainer = document.getElementById('resultados-container');
+            // Limpiar el contenedor
+            resultadosContainer.innerHTML = '';
+
+            if (resultados.length > 0) {
+                // Mostrar la barra de filtros si hay resultados
+                const filtrosContainer = document.querySelector('container.mt-3');
+                if (filtrosContainer) {
+                    filtrosContainer.style.display = 'block';
+                }
+                // Crear un contenedor flex para organizar los productos en filas
+                const filasContainer = document.createElement('div');
+                filasContainer.style.display = 'flex';
+                filasContainer.style.flexWrap = 'wrap';
+
+                // Mostrar resultados
+                resultados.forEach((producto, index) => {
+                    const productoElement = document.createElement('div');
+                    productoElement.classList.add('producto');
+                    productoElement.innerHTML = `
+                        <img src="${producto.imagen}" alt="${producto.nombre}">
+                        <h3>${producto.nombre}</h3>
+                        <p>${producto.descripcion}</p>
+                        <p>Precio: $${producto.precio}</p>
+                        `;
+
+                    // Agregar un manejador de eventos al elemento del producto
+                    productoElement.addEventListener('click', function () {
+                        // Redirigir a product.html cuando se selecciona un producto
+                        window.location.href = 'product.html';
+                    });
+
+                    // Agregar cada producto al contenedor de filas
+                    filasContainer.appendChild(productoElement);
+
+                    // Si es el tercer producto en una fila, crear una nueva fila
+                    if ((index + 1) % 3 === 0) {
+                        const nuevaFila = document.createElement('div');
+                        nuevaFila.style.width = '100%';
+                        filasContainer.appendChild(nuevaFila);
+                    }
+                });
+
+                // Agregar el contenedor de filas al contenedor principal
+                resultadosContainer.appendChild(filasContainer);
+            } else {
+                // Mostrar mensaje
+                mostrarMensajeNoEncontrado();
+            }
+        }
+
+        function mostrarMensajeNoEncontrado() {
+            const resultadosContainer = document.getElementById('resultados-container');
+            resultadosContainer.innerHTML = ''; // Limpiar el contenedor
+
+            // Ocultar la barra de filtros
+            const filtrosContainer = document.querySelector('.container-filtros');
+            if (filtrosContainer) {
+                filtrosContainer.style.display = 'none';
+            }
+
+            const mensajeElement = document.createElement('p');
+            mensajeElement.textContent = 'No se encontró el producto.';
+            mensajeElement.style.color = '#434343'; // Cambiar a gris oscuro
+            mensajeElement.style.fontSize = '24px'; // Ajustar el tamaño del texto
+            mensajeElement.style.textAlign = 'center';
+            mensajeElement.style.marginTop = '220px';
+            resultadosContainer.appendChild(mensajeElement);
+        }
+
+        function aplicarFiltro() {
+            const ordenarPor = document.getElementById('ordenar').value;
+
+            // Obtener los resultados actuales
+            obtenerResultadosActuales()
+                .then(resultados => {
+                    // Aplicar el filtro correspondiente
+                    switch (ordenarPor) {
+                        case 'az':
+                            resultados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                            break;
+                        case 'za':
+                            resultados.sort((a, b) => b.nombre.localeCompare(a.nombre));
+                            break;
+                        case 'precio_asc':
+                            resultados.sort((a, b) => a.precio - b.precio);
+                            break;
+                        case 'precio_desc':
+                            resultados.sort((a, b) => b.precio - a.precio);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    // Mostrar los resultados ordenados
+                    mostrarResultados(resultados);
+                })
+                .catch(error => console.error('Error al obtener resultados actuales:', error));
+        }
+
+        function obtenerResultadosActuales() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query');
+
+            // Puedes cambiar 'tu-archivo-json.json' por la ruta correcta a tu archivo JSON
+            return fetch('productos_1.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Filtrar los resultados según la consulta actual
+                    return data.filter(producto =>
+                        producto.nombre.toLowerCase().includes(query.toLowerCase()) ||
+                        producto.precio.toString().includes(query)
+                    );
+                })
+                .catch(error => {
+                    console.error('Error al obtener resultados actuales:', error);
+                    return []; // Devolver un array vacío en caso de error
+                });
+        }
+
+    </script>
+</body>
+
 </html>
