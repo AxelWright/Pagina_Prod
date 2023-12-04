@@ -2,7 +2,7 @@
   "nombre": "Salón Real de Haciendas",
   "imagen": "img/HaciendaReal.jpg",
   "descripcion_corta": "El salón perfecto para todo tipo de eventos",
-  "descripcion_larga": "Salón formal con jardín, terrazas, área de juegos y estacionamiento.",
+  "descripcion_larga": "Salón formal con jardín, terrazas, Área de juegos y estacionamiento. con una pista de baile y mesas preparadas para una fiesta o evento. La pista de baile es un gran cuadrado naranja en el centro de la sala. Las mesas están cubiertas con manteles blancos y tienen sillas negras. Las paredes son blancas y el techo está cubierto con baldosas blancas. Hay globos plateados grandes y globos blancos decorando la sala. En la parte trasera de la sala, hay un escenario con una cabina de DJ y altavoces. Es un espacio ideal para celebraciones y eventos sociales, con un ambiente festivo y elegante.",
   "precio": 10000,
   "categorias": ["Locales de Eventos", "Salones"]
 }
