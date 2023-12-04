@@ -315,6 +315,7 @@
                 <option value="priceLowToHigh">Precio (bajo a alto)</option>
                 <option value="priceHighToLow">Precio (alto a bajo)</option>
                 <option value="name">Nombre (A-Z)</option>
+                <option value="nameDesc">Nombre (Z-A)</option>
             </select>
 
             <button class="btn btn-success" onclick="applyFilters()">Aplicar filtros</button>
@@ -393,19 +394,22 @@
             const minPrice = parseInt(document.getElementById('minPrice').value) || 0;
             const maxPrice = parseInt(document.getElementById('maxPrice').value) || Number.MAX_SAFE_INTEGER;
             const sortOption = document.getElementById('sort').value;
-
+        
             let filteredProducts = products.filter(product => product.precio >= minPrice && product.precio <= maxPrice);
-
+        
             if (sortOption === 'priceLowToHigh') {
                 filteredProducts.sort((a, b) => a.precio - b.precio);
             } else if (sortOption === 'priceHighToLow') {
                 filteredProducts.sort((a, b) => b.precio - a.precio);
             } else if (sortOption === 'name') {
                 filteredProducts.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            } else if (sortOption === 'nameDesc') { // Nueva condición
+                filteredProducts.sort((a, b) => b.nombre.localeCompare(a.nombre));
             }
-
+        
             displayProducts(filteredProducts);
         }
+        
 
 
         function displayProducts(productList) {
