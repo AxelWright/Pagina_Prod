@@ -2,20 +2,22 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resultados de Búsqueda - FiesTop</title>
-  <!-- Agrega tus estilos y enlaces a Bootstrap u otros recursos aquí si es necesario -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda - FiesTop</title>
+    <!-- Agrega tus estilos y enlaces a Bootstrap u otros recursos aquí si es necesario -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  
-  <!-- Estilo de la página -->
-  <style>
+
+    <!-- Estilo de la página -->
+    <style>
         body {
+            display: flex;
+            flex-direction: column;
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
-            padding-top: 56px;
+            min-height: 100vh;
         }
 
         h1 {
@@ -25,20 +27,20 @@
         }
 
         #resultados-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
+            flex: 1;
+            margin-top: 20px;
         }
 
         .producto {
-            width: 300px;
+            width: calc(33.33% - 20px);
+            margin: 10px;
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            box-sizing: border-box;
         }
 
         .producto:hover {
@@ -59,33 +61,37 @@
         .producto p {
             color: #6c757d;
         }
+
         .navbar {
             position: fixed;
             width: 100%;
             z-index: 1000000;
             top: 0;
         }
+
         footer {
-          background-color: #600303;
-          text-align: center;
-          color: #fff;
-          padding: 10px 0;
-          border-top:1px solid #e4e4e4;
+            background-color: #600303;
+            margin-top: auto;
+            text-align: center;
+            color: #fff;
+            padding: 10px 0;
         }
     </style>
 </head>
 
 <body>
-  
+
     <!-- Navbar -->
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">
-                    <img src="img/Fisestoplogo.png" height="40px" alt="Logo oficial de FiesTop" title="Logo oficial de FiesTop">
+                    <img src="img/Fisestoplogo.png" height="40px" alt="Logo oficial de FiesTop"
+                        title="Logo oficial de FiesTop">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -97,7 +103,8 @@
                             <a class="nav-link" href="Catalogo.html">Todos los productos</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 Categorías
                             </a>
                             <ul class="dropdown-menu">
@@ -116,9 +123,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item">FiesTop es una empresa centrada en la organización de eventos sociales
-                                        <br> de cualquier índole desde fiestas de cumpleaños hasta fiestas de XV años y bodas
-                                        <br> el límite es su imaginación, nosotros le daremos las herramientas necesarias
+                                    <a class="dropdown-item">FiesTop es una empresa centrada en la organización de
+                                        eventos sociales
+                                        <br> de cualquier índole desde fiestas de cumpleaños hasta fiestas de XV años y
+                                        bodas
+                                        <br> el límite es su imaginación, nosotros le daremos las herramientas
+                                        necesarias
                                         <br> para que organice su fiesta ideal en tiempo y forma</a>
                                 </li>
                                 <li><a class="dropdown-item" href="#"></a></li>
@@ -130,17 +140,18 @@
                         </li>
                     </ul>
                     <form class="d-flex" action="resultados.html" method="GET">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="query">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
+                            name="query">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
-                    
+
                     <!-- Sección de inicio de sesión -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="Login.html">Iniciar sesión</a>
                         </li>
                     </ul>
-                    
+
                     <!-- Sección para ver el perfil del usuario (puedes ajustar el enlace según tus necesidades) -->
                     <a class="navbar-brand" href="PerfilU.html">
                         <img src="img/LogoU.png" height="40px" alt="Logo oficial de FiesTop" title="Perfil de usuario">
@@ -151,67 +162,114 @@
     </header>
 
     <!-- Cuerpo de la página donde se verán los productos -->
-  <div class="container mt-5">
-    <!-- Container para mostrar los resultados -->
-    <div id="resultados-container"></div>
-  </div>
+    <div class="container mt-5">
+        <!-- Container para mostrar los resultados -->
+        <div id="resultados-container"></div>
+    </div>
 
-  <footer>
-    <p>&copy; 2023 FiesTop | <a href="https://www.facebook.com/people/FiesTop/100092594490737/" target="_blank">
-      <img src="img/fb.png" class="card-img-top" alt="Plataforma oficial de fiestop en facebook"
-        title="logo de Facebook" style="width: 30px;">
-    </a></p>
-  </footer>
+    <footer>
+        <p>&copy; 2023 FiesTop | <a href="https://www.facebook.com/people/FiesTop/100092594490737/" target="_blank">
+                <img src="img/fb.png" class="card-img-top" alt="Plataforma oficial de fiestop en facebook"
+                    title="logo de Facebook" style="width: 30px;">
+            </a></p>
+    </footer>
 
-  <!-- Scripts de Bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Scripts de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-  <!-- Script para cargar y mostrar los resultados desde la barra de búsqueda -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // Obtén la consulta de búsqueda de la URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const query = urlParams.get('query');
-      // Si hay una consulta, realiza la búsqueda y muestra los resultados
-      if (query) {
-        buscarResultados(query);
-      }
-    });
+    <!-- Script para cargar y mostrar los resultados desde la barra de búsqueda -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query');
 
-    // Función para buscar y mostrar resultados
-    function buscarResultados(query) {
-      // Puedes cambiar 'tu-archivo-json.json' por la ruta correcta a tu archivo JSON
-      fetch('productos_1.json')
-        .then(response => response.json())
-        .then(data => {
-          const resultadosFiltrados = data.filter(producto =>
-            producto.nombre.toLowerCase().includes(query.toLowerCase()) ||
-            producto.precio.toString().includes(query));
-          mostrarResultados(resultadosFiltrados);
-        })
-        .catch(error => console.koerror('Error al obtener datos:', error));
-    }
-    
-    // Función para mostrar los resultados en el contenedor
-    function mostrarResultados(resultados) {
-      const resultadosContainer = document.getElementById('resultados-container');
-      // Limpiar el contenedor
-      resultadosContainer.innerHTML = '';
-      // Mostrar resultados
-      resultados.forEach(producto => {
-        const productoElement = document.createElement('div');
-        productoElement.classList.add('producto');
-        productoElement.innerHTML = `
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <h3>${producto.nombre}</h3>
-        <p>${producto.descripcion}</p>
-        <p>Precio: $${producto.precio}</p>
-        `;
-        resultadosContainer.appendChild(productoElement);
-      });
-    }
-  </script>
+            // Si no hay una consulta o la consulta está vacía, mostrar el mensaje
+            if (query === '') {
+                mostrarMensajeNoEncontrado();
+            } else {
+                // Si hay una consulta, realiza la búsqueda y muestra los resultados
+                buscarResultados(query);
+            }
+        });
+
+        // Función para buscar y mostrar resultados
+        function buscarResultados(query) {
+            // Puedes cambiar 'tu-archivo-json.json' por la ruta correcta a tu archivo JSON
+            fetch('productos_1.json')
+                .then(response => response.json())
+                .then(data => {
+                    const resultadosFiltrados = data.filter(producto =>
+                        producto.nombre.toLowerCase().includes(query.toLowerCase()) ||
+                        producto.precio.toString().includes(query));
+
+                    // Mostrar resultados o mensaje en el contenedor
+                    mostrarResultados(resultadosFiltrados);
+                })
+                .catch(error => console.error('Error al obtener datos:', error));
+        }
+
+        // Función para mostrar los resultados o el mensaje en el contenedor
+            function mostrarResultados(resultados) {
+                const resultadosContainer = document.getElementById('resultados-container');
+                // Limpiar el contenedor
+                resultadosContainer.innerHTML = '';
+
+                if (resultados.length > 0) {
+                    // Crear un contenedor flex para organizar los productos en filas
+                    const filasContainer = document.createElement('div');
+                    filasContainer.style.display = 'flex';
+                    filasContainer.style.flexWrap = 'wrap';
+
+                    // Mostrar resultados
+                    resultados.forEach((producto, index) => {
+                        const productoElement = document.createElement('div');
+                        productoElement.classList.add('producto');
+                        productoElement.innerHTML = `
+                        <img src="${producto.imagen}" alt="${producto.nombre}">
+                        <h3>${producto.nombre}</h3>
+                        <p>${producto.descripcion}</p>
+                        <p>Precio: $${producto.precio}</p>
+                        `;
+
+                        // Agregar un manejador de eventos al elemento del producto
+                        productoElement.addEventListener('click', function () {
+                            // Redirigir a product.html cuando se selecciona un producto
+                            window.location.href = 'product.html';
+                        });
+
+                        // Agregar cada producto al contenedor de filas
+                        filasContainer.appendChild(productoElement);
+
+                        // Si es el tercer producto en una fila, crear una nueva fila
+                        if ((index + 1) % 3 === 0) {
+                            const nuevaFila = document.createElement('div');
+                            nuevaFila.style.width = '100%';
+                            filasContainer.appendChild(nuevaFila);
+                        }
+                    });
+
+                    // Agregar el contenedor de filas al contenedor principal
+                    resultadosContainer.appendChild(filasContainer);
+                } else {
+                    // Mostrar mensaje
+                    mostrarMensajeNoEncontrado();
+                }
+            }
+
+        function mostrarMensajeNoEncontrado() {
+                const resultadosContainer = document.getElementById('resultados-container');
+                resultadosContainer.innerHTML = ''; // Limpiar el contenedor
+
+                const mensajeElement = document.createElement('p');
+                mensajeElement.textContent = 'No se encontró el producto.';
+                mensajeElement.style.color = '#434343'; // Cambiar a gris oscuro
+                mensajeElement.style.fontSize = '24px'; // Ajustar el tamaño del texto
+                mensajeElement.style.textAlign = 'center';
+                mensajeElement.style.marginTop = '220px';
+                resultadosContainer.appendChild(mensajeElement);
+            }
+    </script>
 </body>
 </html>
