@@ -40,6 +40,8 @@
         }
 
         #container {
+            margin-top: 80px;
+            margin-bottom: 100px;
             display: flex;
             width: 100%;
             background-color: #fff;
@@ -100,7 +102,7 @@
             padding: 10px 15px;
             border: none;
             border-radius: 4px;
-            width: 150%;
+            width: 180%;
         }
     </style>
 </head>
@@ -228,6 +230,7 @@
             const userInfoElement = document.getElementById('userInfo');
 
             const contenidoHTML = `
+            
             <h2>Información del Usuario</h2>
             <img src="${usuario.foto}" alt="Foto de perfil">
             <table>
@@ -248,12 +251,24 @@
                     <td><input type="text" id="correo" value="${usuario.correo}" readonly></td>
                 </tr>
                 <tr>
-                    <td><strong>Ubicación:</strong></td>
-                    <td><input type="text" id="municipio" id="estado" value="${usuario.municipio}, ${usuario.estado}" readonly></td>
+                    <td><strong>Municipio:</strong></td>
+                    <td><input type="text" id="municipio" value="${usuario.municipio}" readonly></td>
+                </tr>
+                <tr>
+                    <td><strong>Estado:</strong></td>
+                    <td><input type="text" id="estado" value="${usuario.estado}" readonly></td>
                 </tr>
                 <tr>
                     <td><strong>Dirección:</strong></td>
-                    <td><input type="text" id="direccion" id="numero_exterior" id="numero_interior" value="${usuario.direccion} ${usuario.numero_exterior}${usuario.numero_interior ? ', Int. ' + usuario.numero_interior : ''}" readonly></td>
+                    <td><input type="text" id="direccion" value="${usuario.direccion}" readonly></td>
+                </tr>
+                <tr>
+                    <td><strong>Numero exterior:</strong></td>
+                    <td><input type="text" id="numero_exterior" value="${usuario.numero_exterior}" readonly></td>
+                </tr>
+                <tr>
+                    <td><strong>Numero interior:</strong></td>
+                    <td><input type="text" id="numero_interior" value="${usuario.numero_interior ? ' Int. ' + usuario.numero_interior : ''}" readonly></td>
                 </tr>
                 <tr>
                     <td><strong>Código Postal:</strong></td>
