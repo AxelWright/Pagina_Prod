@@ -311,7 +311,6 @@
                 card.classList.add('card');
 
                 var enlaceImagen = document.createElement('a');
-                enlaceImagen.href = 'product.html';
                 var imagen = document.createElement('img');
                 imagen.src = producto.imagen;
                 imagen.alt = producto.nombre;
@@ -325,6 +324,7 @@
                             <p class="descripcion-larga">${producto.descripcion_larga}</p>
                             <h3>$${producto.precio.toFixed(2)}</h3>
                             <button class=""comprar onclick="comprar('${producto.nombre}')">Comprar</button>
+                            <a class="btnproducto" href=${producto.enlace}>Ver producto</a>
                             <br/><br/><br/>
                         `;
 
