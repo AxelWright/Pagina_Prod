@@ -2,7 +2,7 @@
   "nombre": "ElementsAGS",
     "imagen": "img/ElementsAGS.jpg",
     "descripcion_corta": "Luz y sonido",
-    "descripcion_larga": "Somos la mejor opcion para proporcionar luces y sonido para tu evento.",
+    "descripcion_larga": "Somos la mejor opcion para proporcionar luces y sonido para tu evento. Montaje de cabina de DJ en una sala grande con techos arqueados y columnas. La cabina de DJ es blanca y tiene una pantalla grande con la palabra “Elements” en ella. A ambos lados de la cabina, hay estructuras curvas con luces azules. También hay altavoces a cada lado de la cabina. La sala tiene paredes blancas y un suelo embaldosado. Hay personas en el fondo, pero sus rostros están desenfocados. Es un ambiente que parece estar listo para un evento musical o una fiesta, con un diseño elegante y moderno.",
     "precio": 5000.00,
     "categorias": ["Luces","Sonido"]
 }
