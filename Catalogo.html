@@ -429,7 +429,7 @@
             <p class="descripcion-corta">${product.descripcion_corta}</p>
             <p class="descripcion-larga">${product.descripcion_larga}</p>
             <h3>$${product.precio.toFixed(2)}</h3>
-            <button class="comprar" onclick="comprar('${product.nombre}')">Comprar</button>
+            <a class="btnproducto" href=${product.enlace}>Comprar</a>
             <a class="btnproducto" href=${product.enlace}>Ver producto</a>
             <br/><br/><br/>
         `;
