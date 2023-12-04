@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="auto">
+
+<head>
+  <link rel="icon" href="img/Fisestoplogo.png" type="image/x-icon">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHFYSC9VXM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZHFYSC9VXM');
+  </script>
+
+  <title>Productos en Venta</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <style>
+    #producto {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .product-image {
+      margin-right: 20px;
+    }
+
+    .product-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    #product-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #product-description {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    #product-price {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .rating {
+      unicode-bidi: bidi-override;
+      direction: rtl;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .rating>i {
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .rating>i:hover,
+    .rating>i:hover~i {
+      color: gold;
+    }
+
+    .comment {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    footer {
+      background-color: #660303;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      border-top: 1px solid #e4e4e4;
+    }
+  </style>
+</head>
+
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><img src="img/Fisestoplogo.png" height="40px"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Catalogo.html">Todos los productos</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<body>
+  <div class="container">
+    <div id="producto" class="product-container">
+      <div class="product-image">
+        <img id="product-image" src="" alt="">
+      </div>
+      <div class="product-details">
+        <h1 id="product-name"></h1>
+        <p id="product-description"></p>
+        <p id="product-price"></p>
+        <p id="product-sizes"></p>
+        <p id="product-colors"></p>
+        <p id="product-materials"></p>
+        <p id="product-brand"></p>
+        <button type="button" class="btn btn-primary" onclick="addToCart()">Agregar al carrito</button><br>
+
+        <!-- Stripe -->
+        <script async src="https://js.stripe.com/v3/buy-button.js">
+        </script>
+
+        <stripe-buy-button buy-button-id="buy_btn_1OGrEoFRT6NzCn7QtwsAMk46"
+          publishable-key="pk_test_51OGoVKFRT6NzCn7QmatQ3iGjFJjNhdmfHtY1AUj1Agw2luAJsFgR3GorSvaM4dBjg3GIVCcL2418zdbqesmvyXWN00jBnLGooI">
+        </stripe-buy-button>
+        <!-- End of Stripe -->
+
+        <p id="cart-message"></p>
+        <div>
+          <h2>Calificación del Producto</h2>
+
+          <!-- Sección de calificación -->
+          <div class="rating" id="productRating" style="color: blueviolet;">
+            <i class="far fa-star" data-rating="5"></i>
+            <i class="far fa-star" data-rating="4"></i>
+            <i class="far fa-star" data-rating="3"></i>
+            <i class="far fa-star" data-rating="2"></i>
+            <i class="far fa-star" data-rating="1"></i>
+          </div>
+
+          <p id="ratingMessage"></p>
+        </div>
+      </div>
+    </div>
+    <div id="comment-section">
+      <h2>Sección de Comentarios</h2>
+
+      <!-- Formulario para agregar comentarios -->
+      <form id="comment-form">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" required><br>
+
+        <label for="comment">Comentario:</label><br>
+        <textarea id="comment" rows="4" cols="100" required></textarea><br>
+
+        <button type="button" onclick="addComment()">Agregar Comentario</button>
+        <button type="button" onclick="clearComments()">Limpiar Comentarios</button>
+      </form>
+
+      <!-- Lista de comentarios -->
+      <div id="comment-list"></div>
+
+    </div>
+  </div>
+
+
+  <script>
+    function addToCart() {
+      const productName = document.getElementById('product-name').textContent;
+      const productPrice = document.getElementById('product-price').textContent;
+
+      const cartMessage = document.getElementById('cart-message');
+      cartMessage.textContent = `¡${productName} ha sido agregado al carrito de compras por ${productPrice}!`;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch('json/producto5.json')
+        .then(response => response.json())
+        .then(data => {
+          const productName = document.getElementById('product-name');
+          const productImage = document.getElementById('product-image');
+          const productDescription = document.getElementById('product-description');
+          const productPrice = document.getElementById('product-price');
+          const productSizes = document.getElementById('product-sizes');
+          const productColors = document.getElementById('product-colors');
+          const productMaterials = document.getElementById('product-materials');
+          const productBrand = document.getElementById('product-brand');
+
+          productName.textContent = data.nombre;
+          productImage.src = data.imagen;
+          productImage.alt = data.nombre;
+          productDescription.textContent = data.descripcion_larga;
+          productPrice.textContent = `Precio: $${data.precio}`;
+          productSizes.textContent = `Tallas disponibles: ${data.tallas.join(", ")}`;
+          productColors.textContent = `Colores disponibles: ${data.colores.join(", ")}`;
+          productMaterials.textContent = `Materiales: ${data.materiales.join(", ")}`;
+          productBrand.textContent = `Marca: ${data.marca}`;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      // Cargar calificación al cargar la página
+      loadRating();
+
+      // Cargar comentarios al cargar la página
+      loadComments();
+    });
+    const ratingStars = document.querySelectorAll('#productRating i');
+    const ratingMessage = document.getElementById('ratingMessage');
+
+    ratingStars.forEach(star => {
+      star.addEventListener('click', () => {
+        const rating = star.getAttribute('data-rating');
+        updateRating(rating);
+        ratingMessage.textContent = `La calificación es de: ${rating} estrellas`;
+
+        // Guardar la calificación en el almacenamiento local
+        localStorage.setItem('rating', rating);
+      });
+    });
+
+    function updateRating(rating) {
+      ratingStars.forEach(star => {
+        const starRating = star.getAttribute('data-rating');
+        if (starRating <= rating) {
+          star.classList.remove('far');
+          star.classList.add('fas');
+        } else {
+          star.classList.remove('fas');
+          star.classList.add('far');
+        }
+      });
+    }
+
+    // Función para cargar la calificación desde el almacenamiento local
+    function loadRating() {
+      const savedRating = localStorage.getItem('rating');
+      if (savedRating) {
+        updateRating(savedRating);
+        ratingMessage.textContent = `La calificación es de: ${savedRating} estrellas`;
+      }
+    }
+
+    // Función para agregar comentarios
+    function addComment() {
+      var name = document.getElementById('name').value;
+      var commentText = document.getElementById('comment').value;
+
+      if (name && commentText) {
+        var commentList = document.getElementById('comment-list');
+        var commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = '<strong>' + name + ':</strong> ' + commentText;
+        commentList.appendChild(commentDiv);
+
+        // Guardar comentario y calificación en el almacenamiento local
+        saveComment({ name, text: commentText, rating: localStorage.getItem('rating') });
+
+        // Limpiar el formulario
+        document.getElementById('name').value = '';
+        document.getElementById('comment').value = '';
+      } else {
+        alert('Por favor, complete todos los campos.');
+      }
+    }
+
+    // Función para guardar comentarios y calificaciones en el almacenamiento local
+    function saveComment(comment) {
+      const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+      savedComments.push(comment);
+      localStorage.setItem('comments', JSON.stringify(savedComments));
+    }
+
+    // Función para cargar comentarios desde el almacenamiento local
+    function loadComments() {
+      const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+      const commentList = document.getElementById('comment-list');
+
+      savedComments.forEach(comment => {
+        var commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = '<strong>' + comment.name + ':</strong> ' + comment.text;
+        commentList.appendChild(commentDiv);
+      });
+    }
+  </script>
+  <script>
+    function addComment() {
+      var name = document.getElementById('name').value;
+      var commentText = document.getElementById('comment').value;
+
+      if (name && commentText) {
+        var commentList = document.getElementById('comment-list');
+        var commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = `<strong>${name}:</strong> ${commentText} (${localStorage.getItem('rating')} estrellas)`;
+        commentList.appendChild(commentDiv);
+
+        // Guardar comentario y calificación en el almacenamiento local
+        saveComment({ name, text: commentText, rating: localStorage.getItem('rating') });
+
+        // Limpiar el formulario
+        document.getElementById('name').value = '';
+        document.getElementById('comment').value = '';
+      } else {
+        alert('Por favor, complete todos los campos.');
+      }
+    }
+
+    // Función para guardar comentarios y calificaciones en el almacenamiento local
+    function saveComment(comment) {
+      const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+      savedComments.push(comment);
+      localStorage.setItem('comments', JSON.stringify(savedComments));
+    }
+
+    // Función para cargar comentarios desde el almacenamiento local
+    function loadComments() {
+      const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+      const commentList = document.getElementById('comment-list');
+
+      savedComments.forEach(comment => {
+        var commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        commentDiv.innerHTML = '<strong>' + comment.name + ':</strong> ' + comment.text;
+        commentList.appendChild(commentDiv);
+      });
+    }
+    function clearComments() {
+      localStorage.removeItem('comments');
+      document.getElementById('comment-list').innerHTML = ''; // Limpiar la lista de comentarios en la interfaz
+    }
+  </script>
+
+  <footer>
+    <p style="text-align: center;">&copy; 2023 Mi Tienda en Línea <a
+        href="https://www.facebook.com/people/FiesTop/100092594490737/"><img src="img/fb.png" class="card-img-top"
+          alt="Plataforma oficial de fiestop en facebook" title="logo de Facebook" style="width: 30px;"></a> </p>
+
+  </footer>
+
+</body>
+
+</html>
