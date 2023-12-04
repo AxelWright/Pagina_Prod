@@ -100,7 +100,7 @@
         .card img {
             margin-bottom: 10px;
             width: 100%;
-            height: 40%;
+            height: 400px;
             object-fit: cover;
         }
 
@@ -187,7 +187,7 @@
     padding: 10px 20px;
     font-size: 16px;
     color: #fff;
-    background-color: #4CAF50;
+    background-color: #007bff;
     border: none;
     border-radius: 5px;
     text-decoration: none;
@@ -262,6 +262,10 @@
                             </ul>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="HisProd.html">Historial de compras</a>
+                        </li>
+
                         <!-- Carrito -->
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
@@ -311,6 +315,7 @@
                 <option value="priceLowToHigh">Precio (bajo a alto)</option>
                 <option value="priceHighToLow">Precio (alto a bajo)</option>
                 <option value="name">Nombre (A-Z)</option>
+                <option value="nameDesc">Nombre (Z-A)</option>
             </select>
 
             <button class="btn btn-success" onclick="applyFilters()">Aplicar filtros</button>
@@ -323,86 +328,40 @@
     <script>
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let histlist = JSON.parse(localStorage.getItem('histlist')) || [];
+
 
         async function cargarProductos() {
             try {
                 const response = await fetch('productos_1.json');
                 const productosJSON = await response.json();
 
+                console.log('Productos JSON:', productosJSON);
+
+                products = productosJSON;
                 mostrarProductos(productosJSON);
             } catch (error) {
                 console.error('Error al cargar el archivo JSON:', error);
             }
         }
 
-        function mostrarProductos(productosJSON) {
-            var productosContainer = document.getElementById('productos-container');
 
-            productosJSON.forEach(function (producto) {
-                var card = document.createElement('div');
-                card.classList.add('card');
-
-                var enlaceImagen = document.createElement('a');
-                var imagen = document.createElement('img');
-                imagen.src = producto.imagen;
-                imagen.alt = producto.nombre;
-                enlaceImagen.appendChild(imagen);
-                card.appendChild(enlaceImagen);
-
-                var contenidoTarjeta = document.createElement('div');
-                contenidoTarjeta.innerHTML = `
-                            <h4>${producto.nombre}</h4>
-                            <p class="descripcion-corta">${producto.descripcion_corta}</p>
-                            <p class="descripcion-larga">${producto.descripcion_larga}</p>
-                            <h3>$${producto.precio.toFixed(2)}</h3>
-                            <button class=""comprar onclick="comprar('${producto.nombre}')">Comprar</button>
-                            <a class="btnproducto" href=${producto.enlace}>Ver producto</a>
-                            <br/><br/><br/>
-                        `;
-
-                card.appendChild(contenidoTarjeta);
-
-                /*Boton wishlist*/
-                var botonContainerWishlist = document.createElement('div');
-                botonContainerWishlist.classList.add('boton-container-wishlist');
-
-                var botonImagenWishlist = document.createElement('img');
-                botonImagenWishlist.src = 'img/wish.png';
-                botonImagenWishlist.alt = 'Agregar a lista de deseos';
-                botonImagenWishlist.title = 'Agregar a lista de deseos';
-                botonImagenWishlist.classList.add('boton-imagen-wishlist');
-                botonImagenWishlist.addEventListener('click', function () {
-                    agregarListaDeDeseos(producto);
-                });
-
-                botonContainerWishlist.appendChild(botonImagenWishlist);
-
-                card.appendChild(botonContainerWishlist);
-
-                /*Boton carrito*/
-                var botonContainer = document.createElement('div');
-                botonContainer.classList.add('boton-container');
-
-                var botonImagen = document.createElement('img');
-                botonImagen.src = 'img/carrito.png';
-                botonImagen.alt = 'Agregar al carrito';
-                botonImagen.title = 'Agregar al carrito';
-                botonImagen.classList.add('boton-imagen');
-                botonImagen.addEventListener('click', function () {
-                    agregarAlCarrito(producto);
-                });
-
-                botonContainer.appendChild(botonImagen);
-
-                card.appendChild(botonContainer);
-
-                productosContainer.appendChild(card);
-            });
-        }
 
         function comprar(nombreProducto) {
-            alert(`Has comprado ${nombreProducto}`);
+            const productoExistente = histlist.find(item => item.nombre === nombreProducto); // Usar nombreProducto en lugar de producto
+
+            if (productoExistente) {
+                // Hacer algo con el productoExistente si es necesario
+                alert(`Has comprado ${nombreProducto}`);
+            } else {
+                // Aquí deberías agregar el producto al historial
+                // En tu código actual, solo estás mostrando una alerta
+                alert(`Error: No se encontró el producto en el historial`);
+            }
+
+            localStorage.setItem('histlist', JSON.stringify(histlist));
         }
+
 
         function agregarAlCarrito(producto) {
             const productoExistente = carrito.find(item => item.nombre === producto.nombre);
@@ -431,10 +390,103 @@
             localStorage.setItem('wishlist', JSON.stringify(wishlist));
         }
 
+        function applyFilters() {
+            const minPrice = parseInt(document.getElementById('minPrice').value) || 0;
+            const maxPrice = parseInt(document.getElementById('maxPrice').value) || Number.MAX_SAFE_INTEGER;
+            const sortOption = document.getElementById('sort').value;
+        
+            let filteredProducts = products.filter(product => product.precio >= minPrice && product.precio <= maxPrice);
+        
+            if (sortOption === 'priceLowToHigh') {
+                filteredProducts.sort((a, b) => a.precio - b.precio);
+            } else if (sortOption === 'priceHighToLow') {
+                filteredProducts.sort((a, b) => b.precio - a.precio);
+            } else if (sortOption === 'name') {
+                filteredProducts.sort((a, b) => a.nombre.localeCompare(b.nombre));
+            } else if (sortOption === 'nameDesc') { // Nueva condición
+                filteredProducts.sort((a, b) => b.nombre.localeCompare(a.nombre));
+            }
+        
+            displayProducts(filteredProducts);
+        }
+        
+
+
+        function displayProducts(productList) {
+            const productosContainer = document.getElementById('productos-container');
+            productosContainer.innerHTML = '';
+
+            productList.forEach(product => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+
+                const enlaceImagen = document.createElement('a');
+                const imagen = document.createElement('img');
+                imagen.src = product.imagen;
+                imagen.alt = product.nombre;
+                enlaceImagen.appendChild(imagen);
+                card.appendChild(enlaceImagen);
+
+                const contenidoTarjeta = document.createElement('div');
+                contenidoTarjeta.innerHTML = `
+            <h4>${product.nombre}</h4>
+            <p class="descripcion-corta">${product.descripcion_corta}</p>
+            <p class="descripcion-larga">${product.descripcion_larga}</p>
+            <h3>$${product.precio.toFixed(2)}</h3>
+            <button class="comprar" onclick="comprar('${product.nombre}')">Comprar</button>
+            <a class="btnproducto" href=${product.enlace}>Ver producto</a>
+            <br/><br/><br/>
+        `;
+
+                card.appendChild(contenidoTarjeta);
+
+                /*Boton wishlist*/
+                const botonContainerWishlist = document.createElement('div');
+                botonContainerWishlist.classList.add('boton-container-wishlist');
+
+                const botonImagenWishlist = document.createElement('img');
+                botonImagenWishlist.src = 'img/wish.png';
+                botonImagenWishlist.alt = 'Agregar a lista de deseos';
+                botonImagenWishlist.title = 'Agregar a lista de deseos';
+                botonImagenWishlist.classList.add('boton-imagen-wishlist');
+                botonImagenWishlist.addEventListener('click', function () {
+                    agregarListaDeDeseos(product);
+                });
+
+                botonContainerWishlist.appendChild(botonImagenWishlist);
+
+                card.appendChild(botonContainerWishlist);
+
+                /*Boton carrito*/
+                const botonContainer = document.createElement('div');
+                botonContainer.classList.add('boton-container');
+
+                const botonImagen = document.createElement('img');
+                botonImagen.src = 'img/carrito.png';
+                botonImagen.alt = 'Agregar al carrito';
+                botonImagen.title = 'Agregar al carrito';
+                botonImagen.classList.add('boton-imagen');
+                botonImagen.addEventListener('click', function () {
+                    agregarAlCarrito(product);
+                });
+
+                botonContainer.appendChild(botonImagen);
+
+                card.appendChild(botonContainer);
+
+                productosContainer.appendChild(card);
+            });
+        }
+
+
         cargarProductos();
+        
         // console.log(carrito);
         // localStorage.removeItem('carrito');
 
+        window.onload = function () {
+            applyFilters();
+        };
     </script>
 
     </section>

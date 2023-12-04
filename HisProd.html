@@ -28,7 +28,7 @@
     <!-- Cookies JS -->
     <script async src="cookie-banner.js"></script>
 
-    
+
     <style>
         .card {
             border: 1px solid #ccc;
@@ -133,10 +133,6 @@
             top: 0;
         }
 
-        .product {
-            border: #CCCCCC 1px solid;
-        }
-
         .divider {
             width: 100%;
             height: 1.5rem;
@@ -144,6 +140,10 @@
             border: solid rgba(0, 0, 0, .15);
             border-width: 1px 0;
             box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .product {
+            border: #CCCCCC 1px solid;
         }
     </style>
 </head>
@@ -223,7 +223,7 @@
 
     <br>
     <div><br><br><br>
-        
+
 
         <!--Productos-->
         <section class="container">
@@ -234,25 +234,25 @@
             <script>
                 // Initialize the cart or retrieve it from localStorage
                 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            
+
                 async function cargarProductos() {
                     try {
                         const response = await fetch('productosHC.json');
                         const productosJSON = await response.json();
-            
+
                         mostrarProductos(productosJSON);
                     } catch (error) {
                         console.error('Error al cargar el archivo JSON:', error);
                     }
                 }
-            
+
                 function mostrarProductos(productosJSON) {
                     var productosContainer = document.getElementById('productos-container');
-            
+
                     productosJSON.forEach(function (producto) {
                         var card = document.createElement('div');
                         card.classList.add('card');
-            
+
                         var enlaceImagen = document.createElement('a');
                         enlaceImagen.href = 'product.html';
                         var imagen = document.createElement('img');
@@ -260,7 +260,7 @@
                         imagen.alt = producto.nombre;
                         enlaceImagen.appendChild(imagen);
                         card.appendChild(enlaceImagen);
-            
+
                         var contenidoTarjeta = document.createElement('div');
                         contenidoTarjeta.innerHTML = `
                             <h4>${producto.nombre}</h4>
@@ -268,21 +268,21 @@
                             <h3>$${producto.precio.toFixed(2)}</h3>
                             <br/><br/><br/>
                         `;
-            
+
                         card.appendChild(contenidoTarjeta);
-            
-            
+
+
                         productosContainer.appendChild(card);
                     });
                 }
-            
-            
+
+
                 cargarProductos();
             </script>
 
         </section>
 
-        <!-- Footer Contact-->
+              <!-- Footer Contact-->
   <div class="divider"></div>
   <div class="container">
       <footer class="py-5">
@@ -341,7 +341,6 @@
               </ul>
           </div>
       </footer>
-  </div>
 </body>
 
 </html>

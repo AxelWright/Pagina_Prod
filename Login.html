@@ -113,28 +113,58 @@
             var emailInput = document.getElementById('email').value;
             var passwordInput = document.getElementById('password').value;
 
-            // Leer el archivo JSON de usuarios
-            fetch('usuarios.json')
-                .then(response => response.json())
-                .then(data => {
-                    var usuario = data.find(u => u.email === emailInput && u.contrasena === passwordInput);
+            // Obtiene info de localStorage sobre usuarios (solamente si se hizo un registro)
+            var usuarios = JSON.parse(localStorage.getItem('usuarios'));
 
-                    if (usuario) {
-                        // Mostrar el mensaje de éxito
-                        alert('Credenciales correctas. Por favor, disfrute su estadia.');
+            if (usuarios) {
+                var usuarioValido = false;
 
-                        // Redirigir a la página del perfil del usuario después de 2 segundos
-                        setTimeout(function () {
-                            window.location.href = 'PerfilU.html';
-                        }, 1000);
-                    } else {
-                        var mensajeError = document.getElementById("mensaje-error");
-                        mensajeError.innerHTML = '<p class="mt-2 text-pink-600 text-sm">Credenciales incorrectas. Por favor, intenta de nuevo.</p>';
-                        console.error('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+                for (var i = 0; i < usuarios.length; i++) {
+                    if (usuarios[i].email === emailInput && usuarios[i].contrasena === passwordInput) {
+                        usuarioValido = true;
+                        break;
                     }
-                })
-                .catch(error => console.error('Error al leer el archivo JSON:', error));
+                }
+
+                // Mostrar un mensaje de error si el usuario no es válido
+                if (!usuarioValido) {
+                    var mensajeError = document.getElementById("mensaje-error");
+                    mensajeError.innerHTML = '<p class="mt-2 text-pink-600 text-sm">Credenciales incorrectas. Por favor, intenta de nuevo.</p>';
+                    console.error('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+                    return;
+                }
+
+                // Mostrar el mensaje de éxito
+                alert('Credenciales correctas. Por favor, disfrute su estadia.');
+                // Redirigir a la página del perfil del usuario después de 2 segundos
+                setTimeout(function () {
+                    window.location.href = 'PerfilU.html';
+                }, 1000);
+            } else {
+                // Leer el archivo JSON de usuarios
+                fetch('usuarios.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        var usuario = data.find(u => u.email === emailInput && u.contrasena === passwordInput);
+
+                        if (usuario) {
+                            // Mostrar el mensaje de éxito
+                            alert('Credenciales correctas. Por favor, disfrute su estadia.');
+
+                            // Redirigir a la página del perfil del usuario después de 2 segundos
+                            setTimeout(function () {
+                                window.location.href = 'PerfilU.html';
+                            }, 1000);
+                        } else {
+                            var mensajeError = document.getElementById("mensaje-error");
+                            mensajeError.innerHTML = '<p class="mt-2 text-pink-600 text-sm">Credenciales incorrectas. Por favor, intenta de nuevo.</p>';
+                            console.error('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+                        }
+                    })
+                    .catch(error => console.error('Error al leer el archivo JSON:', error));
+            }
         })
     </script>
 </body>
+
 </html>

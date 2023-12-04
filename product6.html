@@ -27,6 +27,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
   <style>
+    .navbar {
+      position: fixed;
+      width: 100%;
+      z-index: 1000000;
+      top: 0;
+    }
+
     #producto {
       display: flex;
       flex-direction: row;
@@ -86,20 +93,21 @@
     }
 
     .divider {
-            width: 100%;
-            height: 1.5rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
+      width: 100%;
+      height: 1.5rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
   </style>
 </head>
 
 <header>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="img/Fisestoplogo.png" height="40px"></a>
+      <a class="navbar-brand" href="index.html"><img src="img/Fisestoplogo.png" height="40px"
+          alt="Logo oficial de FiesTop" title="Logo oficial de FiesTop"> </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -112,12 +120,53 @@
           <li class="nav-item">
             <a class="nav-link" href="Catalogo.html">Todos los productos</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Quienes somos:
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item">FiesTop es una empresa centrada en la organizacion de
+                  eventos sociales <br> de cualquier indole desde fiestas de cumpleaños hasta
+                  fiestas de XV años y bodas <br> el limite es su imaginación, nosotros le daremos
+                  las herramientas necesarias <br> para que organice su fiesta ideal en tiempo y
+                  forma</a></li>
+              <li><a class="dropdown-item" href="#"></a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#"></a></li>
+            </ul>
+          </li>
+
+          <!-- Carrito -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
+          </li>
+
+          <!-- Lista de deseos -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="wishlist.html">Lista de deseos</a>
+          </li>
+
         </ul>
+
         <form class="d-flex" action="Resultados.html" method="GET">
-          <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
-              name="query">
+          <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="query">
           <button class="btn btn-outline-success" type="submit">Buscar</button>
-      </form>
+        </form>
+
+        <!-- Sección de inicio de sesión -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="Login.html">Iniciar sesión</a>
+          </li>
+        </ul>
+
+        <!-- Sección para ver el perfil del usuario (puedes ajustar el enlace según tus necesidades) -->
+        <a class="navbar-brand" href="Login.html">
+          <img src="img/LogoU.png" height="40px" alt="Logo oficial de FiesTop" title="Perfil de usuario">
+        </a>
+
       </div>
     </div>
   </nav>
@@ -143,7 +192,7 @@
         <script async src="https://js.stripe.com/v3/buy-button.js">
         </script>
 
-        <stripe-buy-button buy-button-id="buy_btn_1OGrEoFRT6NzCn7QtwsAMk46"
+        <stripe-buy-button buy-button-id="buy_btn_1OJdBzFRT6NzCn7QZjcV6cOA"
           publishable-key="pk_test_51OGoVKFRT6NzCn7QmatQ3iGjFJjNhdmfHtY1AUj1Agw2luAJsFgR3GorSvaM4dBjg3GIVCcL2418zdbqesmvyXWN00jBnLGooI">
         </stripe-buy-button>
         <!-- End of Stripe -->
@@ -354,66 +403,64 @@
       document.getElementById('comment-list').innerHTML = ''; // Limpiar la lista de comentarios en la interfaz
     }
   </script>
-<br>
+  <br>
   <!-- Footer Contact-->
   <div class="divider"></div>
   <div class="container">
-      <footer class="py-5">
-          <div class="row">
-              <div class="col-6 col-md-2 mb-3">
-                  <h5>Links</h5>
-                  <ul class="nav flex-column">
-                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Inicio</a>
-                      </li>
-                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Productos</a>
-                      </li>
-                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Lista de
-                              Deseos</a>
-                      </li>
-                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Carrito</a>
-                      </li>
-                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Perfil</a>
-                      </li>
-                  </ul>
-              </div>
+    <footer class="py-5">
+      <div class="row">
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Links</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Inicio</a>
+            </li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Productos</a>
+            </li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Lista de
+                Deseos</a>
+            </li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Carrito</a>
+            </li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Perfil</a>
+            </li>
+          </ul>
+        </div>
 
-              <div class="col-6 col-md-2 mb-3">
-                  <h5>Sobre FiesTop</h5>
-                  <ul class="nav flex-column">
-                      <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Quiénes
-                              somos</a></li>
-                      <li class="nav-item mb-2"><a href="FAQs.html" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                  </ul>
-              </div>
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Sobre FiesTop</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Quiénes
+                somos</a></li>
+            <li class="nav-item mb-2"><a href="FAQs.html" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+          </ul>
+        </div>
 
-              <div class="col-md-5 offset-md-1 mb-3">
-                  <form>
-                      <h5>¿Quieres contactarnos?</h5>
-                      <p>Escribe tu correo y nos pondremos en contacto contigo cuanto antes :)</p>
-                      <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                          <label for="newsletter1" class="visually-hidden">Correo electrónico</label>
-                          <input id="newsletter1" type="text" class="form-control"
-                              placeholder="Correo electrónico">
-                          <button class="btn btn-primary" type="button">Enviar</button>
-                      </div>
-                  </form>
-              </div>
-          </div>
+        <div class="col-md-5 offset-md-1 mb-3">
+          <form>
+            <h5>¿Quieres contactarnos?</h5>
+            <p>Escribe tu correo y nos pondremos en contacto contigo cuanto antes :)</p>
+            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+              <label for="newsletter1" class="visually-hidden">Correo electrónico</label>
+              <input id="newsletter1" type="text" class="form-control" placeholder="Correo electrónico">
+              <button class="btn btn-primary" type="button">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
 
-          <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-              <p>© 2023 FiesTop. Todos los derechos reservados.</p>
-              <ul class="list-unstyled d-flex">
-                  <li class="ms-3"><a class="link-body-emphasis"
-                          href="https://www.facebook.com/people/FiesTop/100092594490737/"
-                          alt="Plataforma oficial de FiesTop en Facebook">
-                          <i class="bi bi-facebook" style="font-size: 1.5rem;"></i></a></li>
+      <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+        <p>© 2023 FiesTop. Todos los derechos reservados.</p>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-body-emphasis" href="https://www.facebook.com/people/FiesTop/100092594490737/"
+              alt="Plataforma oficial de FiesTop en Facebook">
+              <i class="bi bi-facebook" style="font-size: 1.5rem;"></i></a></li>
 
-                  <li class="ms-3">
-                      <p>Tel. 449 123 4567</p>
-                  </li>
-              </ul>
-          </div>
-      </footer>
+          <li class="ms-3">
+            <p>Tel. 449 123 4567</p>
+          </li>
+        </ul>
+      </div>
+    </footer>
   </div>
 
 

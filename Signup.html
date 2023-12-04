@@ -234,10 +234,11 @@
                     fetch('usuarios.json')
                         .then((response) => response.json())
                         .then((data) => {
-                            var usuarioExists = data.find(u => u.email === email);
+                            var usuarios = data;
+                            var usuarioExists = usuarios.find(u => u.email === email);
 
                             if (!usuarioExists) {
-                                data.push({
+                                usuarios.push({
                                     nombre: nombre,
                                     apellidoPaterno: apellidoPaterno,
                                     apellidoMaterno: apellidoMaterno,
@@ -250,6 +251,7 @@
                                     numeroExterior: numeroExterior,
                                     numeroInterior: numeroInterior,
                                 });
+                                localStorage.setItem('usuarios', JSON.stringify(usuarios));
                                 alert("Registro exitoso :)");
                                 // Redirigir al login después de 2 segundos
                                 setTimeout(function () {
