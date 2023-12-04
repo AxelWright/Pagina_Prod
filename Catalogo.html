@@ -339,7 +339,7 @@
                 console.log('Productos JSON:', productosJSON);
 
                 products = productosJSON;
-                mostrarProductos(productosJSON);
+                displayProducts(productosJSON); // Mostrar todos los productos al principio
             } catch (error) {
                 console.error('Error al cargar el archivo JSON:', error);
             }
@@ -479,12 +479,13 @@
         }
 
 
-        cargarProductos();
+        
         
         // console.log(carrito);
         // localStorage.removeItem('carrito');
 
         window.onload = function () {
+            cargarProductos();
             applyFilters();
         };
     </script>
