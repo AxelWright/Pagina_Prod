@@ -1,0 +1,8 @@
+{
+  "nombre": "Amandes de Chocolate",
+  "imagen": "https://www.elglobo.com.mx/cdn/shop/products/27543-1_600x.jpg?v=1618602845",
+  "descripcion_corta": "Pastel en forma de rosca",
+  "descripcion_larga": "Pastel en forma de rosca elaborado con helado sabor a chocolate con almendra y relleno de variegato noisette. Decorado con rocio y glasé de chocolate, montado sobre un bizcocho sabor chocolate embebido en jarabe marrasquino.",
+  "precio": 398.00,
+  "categorias": ["Pastel","Chocolate"]
+}

@@ -1,0 +1,8 @@
+{
+  "nombre": "Biscocho miniatura",
+  "imagen": "https://www.elglobo.com.mx/cdn/shop/products/41153-1_600x.jpg?v=1618602873",
+  "descripcion_corta": "Panqués y garibaldis",
+  "descripcion_larga": "Charola con una deliciosa mezcla de panqués y garibalis en tamaño miniatura sabres: vainilla, chocolate, etc.",
+  "precio": 198.22,
+  "categorias": ["Pastel","Miniatura"]
+}

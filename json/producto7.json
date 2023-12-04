@@ -1,0 +1,8 @@
+{
+  "nombre": "Sonido Boom",
+  "imagen": "img/SonidoB.jpeg",
+  "descripcion_corta": "Efectos de sonido y musica para todos los gustos",
+  "descripcion_larga": "Contamos con una amplia gama de opciones que pondremos en practica para que tu fiesta no sea aburrida y tus invitados se diviertan a lo grande.",
+  "precio": 3500.00,
+  "categorias": ["Sonido","Musica"]
+}

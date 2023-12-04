@@ -1,0 +1,8 @@
+{
+  "nombre": "Salon Victoria",
+    "imagen": "img/CasaV.jpeg",
+    "descripcion_corta": "Una opcion elegante y completa",
+    "descripcion_larga": "En Victoria podras contar con amplios espacios para tus invitados ademas de una vista envidiable.",
+    "precio": 25000,
+    "categorias": ["Locales de Eventos","Salones"]
+}

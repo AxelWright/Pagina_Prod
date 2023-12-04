@@ -1,0 +1,8 @@
+{
+  "nombre": "ElementsAGS",
+    "imagen": "img/ElementsAGS.jpg",
+    "descripcion_corta": "Luz y sonido",
+    "descripcion_larga": "Somos la mejor opcion para proporcionar luces y sonido para tu evento.",
+    "precio": 5000.00,
+    "categorias": ["Luces","Sonido"]
+}

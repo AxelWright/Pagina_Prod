@@ -1,0 +1,8 @@
+{
+  "nombre": "Salón Real de Haciendas",
+  "imagen": "img/HaciendaReal.jpg",
+  "descripcion_corta": "El salón perfecto para todo tipo de eventos",
+  "descripcion_larga": "Salón formal con jardín, terrazas, área de juegos y estacionamiento.",
+  "precio": 10000,
+  "categorias": ["Locales de Eventos", "Salones"]
+}
