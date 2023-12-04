@@ -37,6 +37,10 @@
             justify-content: space-between;
             margin-top: 70px;
             z-index: 1000;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .form-select {
@@ -67,7 +71,8 @@
 
         .producto img {
             width: 100%;
-            height: auto;
+            height: 300px;
+            object-fit: cover;
             border-radius: 5px;
             margin-bottom: 10px;
         }
@@ -94,6 +99,7 @@
             color: #fff;
             padding: 10px 0;
         }
+        
     </style>
 </head>
 
@@ -123,10 +129,14 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Categorías
+                                Quienes somos:
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Servicios</a></li>
+                                <li><a class="dropdown-item">FiesTop es una empresa centrada en la organizacion de
+                                        eventos sociales <br> de cualquier indole desde fiestas de cumpleaños hasta
+                                        fiestas de XV años y bodas <br> el limite es su imaginación, nosotros le daremos
+                                        las herramientas necesarias <br> para que organice su fiesta ideal en tiempo y
+                                        forma</a></li>
                                 <li><a class="dropdown-item" href="#"></a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -134,29 +144,20 @@
                                 <li><a class="dropdown-item" href="#"></a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Quiénes somos
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item">FiesTop es una empresa centrada en la organización de
-                                        eventos sociales
-                                        <br> de cualquier índole desde fiestas de cumpleaños hasta fiestas de XV años y
-                                        bodas
-                                        <br> el límite es su imaginación, nosotros le daremos las herramientas
-                                        necesarias
-                                        <br> para que organice su fiesta ideal en tiempo y forma</a>
-                                </li>
-                                <li><a class="dropdown-item" href="#"></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#"></a></li>
-                            </ul>
+
+                        <!-- Carrito -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
                         </li>
+
+                        <!-- Lista de deseos -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="wishlist.html">Lista de deseos</a>
+                        </li>
+
                     </ul>
+
+
                     <form class="d-flex" action="Resultados.html" method="GET">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
                             name="query">
@@ -182,8 +183,9 @@
     <!-- Filtros -->
     <div class="container mt-3 container-filtros">
         <div class="mb-3">
-            <label for="ordenar">Ordenar por:</label>
-            <select class="form-select" id="ordenar">
+            <label for="ordenar" style="margin-top: 8px; margin-left: 10px;">Ordenar por:</label>
+            <select class="form-select" id="ordenar" placeholder="Buscar...">
+                <option value="Predeterminado">Predeterminado</option>
                 <option value="az">A-Z</option>
                 <option value="za">Z-A</option>
                 <option value="precio_asc">Precio (menor a mayor)</option>
