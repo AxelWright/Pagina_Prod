@@ -20,6 +20,18 @@
             top: 0;
         }
 
+        .container-fluid a {
+            color: #000;
+            /* Color de los enlaces */
+            text-decoration: none;
+            /* Sin subrayado en los enlaces */
+        }
+
+        .container-fluid a:hover {
+            text-decoration: underline;
+            /* Subrayado al pasar el mouse sobre los enlaces */
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -89,12 +101,13 @@
             margin-bottom: 0;
         }
 
-        footer {
-            background-color: #660303;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            border-top: 1px solid #e4e4e4;
+        .divider {
+            width: 100%;
+            height: 1.5rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
         }
     </style>
 </head>
@@ -172,6 +185,7 @@
         </nav>
     </header>
 
+    <br><br>
     <h1>Carrito de Compras</h1>
 
     <div id="carrito-container">
@@ -300,13 +314,67 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
-    <footer>
-        <p style="text-align: center;">&copy; 2023 Mi Tienda en Línea <a
-                href="https://www.facebook.com/people/FiesTop/100092594490737/"><img src="img/fb.png"
-                    class="card-img-top" alt="Plataforma oficial de fiestop en facebook" title="logo de Facebook"
-                    style="width: 30px;"></a> </p>
+   <!-- Footer Contact-->
+   <div class="divider"></div>
+   <div class="container">
+       <footer class="py-5">
+           <div class="row">
+               <div class="col-6 col-md-2 mb-3">
+                   <h5>Links</h5>
+                   <ul class="nav flex-column">
+                       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Inicio</a>
+                       </li>
+                       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Productos</a>
+                       </li>
+                       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Lista de
+                               Deseos</a>
+                       </li>
+                       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Carrito</a>
+                       </li>
+                       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Perfil</a>
+                       </li>
+                   </ul>
+               </div>
 
-    </footer>
+               <div class="col-6 col-md-2 mb-3">
+                   <h5>Sobre FiesTop</h5>
+                   <ul class="nav flex-column">
+                       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Quiénes
+                               somos</a></li>
+                       <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                   </ul>
+               </div>
+
+               <div class="col-md-5 offset-md-1 mb-3">
+                   <form>
+                       <h5>¿Quieres contactarnos?</h5>
+                       <p>Escribe tu correo y nos pondremos en contacto contigo cuanto antes :)</p>
+                       <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                           <label for="newsletter1" class="visually-hidden">Correo electrónico</label>
+                           <input id="newsletter1" type="text" class="form-control"
+                               placeholder="Correo electrónico">
+                           <button class="btn btn-primary" type="button">Enviar</button>
+                       </div>
+                   </form>
+               </div>
+           </div>
+
+           <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+               <p>© 2023 FiesTop. Todos los derechos reservados.</p>
+               <ul class="list-unstyled d-flex">
+                   <li class="ms-3"><a class="link-body-emphasis"
+                           href="https://www.facebook.com/people/FiesTop/100092594490737/"
+                           alt="Plataforma oficial de FiesTop en Facebook">
+                           <i class="bi bi-facebook" style="font-size: 1.5rem;"></i></a></li>
+
+                   <li class="ms-3">
+                       <p>Tel. 449 123 4567</p>
+                   </li>
+               </ul>
+           </div>
+       </footer>
+   </div>
+
 </body>
 
 </html>
