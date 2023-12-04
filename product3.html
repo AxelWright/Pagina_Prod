@@ -259,10 +259,8 @@
           productImage.alt = data.nombre;
           productDescription.textContent = data.descripcion_larga;
           productPrice.textContent = `Precio: $${data.precio}`;
-          productSizes.textContent = `Tallas disponibles: ${data.tallas.join(", ")}`;
-          productColors.textContent = `Colores disponibles: ${data.colores.join(", ")}`;
-          productMaterials.textContent = `Materiales: ${data.materiales.join(", ")}`;
-          productBrand.textContent = `Marca: ${data.marca}`;
+          productMaterials.textContent = `Materiales: ${data.materiales ? data.materiales.join(", ") : 'No especificado'}`;
+          productBrand.textContent = `Marca: ${data.marca ? data.marca : 'No especificada'}`;
         })
         .catch(error => {
           console.error('Error:', error);
