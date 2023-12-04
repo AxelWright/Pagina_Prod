@@ -2,9 +2,9 @@
   "nombre": "Corona de Princesas",
     "imagen": "img/CoronaC.jpeg",
     "descripcion_corta": "15 Piezas, Coronas De Feliz Cumpleaños",
-    "descripcion_larga": "Coronas de sombrero de cumpleaños de papel para regalos de cumpleaños en el aula, fiestas, sombreros.",
+    "descripcion_larga": "coronas de cumpleaños coloridas hechas de papel con un fondo azul. En la parte superior de las coronas, hay un pastel amarillo grande con glaseado rosa. Sobre el pastel, están escritas las palabras “¡Feliz Cumpleaños!” en letras rojas. Además, las coronas están decoradas con varios elementos festivos como globos, regalos y cupcakes. Estas coronas están diseñadas para ser usadas en la cabeza como un accesorio divertido para una celebración de cumpleaños. Son alegres y llamativas, perfectas para añadir un toque especial a la fiesta. Coronas de sombrero de cumpleaños de papel para regalos de cumpleaños en el aula, fiestas, sombreros.",
     "precio": 92.29,
-    "materiales": ["Papel", "Carton"],
+    "materiales": ["papel", "carton"],
     "marca": "FiesParty",
     "categorias": ["Accesorios de Fiesta", "Coronas"]
 }
