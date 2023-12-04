@@ -240,8 +240,6 @@
 
 
   <script>
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
     document.addEventListener("DOMContentLoaded", function () {
       fetch('json/producto4.json')
         .then(response => response.json())
@@ -400,6 +398,8 @@
       document.getElementById('comment-list').innerHTML = ''; // Limpiar la lista de comentarios en la interfaz
     }
 
+    //Añadir al carrito
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     function agregarAlCarrito() {
       fetch('json/producto4.json')
         .then(response => response.json())
