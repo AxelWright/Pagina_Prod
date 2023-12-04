@@ -26,9 +26,27 @@
             color: #28a745;
         }
 
+        .container.mt-3 {
+            margin-top: 20px;
+        }
+
+        /* Estilos para los filtros */
+        .mb-3 {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 70px;
+            z-index: 1000;
+        }
+
+        .form-select {
+            width: 200px;
+            margin-right: 10px;
+        }
+
+
         #resultados-container {
             flex: 1;
-            margin-top: 20px;
         }
 
         .producto {
@@ -139,7 +157,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" action="resultados.html" method="GET">
+                    <form class="d-flex" action="Resultados.html" method="GET">
                         <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
                             name="query">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -160,6 +178,22 @@
             </div>
         </nav>
     </header>
+
+    <!-- Filtros -->
+    <div class="container mt-3 container-filtros">
+        <div class="mb-3">
+            <label for="ordenar">Ordenar por:</label>
+            <select class="form-select" id="ordenar">
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+                <option value="precio_asc">Precio (menor a mayor)</option>
+                <option value="precio_desc">Precio (mayor a menor)</option>
+            </select>
+
+            <button class="btn btn-primary" onclick="aplicarFiltro()">Filtrar</button>
+        </div>
+    </div>
+
 
     <!-- Cuerpo de la página donde se verán los productos -->
     <div class="container mt-5">
@@ -211,65 +245,128 @@
         }
 
         // Función para mostrar los resultados o el mensaje en el contenedor
-            function mostrarResultados(resultados) {
-                const resultadosContainer = document.getElementById('resultados-container');
-                // Limpiar el contenedor
-                resultadosContainer.innerHTML = '';
+        function mostrarResultados(resultados) {
+            const resultadosContainer = document.getElementById('resultados-container');
+            // Limpiar el contenedor
+            resultadosContainer.innerHTML = '';
 
-                if (resultados.length > 0) {
-                    // Crear un contenedor flex para organizar los productos en filas
-                    const filasContainer = document.createElement('div');
-                    filasContainer.style.display = 'flex';
-                    filasContainer.style.flexWrap = 'wrap';
+            if (resultados.length > 0) {
+                // Mostrar la barra de filtros si hay resultados
+                const filtrosContainer = document.querySelector('container.mt-3');
+                if (filtrosContainer) {
+                    filtrosContainer.style.display = 'block';
+                }
+                // Crear un contenedor flex para organizar los productos en filas
+                const filasContainer = document.createElement('div');
+                filasContainer.style.display = 'flex';
+                filasContainer.style.flexWrap = 'wrap';
 
-                    // Mostrar resultados
-                    resultados.forEach((producto, index) => {
-                        const productoElement = document.createElement('div');
-                        productoElement.classList.add('producto');
-                        productoElement.innerHTML = `
+                // Mostrar resultados
+                resultados.forEach((producto, index) => {
+                    const productoElement = document.createElement('div');
+                    productoElement.classList.add('producto');
+                    productoElement.innerHTML = `
                         <img src="${producto.imagen}" alt="${producto.nombre}">
                         <h3>${producto.nombre}</h3>
                         <p>${producto.descripcion}</p>
                         <p>Precio: $${producto.precio}</p>
                         `;
 
-                        // Agregar un manejador de eventos al elemento del producto
-                        productoElement.addEventListener('click', function () {
-                            // Redirigir a product.html cuando se selecciona un producto
-                            window.location.href = 'product.html';
-                        });
-
-                        // Agregar cada producto al contenedor de filas
-                        filasContainer.appendChild(productoElement);
-
-                        // Si es el tercer producto en una fila, crear una nueva fila
-                        if ((index + 1) % 3 === 0) {
-                            const nuevaFila = document.createElement('div');
-                            nuevaFila.style.width = '100%';
-                            filasContainer.appendChild(nuevaFila);
-                        }
+                    // Agregar un manejador de eventos al elemento del producto
+                    productoElement.addEventListener('click', function () {
+                        // Redirigir a product.html cuando se selecciona un producto
+                        window.location.href = 'product.html';
                     });
 
-                    // Agregar el contenedor de filas al contenedor principal
-                    resultadosContainer.appendChild(filasContainer);
-                } else {
-                    // Mostrar mensaje
-                    mostrarMensajeNoEncontrado();
-                }
+                    // Agregar cada producto al contenedor de filas
+                    filasContainer.appendChild(productoElement);
+
+                    // Si es el tercer producto en una fila, crear una nueva fila
+                    if ((index + 1) % 3 === 0) {
+                        const nuevaFila = document.createElement('div');
+                        nuevaFila.style.width = '100%';
+                        filasContainer.appendChild(nuevaFila);
+                    }
+                });
+
+                // Agregar el contenedor de filas al contenedor principal
+                resultadosContainer.appendChild(filasContainer);
+            } else {
+                // Mostrar mensaje
+                mostrarMensajeNoEncontrado();
             }
+        }
 
         function mostrarMensajeNoEncontrado() {
-                const resultadosContainer = document.getElementById('resultados-container');
-                resultadosContainer.innerHTML = ''; // Limpiar el contenedor
+            const resultadosContainer = document.getElementById('resultados-container');
+            resultadosContainer.innerHTML = ''; // Limpiar el contenedor
 
-                const mensajeElement = document.createElement('p');
-                mensajeElement.textContent = 'No se encontró el producto.';
-                mensajeElement.style.color = '#434343'; // Cambiar a gris oscuro
-                mensajeElement.style.fontSize = '24px'; // Ajustar el tamaño del texto
-                mensajeElement.style.textAlign = 'center';
-                mensajeElement.style.marginTop = '220px';
-                resultadosContainer.appendChild(mensajeElement);
+            // Ocultar la barra de filtros
+            const filtrosContainer = document.querySelector('.container-filtros');
+            if (filtrosContainer) {
+                filtrosContainer.style.display = 'none';
             }
+
+            const mensajeElement = document.createElement('p');
+            mensajeElement.textContent = 'No se encontró el producto.';
+            mensajeElement.style.color = '#434343'; // Cambiar a gris oscuro
+            mensajeElement.style.fontSize = '24px'; // Ajustar el tamaño del texto
+            mensajeElement.style.textAlign = 'center';
+            mensajeElement.style.marginTop = '220px';
+            resultadosContainer.appendChild(mensajeElement);
+        }
+
+        function aplicarFiltro() {
+            const ordenarPor = document.getElementById('ordenar').value;
+
+            // Obtener los resultados actuales
+            obtenerResultadosActuales()
+                .then(resultados => {
+                    // Aplicar el filtro correspondiente
+                    switch (ordenarPor) {
+                        case 'az':
+                            resultados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+                            break;
+                        case 'za':
+                            resultados.sort((a, b) => b.nombre.localeCompare(a.nombre));
+                            break;
+                        case 'precio_asc':
+                            resultados.sort((a, b) => a.precio - b.precio);
+                            break;
+                        case 'precio_desc':
+                            resultados.sort((a, b) => b.precio - a.precio);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    // Mostrar los resultados ordenados
+                    mostrarResultados(resultados);
+                })
+                .catch(error => console.error('Error al obtener resultados actuales:', error));
+        }
+
+        function obtenerResultadosActuales() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query');
+
+            // Puedes cambiar 'tu-archivo-json.json' por la ruta correcta a tu archivo JSON
+            return fetch('productos_1.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Filtrar los resultados según la consulta actual
+                    return data.filter(producto =>
+                        producto.nombre.toLowerCase().includes(query.toLowerCase()) ||
+                        producto.precio.toString().includes(query)
+                    );
+                })
+                .catch(error => {
+                    console.error('Error al obtener resultados actuales:', error);
+                    return []; // Devolver un array vacío en caso de error
+                });
+        }
+
     </script>
 </body>
+
 </html>
