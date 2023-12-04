@@ -145,6 +145,27 @@
         .product {
             border: #CCCCCC 1px solid;
         }
+        .btnproducto {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btnproducto:hover {
+            background-color: #45a049;
+        }
+        .Fecha {
+    color: #646363; /* Gris oscuro */
+    /* Puedes agregar más estilos aquí si lo necesitas */
+}
+
     </style>
 </head>
 
@@ -254,7 +275,6 @@
                         card.classList.add('card');
 
                         var enlaceImagen = document.createElement('a');
-                        enlaceImagen.href = 'product.html';
                         var imagen = document.createElement('img');
                         imagen.src = producto.imagen;
                         imagen.alt = producto.nombre;
@@ -266,6 +286,8 @@
                             <h4>${producto.nombre}</h4>
                             <p class="descripcion">${producto.descripcion}</p>
                             <h3>$${producto.precio.toFixed(2)}</h3>
+                            <p class="Fecha">Fecha de compra:  ${producto.fecha}</p>
+                            <a class="btnproducto" href=${producto.enlace}>Ver producto</a>
                             <br/><br/><br/>
                         `;
 

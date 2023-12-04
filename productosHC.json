@@ -8,7 +8,8 @@
     "colores": ["rojo", "azul", "verde", "negro"],
     "materiales": ["plastico", "pet"],
     "marca": "Elegant Disposables",
-    "fecha": "2023-01-01"
+    "fecha": "2023-01-01",
+    "enlace": "product.html"
   },
   {
     "nombre": "Corona de Princesas",
@@ -17,7 +18,8 @@
     "precio": 92.29,
     "materiales": ["Papel", "Carton"],
     "marca": "FiesParty",
-    "fecha": "2023-02-15"
+    "fecha": "2023-02-15",
+    "enlace": "product2.html"
   },
   {
     "nombre": "Sombrero De Papel De Unicornio",
@@ -27,7 +29,8 @@
     "colores": ["rojo", "azul", "verde"],
     "materiales": ["plastico", "pet"],
     "marca": "FiesParty",
-    "fecha": "2023-03-20"
+    "fecha": "2023-03-20",
+    "enlace": "product3.html"
   }
   
 ]
