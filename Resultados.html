@@ -37,6 +37,10 @@
             justify-content: space-between;
             margin-top: 70px;
             z-index: 1000;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .form-select {
@@ -67,7 +71,8 @@
 
         .producto img {
             width: 100%;
-            height: auto;
+            height: 300px;
+            object-fit: cover;
             border-radius: 5px;
             margin-bottom: 10px;
         }
@@ -94,6 +99,7 @@
             color: #fff;
             padding: 10px 0;
         }
+        
     </style>
 </head>
 
@@ -177,8 +183,9 @@
     <!-- Filtros -->
     <div class="container mt-3 container-filtros">
         <div class="mb-3">
-            <label for="ordenar">Ordenar por:</label>
-            <select class="form-select" id="ordenar">
+            <label for="ordenar" style="margin-top: 8px; margin-left: 10px;">Ordenar por:</label>
+            <select class="form-select" id="ordenar" placeholder="Buscar...">
+                <option value="Predeterminado">Predeterminado</option>
                 <option value="az">A-Z</option>
                 <option value="za">Z-A</option>
                 <option value="precio_asc">Precio (menor a mayor)</option>
