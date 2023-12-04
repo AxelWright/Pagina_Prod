@@ -262,10 +262,6 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="HisProd.html">Historial de compras</a>
-                        </li>
-
                         <!-- Carrito -->
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
@@ -286,12 +282,12 @@
                     <!-- Sección de inicio de sesión -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Iniciar sesión</a>
+                            <a class="nav-link" href="Login.html">Iniciar sesión</a>
                         </li>
                     </ul>
 
                     <!-- Sección para ver el perfil del usuario (puedes ajustar el enlace según tus necesidades) -->
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="Login.html">
                         <img src="img/LogoU.png" height="40px" alt="Logo oficial de FiesTop" title="Perfil de usuario"
                             class="nav-img">
                     </a>
@@ -339,7 +335,7 @@
                 console.log('Productos JSON:', productosJSON);
 
                 products = productosJSON;
-                mostrarProductos(productosJSON);
+                displayProducts(productosJSON); // Mostrar todos los productos al principio
             } catch (error) {
                 console.error('Error al cargar el archivo JSON:', error);
             }
@@ -479,12 +475,13 @@
         }
 
 
-        cargarProductos();
+        
         
         // console.log(carrito);
         // localStorage.removeItem('carrito');
 
         window.onload = function () {
+            cargarProductos();
             applyFilters();
         };
     </script>
