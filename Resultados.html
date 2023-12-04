@@ -151,6 +151,67 @@
     </header>
 
     <!-- Cuerpo de la página donde se verán los productos -->
+  <div class="container mt-5">
+    <!-- Container para mostrar los resultados -->
+    <div id="resultados-container"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 FiesTop | <a href="https://www.facebook.com/people/FiesTop/100092594490737/" target="_blank">
+      <img src="img/fb.png" class="card-img-top" alt="Plataforma oficial de fiestop en facebook"
+        title="logo de Facebook" style="width: 30px;">
+    </a></p>
+  </footer>
+
+  <!-- Scripts de Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Script para cargar y mostrar los resultados desde la barra de búsqueda -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Obtén la consulta de búsqueda de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('query');
+      // Si hay una consulta, realiza la búsqueda y muestra los resultados
+      if (query) {
+        buscarResultados(query);
+      }
+    });
+
+    // Función para buscar y mostrar resultados
+    function buscarResultados(query) {
+      // Puedes cambiar 'tu-archivo-json.json' por la ruta correcta a tu archivo JSON
+      fetch('productos_1.json')
+        .then(response => response.json())
+        .then(data => {
+          const resultadosFiltrados = data.filter(producto =>
+            producto.nombre.toLowerCase().includes(query.toLowerCase()) ||
+            producto.precio.toString().includes(query));
+          mostrarResultados(resultadosFiltrados);
+        })
+        .catch(error => console.koerror('Error al obtener datos:', error));
+    }
     
-  </body>
+    // Función para mostrar los resultados en el contenedor
+    function mostrarResultados(resultados) {
+      const resultadosContainer = document.getElementById('resultados-container');
+      // Limpiar el contenedor
+      resultadosContainer.innerHTML = '';
+      // Mostrar resultados
+      resultados.forEach(producto => {
+        const productoElement = document.createElement('div');
+        productoElement.classList.add('producto');
+        productoElement.innerHTML = `
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h3>${producto.nombre}</h3>
+        <p>${producto.descripcion}</p>
+        <p>Precio: $${producto.precio}</p>
+        `;
+        resultadosContainer.appendChild(productoElement);
+      });
+    }
+  </script>
+</body>
 </html>
