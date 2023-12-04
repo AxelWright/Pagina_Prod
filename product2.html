@@ -264,7 +264,7 @@
           const productColors = document.getElementById('product-colors');
           const productMaterials = document.getElementById('product-materials');
           const productBrand = document.getElementById('product-brand');
-
+    
           productName.textContent = data.nombre;
           productImage.src = data.imagen;
           productImage.alt = data.nombre;
@@ -278,6 +278,8 @@
         .catch(error => {
           console.error('Error:', error);
         });
+  
+    
       // Cargar calificación al cargar la página
       loadRating();
 
