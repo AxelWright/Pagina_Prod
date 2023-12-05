@@ -217,6 +217,7 @@
                     console.error('Error cargando el producto desde JSON:', error);
                 });
         }   
+        
         function agregarProductoAlCarrito(producto) {
             // Verifica si el producto ya está en el carrito
             const productoExistente = carrito.find(item => item.nombre === producto.nombre);

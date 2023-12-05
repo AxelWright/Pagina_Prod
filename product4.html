@@ -182,8 +182,10 @@
       </div>
       <div class="product-details">
         <h1 id="product-name"></h1>
-        <p id="product-description"></p>
+        <p id="product-description-corta" style="color:darkgray;"></p>
         <p id="product-price"></p>
+        <h4>Detalles</h4>
+        <p id="product-description"></p>
         <p id="product-sizes"></p>
         <p id="product-colors"></p>
         <p id="product-materials"></p>
@@ -248,6 +250,7 @@
         .then(data => {
           const productName = document.getElementById('product-name');
           const productImage = document.getElementById('product-image');
+          const productDescriptionCorta = document.getElementById('product-description-corta');
           const productDescription = document.getElementById('product-description');
           const productPrice = document.getElementById('product-price');
           const productSizes = document.getElementById('product-sizes');
@@ -258,6 +261,7 @@
           productName.textContent = data.nombre;
           productImage.src = data.imagen;
           productImage.alt = data.nombre;
+          productDescriptionCorta.textContent = data.descripcion_corta;
           productDescription.textContent = data.descripcion_larga;
           productPrice.textContent = `Precio: $${data.precio}`;
           productMaterials.textContent = `categorias: ${data.categorias ? data.categorias.join(", ") : 'No especificado'}`;

@@ -226,11 +226,11 @@
                 // Verificar si ya existe un producto en la lista de deseos
                 if (wishlist.length === 0) {
                     // Realizar una solicitud AJAX para obtener el JSON desde un archivo externo
-                    $.getJSON('producto.json', function (productoJSON) {
+                    $.getJSON('producto.json', function (producto) {
                         // Verificar si el producto ya está en la lista de deseos
-                        if (!productoEstaEnLista(productoJSON)) {
+                        if (!productoEstaEnLista(producto)) {
                             // Agregar el producto a la lista de deseos
-                            wishlist.push(productoJSON);
+                            wishlist.push({ ...producto, cantidad: 1 });
     
                             // Guardar la lista actualizada en el almacenamiento local
                             localStorage.setItem('wishlist', JSON.stringify(wishlist));
@@ -248,9 +248,6 @@
                     return item.nombre === producto.nombre;
                 });
             }
-    
-            // Asegúrate de que 'wishlist' esté definida y tenga datos
-            var wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
             function mostrarListaDeseos(wishlistJSON) {
                 var wishlistContainer = document.getElementById('wishlist-container');
