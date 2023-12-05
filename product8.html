@@ -189,9 +189,11 @@
         <p id="product-colors"></p>
         <p id="product-materials"></p>
         <p id="product-brand"></p>
-        <button type="button" class="btn btn-primary" onclick="agregarAlCarrito()" style="background-color: #4CAF50;">Agregar al carrito</button>
+        <button type="button" class="btn btn-primary" onclick="agregarAlCarrito()"
+          style="background-color: #4CAF50;">Agregar al carrito</button>
         <br>
-        <button type="button" class="btn btn-primary" onclick="agregarListaDeDeseos()" style="background-color: #4CAF50;">Agregar a lista de deseos</button>
+        <button type="button" class="btn btn-primary" onclick="agregarListaDeDeseos()"
+          style="background-color: #4CAF50;">Agregar a lista de deseos</button>
         <br>
 
         <!-- Stripe -->
@@ -231,8 +233,10 @@
         <label for="comment">Comentario:</label><br>
         <textarea id="comment" rows="4" cols="100" required></textarea><br>
 
-        <button type="button" class="btn btn-primary" onclick="addComment()" style="background-color: #4CAF50;">Agregar Comentario</button>
-        <button type="button" class="btn btn-primary" onclick="clearComments()" style="background-color: #4CAF50;">Limpiar Comentarios</button>
+        <button type="button" class="btn btn-primary" onclick="addComment()" style="background-color: #4CAF50;">Agregar
+          Comentario</button>
+        <button type="button" class="btn btn-primary" onclick="clearComments()"
+          style="background-color: #4CAF50;">Limpiar Comentarios</button>
       </form>
 
       <!-- Lista de comentarios -->
@@ -475,19 +479,30 @@
           <ul class="nav flex-column">
             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Quiénes
                 somos</a></li>
-            <li class="nav-item mb-2"><a href="FAQs.html" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="FAQs.html" class="nav-link p-0 text-body-secondary">Preguntas
+                Frecuentes</a></li>
           </ul>
         </div>
 
+        <script>
+          function mensajeEnviado() {
+            var mensajeError = document.getElementById("success-email");
+            mensajeError.innerHTML = '<p class="text-success">¡Gracias por interesarte en FiesTop! Nos pondremos en contacto contigo.</p>';
+            setTimeout(function () {
+              mensajeError.innerHTML = '';
+            }, 2000);
+          }
+        </script>
         <div class="col-md-5 offset-md-1 mb-3">
           <form>
             <h5>¿Quieres contactarnos?</h5>
             <p>Escribe tu correo y nos pondremos en contacto contigo cuanto antes :)</p>
             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
               <label for="newsletter1" class="visually-hidden">Correo electrónico</label>
-              <input id="newsletter1" type="text" class="form-control" placeholder="Correo electrónico">
-              <button class="btn btn-primary" type="button">Enviar</button>
+              <input id="newsletter1" type="email" class="form-control" placeholder="Correo electrónico">
+              <button onclick="mensajeEnviado()" class="btn btn-primary" type="button">Enviar</button>
             </div>
+            <div id="success-email"></div>
           </form>
         </div>
       </div>

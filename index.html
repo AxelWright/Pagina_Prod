@@ -595,16 +595,26 @@
                         </ul>
                     </div>
 
+                    <script>
+                        function mensajeEnviado() {
+                            var mensajeError = document.getElementById("success-email");
+                            mensajeError.innerHTML = '<p class="text-success">¡Gracias por interesarte en FiesTop! Nos pondremos en contacto contigo.</p>';
+                            setTimeout(function () {
+                                mensajeError.innerHTML = '';
+                            }, 2000);
+                        }
+                    </script>
                     <div class="col-md-5 offset-md-1 mb-3">
                         <form>
                             <h5>¿Quieres contactarnos?</h5>
                             <p>Escribe tu correo y nos pondremos en contacto contigo cuanto antes :)</p>
                             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                                 <label for="newsletter1" class="visually-hidden">Correo electrónico</label>
-                                <input id="newsletter1" type="text" class="form-control"
+                                <input id="newsletter1" type="email" class="form-control"
                                     placeholder="Correo electrónico">
-                                <button class="btn btn-primary" type="button">Enviar</button>
+                                <button onclick="mensajeEnviado()" class="btn btn-primary" type="button">Enviar</button>
                             </div>
+                            <div id="success-email"></div>
                         </form>
                     </div>
                 </div>
