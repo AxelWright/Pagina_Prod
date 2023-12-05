@@ -137,7 +137,7 @@
     </style>
 </head>
 
-<body>
+<body onload="cargarProductoDesdeJSON()">
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -220,16 +220,45 @@
         <div id="wishlist-container"></div>
 
         <script>
+            var wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+            function cargarProductoDesdeJSON() {
+                // Verificar si ya existe un producto en la lista de deseos
+                if (wishlist.length === 0) {
+                    // Realizar una solicitud AJAX para obtener el JSON desde un archivo externo
+                    $.getJSON('producto.json', function (productoJSON) {
+                        // Verificar si el producto ya está en la lista de deseos
+                        if (!productoEstaEnLista(productoJSON)) {
+                            // Agregar el producto a la lista de deseos
+                            wishlist.push(productoJSON);
+    
+                            // Guardar la lista actualizada en el almacenamiento local
+                            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    
+                            // Actualizar la lista de deseos en la interfaz
+                            actualizarListaDeseos();
+                        }
+                    });
+                }
+            }
+    
+            // Función para verificar si un producto ya está en la lista de deseos
+            function productoEstaEnLista(producto) {
+                return wishlist.some(function (item) {
+                    return item.nombre === producto.nombre;
+                });
+            }
+    
             // Asegúrate de que 'wishlist' esté definida y tenga datos
             var wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
             function mostrarListaDeseos(wishlistJSON) {
                 var wishlistContainer = document.getElementById('wishlist-container');
-
+            
                 wishlistJSON.forEach(function (producto, index) {
                     var wishlistCard = document.createElement('div');
                     wishlistCard.classList.add('wishlist-card');
-
+            
                     var enlaceImagen = document.createElement('a');
                     enlaceImagen.href = producto.enlace;
                     var imagen = document.createElement('img');
@@ -237,35 +266,34 @@
                     imagen.alt = producto.nombre;
                     enlaceImagen.appendChild(imagen);
                     wishlistCard.appendChild(enlaceImagen);
-
+            
                     var contenidoWishlistCard = document.createElement('div');
-
+            
                     var nombreProducto = document.createElement('h4');
                     nombreProducto.textContent = producto.nombre;
-
+            
                     var descripcionProducto = document.createElement('p');
                     descripcionProducto.classList.add('descripcion');
                     descripcionProducto.textContent = producto.descripcion_larga;
-
+            
                     var precioProducto = document.createElement('h3');
                     precioProducto.textContent = `$${producto.precio.toFixed(2)}`;
-
+            
                     var removeButton = document.createElement('button');
                     removeButton.textContent = 'Eliminar';
                     removeButton.addEventListener('click', function () {
                         eliminarDeListaDeseos(index);
                     });
-
+            
                     contenidoWishlistCard.appendChild(nombreProducto);
-                    contenidoWishlistCard.appendChild(descripcionProducto);
+                    contenidoWishlistCard.appendChild(descripcionProducto); // Asegúrate de agregar la descripción aquí
                     contenidoWishlistCard.appendChild(precioProducto);
                     contenidoWishlistCard.appendChild(removeButton);
-
+            
                     wishlistCard.appendChild(contenidoWishlistCard);
                     wishlistContainer.appendChild(wishlistCard);
                 });
             }
-
             // Nueva función para eliminar un producto de la Lista de Deseos
             function eliminarDeListaDeseos(index) {
                 wishlist.splice(index, 1); // Elimina el producto en la posición 'index' del array 'wishlist'

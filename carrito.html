@@ -205,6 +205,45 @@
 
     <script>
 
+        function cargarProductoDesdeJSON(url) {
+            // Realiza una solicitud HTTP para obtener el JSON externo
+            fetch(url)
+                .then(response => response.json())
+                .then(producto => {
+                    // Agrega el producto al carrito o realiza las operaciones que necesites
+                    agregarProductoAlCarrito(producto);
+                })
+                .catch(error => {
+                    console.error('Error cargando el producto desde JSON:', error);
+                });
+        }   
+        function agregarProductoAlCarrito(producto) {
+            // Verifica si el producto ya está en el carrito
+            const productoExistente = carrito.find(item => item.nombre === producto.nombre);
+    
+            if (productoExistente) {
+                // Si el producto ya está en el carrito, incrementa la cantidad
+                productoExistente.cantidad = 1;
+            } else {
+                // Si el producto no está en el carrito, agrégalo
+                carrito.push({
+                    nombre: producto.nombre,
+                    imagen: producto.imagen,
+                    descripcion: producto.descripcion,
+                    precio: producto.precio,
+                    cantidad: 1
+                });
+            }
+    
+            // Guarda el carrito en el almacenamiento local
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+    
+            // Actualiza la visualización del carrito en la página
+            mostrarCarrito();
+        }
+    
+        // Llama a la función para cargar el producto desde el JSON externo
+        cargarProductoDesdeJSON('producto.json');
         const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
         function mostrarCarrito() {
