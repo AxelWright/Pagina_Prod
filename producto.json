@@ -7,5 +7,6 @@
   "tallas": ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45"],
   "colores": ["rojo", "azul", "verde", "negro"],
   "materiales": ["plastico", "pet"],
-  "marca": "Elegant Disposables"
+  "marca": "Elegant Disposables",
+  "enlace": "product.html"
 }
